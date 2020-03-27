@@ -9,21 +9,69 @@
 /* Begin PBXBuildFile section */
 		180DD97D242E5B2B0096B70D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD97C242E5B2B0096B70D /* AppDelegate.swift */; };
 		180DD97F242E5B2B0096B70D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD97E242E5B2B0096B70D /* SceneDelegate.swift */; };
-		180DD981242E5B2B0096B70D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD980242E5B2B0096B70D /* ViewController.swift */; };
 		180DD984242E5B2B0096B70D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180DD982242E5B2B0096B70D /* Main.storyboard */; };
 		180DD986242E5B2E0096B70D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 180DD985242E5B2E0096B70D /* Assets.xcassets */; };
 		180DD989242E5B2E0096B70D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180DD987242E5B2E0096B70D /* LaunchScreen.storyboard */; };
+		180DD9AD242E5CE10096B70D /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD991242E5CE00096B70D /* Label.swift */; };
+		180DD9AE242E5CE10096B70D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD992242E5CE00096B70D /* ViewController.swift */; };
+		180DD9AF242E5CE10096B70D /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD993242E5CE00096B70D /* View.swift */; };
+		180DD9B0242E5CE10096B70D /* AppButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD994242E5CE00096B70D /* AppButton.swift */; };
+		180DD9B1242E5CE10096B70D /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD995242E5CE00096B70D /* InputTextField.swift */; };
+		180DD9B2242E5CE10096B70D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD996242E5CE00096B70D /* Color.swift */; };
+		180DD9B3242E5CE10096B70D /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD997242E5CE00096B70D /* AppFont.swift */; };
+		180DD9B4242E5CE10096B70D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD998242E5CE00096B70D /* SettingsView.swift */; };
+		180DD9B5242E5CE10096B70D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD999242E5CE10096B70D /* MainTabBarController.swift */; };
+		180DD9B6242E5CE10096B70D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD99B242E5CE10096B70D /* LoginView.swift */; };
+		180DD9B7242E5CE10096B70D /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD99C242E5CE10096B70D /* WelcomeViewController.swift */; };
+		180DD9B8242E5CE10096B70D /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD99D242E5CE10096B70D /* ForgotPasswordViewController.swift */; };
+		180DD9B9242E5CE10096B70D /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD99E242E5CE10096B70D /* WelcomeView.swift */; };
+		180DD9BA242E5CE10096B70D /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD99F242E5CE10096B70D /* ForgotPasswordView.swift */; };
+		180DD9BB242E5CE10096B70D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9A0242E5CE10096B70D /* LoginViewController.swift */; };
+		180DD9BC242E5CE10096B70D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9A1242E5CE10096B70D /* RegisterView.swift */; };
+		180DD9BD242E5CE10096B70D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9A2242E5CE10096B70D /* RegisterViewController.swift */; };
+		180DD9BE242E5CE10096B70D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9A3242E5CE10096B70D /* SettingsViewController.swift */; };
+		180DD9BF242E5CE10096B70D /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9A6242E5CE10096B70D /* MusicViewController.swift */; };
+		180DD9C0242E5CE10096B70D /* MusicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9A7242E5CE10096B70D /* MusicView.swift */; };
+		180DD9C1242E5CE10096B70D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9A8242E5CE10096B70D /* ProfileView.swift */; };
+		180DD9C2242E5CE10096B70D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9A9242E5CE10096B70D /* HomeView.swift */; };
+		180DD9C3242E5CE10096B70D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AA242E5CE10096B70D /* HomeViewController.swift */; };
+		180DD9C4242E5CE10096B70D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AB242E5CE10096B70D /* ProfileViewController.swift */; };
+		180DD9C5242E5CE10096B70D /* IrregularityContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		180DD979242E5B2B0096B70D /* VmpProjectios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VmpProjectios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		180DD97C242E5B2B0096B70D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		180DD97E242E5B2B0096B70D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		180DD980242E5B2B0096B70D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		180DD983242E5B2B0096B70D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		180DD985242E5B2E0096B70D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		180DD988242E5B2E0096B70D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		180DD98A242E5B2E0096B70D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		180DD991242E5CE00096B70D /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		180DD992242E5CE00096B70D /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		180DD993242E5CE00096B70D /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		180DD994242E5CE00096B70D /* AppButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppButton.swift; sourceTree = "<group>"; };
+		180DD995242E5CE00096B70D /* InputTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
+		180DD996242E5CE00096B70D /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		180DD997242E5CE00096B70D /* AppFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		180DD998242E5CE00096B70D /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		180DD999242E5CE10096B70D /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		180DD99B242E5CE10096B70D /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		180DD99C242E5CE10096B70D /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		180DD99D242E5CE10096B70D /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		180DD99E242E5CE10096B70D /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		180DD99F242E5CE10096B70D /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		180DD9A0242E5CE10096B70D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		180DD9A1242E5CE10096B70D /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		180DD9A2242E5CE10096B70D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		180DD9A3242E5CE10096B70D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		180DD9A6242E5CE10096B70D /* MusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
+		180DD9A7242E5CE10096B70D /* MusicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicView.swift; sourceTree = "<group>"; };
+		180DD9A8242E5CE10096B70D /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		180DD9A9242E5CE10096B70D /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		180DD9AA242E5CE10096B70D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		180DD9AB242E5CE10096B70D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrregularityContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +106,69 @@
 			children = (
 				180DD97C242E5B2B0096B70D /* AppDelegate.swift */,
 				180DD97E242E5B2B0096B70D /* SceneDelegate.swift */,
-				180DD980242E5B2B0096B70D /* ViewController.swift */,
+				180DD990242E5CE00096B70D /* Class */,
+				180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */,
+				180DD999242E5CE10096B70D /* MainTabBarController.swift */,
+				180DD998242E5CE00096B70D /* SettingsView.swift */,
+				180DD9A3242E5CE10096B70D /* SettingsViewController.swift */,
+				180DD9A4242E5CE10096B70D /* Tabs */,
+				180DD99A242E5CE10096B70D /* Welcome */,
 				180DD982242E5B2B0096B70D /* Main.storyboard */,
 				180DD985242E5B2E0096B70D /* Assets.xcassets */,
 				180DD987242E5B2E0096B70D /* LaunchScreen.storyboard */,
 				180DD98A242E5B2E0096B70D /* Info.plist */,
 			);
 			path = VmpProjectios;
+			sourceTree = "<group>";
+		};
+		180DD990242E5CE00096B70D /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				180DD991242E5CE00096B70D /* Label.swift */,
+				180DD992242E5CE00096B70D /* ViewController.swift */,
+				180DD993242E5CE00096B70D /* View.swift */,
+				180DD994242E5CE00096B70D /* AppButton.swift */,
+				180DD995242E5CE00096B70D /* InputTextField.swift */,
+				180DD996242E5CE00096B70D /* Color.swift */,
+				180DD997242E5CE00096B70D /* AppFont.swift */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		180DD99A242E5CE10096B70D /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				180DD99B242E5CE10096B70D /* LoginView.swift */,
+				180DD99C242E5CE10096B70D /* WelcomeViewController.swift */,
+				180DD99D242E5CE10096B70D /* ForgotPasswordViewController.swift */,
+				180DD99E242E5CE10096B70D /* WelcomeView.swift */,
+				180DD99F242E5CE10096B70D /* ForgotPasswordView.swift */,
+				180DD9A0242E5CE10096B70D /* LoginViewController.swift */,
+				180DD9A1242E5CE10096B70D /* RegisterView.swift */,
+				180DD9A2242E5CE10096B70D /* RegisterViewController.swift */,
+			);
+			path = Welcome;
+			sourceTree = "<group>";
+		};
+		180DD9A4242E5CE10096B70D /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				180DD9A5242E5CE10096B70D /* Music */,
+				180DD9A8242E5CE10096B70D /* ProfileView.swift */,
+				180DD9A9242E5CE10096B70D /* HomeView.swift */,
+				180DD9AA242E5CE10096B70D /* HomeViewController.swift */,
+				180DD9AB242E5CE10096B70D /* ProfileViewController.swift */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		180DD9A5242E5CE10096B70D /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				180DD9A6242E5CE10096B70D /* MusicViewController.swift */,
+				180DD9A7242E5CE10096B70D /* MusicView.swift */,
+			);
+			path = Music;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +242,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				180DD981242E5B2B0096B70D /* ViewController.swift in Sources */,
+				180DD9C3242E5CE10096B70D /* HomeViewController.swift in Sources */,
 				180DD97D242E5B2B0096B70D /* AppDelegate.swift in Sources */,
 				180DD97F242E5B2B0096B70D /* SceneDelegate.swift in Sources */,
+				180DD9BA242E5CE10096B70D /* ForgotPasswordView.swift in Sources */,
+				180DD9BE242E5CE10096B70D /* SettingsViewController.swift in Sources */,
+				180DD9B5242E5CE10096B70D /* MainTabBarController.swift in Sources */,
+				180DD9BD242E5CE10096B70D /* RegisterViewController.swift in Sources */,
+				180DD9B3242E5CE10096B70D /* AppFont.swift in Sources */,
+				180DD9AF242E5CE10096B70D /* View.swift in Sources */,
+				180DD9B0242E5CE10096B70D /* AppButton.swift in Sources */,
+				180DD9C4242E5CE10096B70D /* ProfileViewController.swift in Sources */,
+				180DD9C5242E5CE10096B70D /* IrregularityContentView.swift in Sources */,
+				180DD9B7242E5CE10096B70D /* WelcomeViewController.swift in Sources */,
+				180DD9B6242E5CE10096B70D /* LoginView.swift in Sources */,
+				180DD9BC242E5CE10096B70D /* RegisterView.swift in Sources */,
+				180DD9B8242E5CE10096B70D /* ForgotPasswordViewController.swift in Sources */,
+				180DD9B4242E5CE10096B70D /* SettingsView.swift in Sources */,
+				180DD9C0242E5CE10096B70D /* MusicView.swift in Sources */,
+				180DD9B9242E5CE10096B70D /* WelcomeView.swift in Sources */,
+				180DD9BF242E5CE10096B70D /* MusicViewController.swift in Sources */,
+				180DD9C1242E5CE10096B70D /* ProfileView.swift in Sources */,
+				180DD9AE242E5CE10096B70D /* ViewController.swift in Sources */,
+				180DD9BB242E5CE10096B70D /* LoginViewController.swift in Sources */,
+				180DD9B2242E5CE10096B70D /* Color.swift in Sources */,
+				180DD9C2242E5CE10096B70D /* HomeView.swift in Sources */,
+				180DD9B1242E5CE10096B70D /* InputTextField.swift in Sources */,
+				180DD9AD242E5CE10096B70D /* Label.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
