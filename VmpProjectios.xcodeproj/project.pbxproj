@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -37,9 +37,11 @@
 		180DD9C3242E5CE10096B70D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AA242E5CE10096B70D /* HomeViewController.swift */; };
 		180DD9C4242E5CE10096B70D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AB242E5CE10096B70D /* ProfileViewController.swift */; };
 		180DD9C5242E5CE10096B70D /* IrregularityContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */; };
+		E8B4BEC99587836B24DF47D5 /* Pods_VmpProjectios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		008B43DBFBE10B4EBC928E6B /* Pods-VmpProjectios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VmpProjectios.debug.xcconfig"; path = "Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios.debug.xcconfig"; sourceTree = "<group>"; };
 		180DD979242E5B2B0096B70D /* VmpProjectios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VmpProjectios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		180DD97C242E5B2B0096B70D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		180DD97E242E5B2B0096B70D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,8 @@
 		180DD9AA242E5CE10096B70D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		180DD9AB242E5CE10096B70D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrregularityContentView.swift; sourceTree = "<group>"; };
+		2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VmpProjectios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VmpProjectios.release.xcconfig"; path = "Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8B4BEC99587836B24DF47D5 /* Pods_VmpProjectios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,8 @@
 			children = (
 				180DD97B242E5B2B0096B70D /* VmpProjectios */,
 				180DD97A242E5B2B0096B70D /* Products */,
+				1B79A7D3126E36B0AB3309AA /* Pods */,
+				F3D05D9F15EFBD9DD7510C12 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +178,23 @@
 			path = Music;
 			sourceTree = "<group>";
 		};
+		1B79A7D3126E36B0AB3309AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				008B43DBFBE10B4EBC928E6B /* Pods-VmpProjectios.debug.xcconfig */,
+				C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F3D05D9F15EFBD9DD7510C12 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,9 +202,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 180DD98D242E5B2E0096B70D /* Build configuration list for PBXNativeTarget "VmpProjectios" */;
 			buildPhases = (
+				51F3335D6CCA6C00B351E940 /* [CP] Check Pods Manifest.lock */,
 				180DD975242E5B2B0096B70D /* Sources */,
 				180DD976242E5B2B0096B70D /* Frameworks */,
 				180DD977242E5B2B0096B70D /* Resources */,
+				92BF0AD081874EAA09FF2F4A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -236,6 +262,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		51F3335D6CCA6C00B351E940 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VmpProjectios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92BF0AD081874EAA09FF2F4A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		180DD975242E5B2B0096B70D /* Sources */ = {
@@ -410,16 +478,18 @@
 		};
 		180DD98E242E5B2E0096B70D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 008B43DBFBE10B4EBC928E6B /* Pods-VmpProjectios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9FSR54Q89Y;
+				DEVELOPMENT_TEAM = MT6RW97B5Y;
 				INFOPLIST_FILE = VmpProjectios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.VmpProjectios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.VmpProjectios.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -428,16 +498,18 @@
 		};
 		180DD98F242E5B2E0096B70D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9FSR54Q89Y;
+				DEVELOPMENT_TEAM = MT6RW97B5Y;
 				INFOPLIST_FILE = VmpProjectios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.VmpProjectios;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.VmpProjectios.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
