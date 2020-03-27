@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import TPKeyboardAvoiding
 
+
 class RegisterView: View {
   
   //MARK: - Constants
