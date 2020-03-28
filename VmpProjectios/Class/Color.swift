@@ -64,7 +64,7 @@ class Color {
         if UITraitCollection.userInterfaceStyle == .dark {
           return UIColor(hexString: "#1A1E30")!
         } else {//Light Mode
-          return UIColor.white
+          return UIColor(hexString: "#636A8A")!
         }
       }
     } else {
