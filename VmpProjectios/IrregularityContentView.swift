@@ -30,19 +30,6 @@ class IrregularityContentView: ESTabBarItemContentView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-    let p = CGPoint.init(x: point.x - imageView.frame.origin.x, y: point.y - imageView.frame.origin.y)
-    return sqrt(pow(imageView.bounds.size.width / 2.0 - p.x, 2) + pow(imageView.bounds.size.height / 2.0 - p.y, 2)) < imageView.bounds.size.width / 2.0
-  }
-  
-  public override func selectAnimation(animated: Bool, completion: (() -> ())?) {
-    let view = UIView.init(frame: CGRect.init(origin: CGPoint.zero, size: CGSize(width: 2.0, height: 2.0)))
-    view.layer.cornerRadius = 1.0
-    view.layer.opacity = 0.5
-    view.backgroundColor = .clear
-    self.addSubview(view)
-  }
-  
   public override func reselectAnimation(animated: Bool, completion: (() -> ())?) {
     completion?()
   }
