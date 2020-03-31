@@ -7,7 +7,7 @@ class SettingsView: View, UITableViewDelegate, UITableViewDataSource {
     let userInformationView: UIView = {
         var customView = UIView()
         customView.translatesAutoresizingMaskIntoConstraints = false
-        customView.backgroundColor = .green
+        customView.backgroundColor = .clear
         return customView
     }()
     
@@ -23,7 +23,7 @@ class SettingsView: View, UITableViewDelegate, UITableViewDataSource {
     let userNameAndMailView: UIView = {
         var view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
+        view.backgroundColor = .clear
         return view
     }()
     
@@ -31,6 +31,12 @@ class SettingsView: View, UITableViewDelegate, UITableViewDataSource {
         var textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = .boldSystemFont(ofSize: 15)
+        textView.textColor = .white
+        textView.text = "John"
+        textView.backgroundColor = .clear
+        textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.isSelectable = false
         return textView
     }()
     
@@ -38,15 +44,21 @@ class SettingsView: View, UITableViewDelegate, UITableViewDataSource {
         var textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = .systemFont(ofSize: 15)
-        textView.textColor = .lightText
+        textView.textColor = .white
+        textView.text = "mike__shinoda@hotmail.com"
+        textView.backgroundColor = .clear
+        textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.isSelectable = false
         return textView
     }()
     
     let manageGoogleAccountButton: UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.tintColor = .blue
+        button.setTitleColor(.appBlue, for: UIControl.State.normal)
         button.setTitle("Manage your Google Account", for: UIControl.State.normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 15)
         return button
     }()
     
@@ -144,34 +156,32 @@ class SettingsView: View, UITableViewDelegate, UITableViewDataSource {
         userNameAndMailView.trailingAnchor.constraint(equalTo: userInformationView.trailingAnchor, constant: -10).isActive = true
         userNameAndMailView.bottomAnchor.constraint(equalTo: userInformationView.bottomAnchor, constant: -30).isActive = true // Change with ManageGoogleAccountButton
 //        userNameAndMailView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+            
+        userNameAndMailView.addSubview(userName)
+        userNameAndMailView.addSubview(userMailAdress)
+        
+        userName.topAnchor.constraint(equalTo: userNameAndMailView.topAnchor).isActive = true
+        userName.trailingAnchor.constraint(equalTo: userNameAndMailView.trailingAnchor).isActive = true
+        userName.leadingAnchor.constraint(equalTo: userNameAndMailView.leadingAnchor).isActive = true
+        userName.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        
+        userMailAdress.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: -5).isActive = true
+        userMailAdress.leadingAnchor.constraint(equalTo: userNameAndMailView.leadingAnchor).isActive = true
+        userMailAdress.trailingAnchor.constraint(equalTo: userNameAndMailView.trailingAnchor).isActive = true
+        userMailAdress.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        
+        // Manage your Google Account
+        userInformationView.addSubview(manageGoogleAccountButton)
+        
+        manageGoogleAccountButton.topAnchor.constraint(equalTo: userNameAndMailView.bottomAnchor, constant: -15).isActive = true
+        manageGoogleAccountButton.leadingAnchor.constraint(equalTo: userInformationView.leadingAnchor, constant: -15).isActive = true
+        manageGoogleAccountButton.trailingAnchor.constraint(equalTo: userNameAndMailView.trailingAnchor).isActive = true
+        manageGoogleAccountButton.bottomAnchor.constraint(equalTo: userInformationView.bottomAnchor).isActive = true
+        manageGoogleAccountButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
         
     }
-    
-    func setupInsideOfUserInformationView() {
-       
-        userPhoto.topAnchor.constraint(equalTo: userInformationView.topAnchor).isActive = true
-        userPhoto.leadingAnchor.constraint(equalTo: userInformationView.leadingAnchor).isActive = true
-        userPhoto.trailingAnchor.constraint(equalTo: userInformationView.leadingAnchor).isActive = true
-        userPhoto.topAnchor.constraint(equalTo: userInformationView.topAnchor).isActive = true
-        userPhoto.heightAnchor.constraint(equalToConstant: 60).isActive = true // Maybe constant 50
-        
-        setupuserNameAndMailView()
-    }
-    
-    func setupuserNameAndMailView() {
-        
-        userInformationView.addSubview(userNameAndMailView) // IMPORTANT
-        
-        userNameAndMailView.topAnchor.constraint(equalTo: userInformationView.topAnchor).isActive = true
-        userNameAndMailView.leadingAnchor.constraint(equalTo: userPhoto.trailingAnchor).isActive = true
-        userNameAndMailView.trailingAnchor.constraint(equalTo: userInformationView.trailingAnchor).isActive = true
-        userNameAndMailView.bottomAnchor.constraint(equalTo: manageGoogleAccountButton.topAnchor).isActive = true
-        userNameAndMailView.heightAnchor.constraint(equalToConstant: 50).isActive = true // Maybe constant 50
-    }
-    
-    func setupManageAccountButtonLayout() {
-//        manageGoogleAccountButton.topAnchor
-    }
+
     
     func setupLabelSettingLayout() {
         labelSettings.topAnchor.constraint(equalTo: userInformationView.bottomAnchor).isActive = true
