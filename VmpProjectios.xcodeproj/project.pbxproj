@@ -37,6 +37,8 @@
 		180DD9C3242E5CE10096B70D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AA242E5CE10096B70D /* HomeViewController.swift */; };
 		180DD9C4242E5CE10096B70D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AB242E5CE10096B70D /* ProfileViewController.swift */; };
 		180DD9C5242E5CE10096B70D /* IrregularityContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */; };
+		1895F9D02434A32900464848 /* TestFlowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895F9CF2434A32900464848 /* TestFlowCollectionViewController.swift */; };
+		1895F9D22434A36900464848 /* FlowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895F9D12434A36900464848 /* FlowCollectionView.swift */; };
 		E8B4BEC99587836B24DF47D5 /* Pods_VmpProjectios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,8 @@
 		180DD9AA242E5CE10096B70D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		180DD9AB242E5CE10096B70D /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrregularityContentView.swift; sourceTree = "<group>"; };
+		1895F9CF2434A32900464848 /* TestFlowCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlowCollectionViewController.swift; sourceTree = "<group>"; };
+		1895F9D12434A36900464848 /* FlowCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCollectionView.swift; sourceTree = "<group>"; };
 		2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VmpProjectios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VmpProjectios.release.xcconfig"; path = "Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +122,8 @@
 				180DD999242E5CE10096B70D /* MainTabBarController.swift */,
 				180DD998242E5CE00096B70D /* SettingsView.swift */,
 				180DD9A3242E5CE10096B70D /* SettingsViewController.swift */,
+				1895F9CF2434A32900464848 /* TestFlowCollectionViewController.swift */,
+				1895F9D12434A36900464848 /* FlowCollectionView.swift */,
 				180DD9A4242E5CE10096B70D /* Tabs */,
 				180DD99A242E5CE10096B70D /* Welcome */,
 				180DD982242E5B2B0096B70D /* Main.storyboard */,
@@ -325,7 +331,9 @@
 				180DD9B7242E5CE10096B70D /* WelcomeViewController.swift in Sources */,
 				180DD9B6242E5CE10096B70D /* LoginView.swift in Sources */,
 				180DD9BC242E5CE10096B70D /* RegisterView.swift in Sources */,
+				1895F9D22434A36900464848 /* FlowCollectionView.swift in Sources */,
 				180DD9B8242E5CE10096B70D /* ForgotPasswordViewController.swift in Sources */,
+				1895F9D02434A32900464848 /* TestFlowCollectionViewController.swift in Sources */,
 				180DD9B4242E5CE10096B70D /* SettingsView.swift in Sources */,
 				180DD9C0242E5CE10096B70D /* MusicView.swift in Sources */,
 				180DD9B9242E5CE10096B70D /* WelcomeView.swift in Sources */,
