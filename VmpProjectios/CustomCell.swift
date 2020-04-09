@@ -3,6 +3,8 @@ import UIKit
 
 class CustomCell: UICollectionViewCell {
     
+    //MARK: - UI Objects
+    
     let titleOfContent : UITextView = {
         var textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -39,10 +41,14 @@ class CustomCell: UICollectionViewCell {
         return customImageView
     }()
     
+    //MARK: - Initializer
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
+    
+    //MARK: - UI Layout
     
     func setupViews() {
         self.addSubview(imageOfVideo)
