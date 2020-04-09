@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180BAB2A243F615100AC1A5B /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BAB29243F615100AC1A5B /* CustomCell.swift */; };
 		180DD97D242E5B2B0096B70D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD97C242E5B2B0096B70D /* AppDelegate.swift */; };
 		180DD97F242E5B2B0096B70D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD97E242E5B2B0096B70D /* SceneDelegate.swift */; };
 		180DD984242E5B2B0096B70D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 180DD982242E5B2B0096B70D /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		008B43DBFBE10B4EBC928E6B /* Pods-VmpProjectios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VmpProjectios.debug.xcconfig"; path = "Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios.debug.xcconfig"; sourceTree = "<group>"; };
+		180BAB29243F615100AC1A5B /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		180DD979242E5B2B0096B70D /* VmpProjectios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VmpProjectios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		180DD97C242E5B2B0096B70D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		180DD97E242E5B2B0096B70D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				180DD9A3242E5CE10096B70D /* SettingsViewController.swift */,
 				1895F9CF2434A32900464848 /* TestFlowCollectionViewController.swift */,
 				1895F9D12434A36900464848 /* FlowCollectionView.swift */,
+				180BAB29243F615100AC1A5B /* CustomCell.swift */,
 				180DD9A4242E5CE10096B70D /* Tabs */,
 				180DD99A242E5CE10096B70D /* Welcome */,
 				180DD982242E5B2B0096B70D /* Main.storyboard */,
@@ -338,6 +341,7 @@
 				180DD9C0242E5CE10096B70D /* MusicView.swift in Sources */,
 				180DD9B9242E5CE10096B70D /* WelcomeView.swift in Sources */,
 				180DD9BF242E5CE10096B70D /* MusicViewController.swift in Sources */,
+				180BAB2A243F615100AC1A5B /* CustomCell.swift in Sources */,
 				180DD9C1242E5CE10096B70D /* ProfileView.swift in Sources */,
 				180DD9AE242E5CE10096B70D /* ViewController.swift in Sources */,
 				180DD9BB242E5CE10096B70D /* LoginViewController.swift in Sources */,

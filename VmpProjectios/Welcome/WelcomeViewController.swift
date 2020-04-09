@@ -26,8 +26,8 @@ class WelcomeViewController: ViewController<WelcomeView> {
     customView.loginButton.addTarget(self, action: #selector(goToLogin), for: .touchUpInside)
     customView.registerButton.addTarget(self, action: #selector(goToRegister), for: .touchUpInside)
     
-//    let testVC = TestFlowCollectionViewController()
-//    self.navigationController?.pushViewController(testVC, animated: true)
+    let testVC = TestFlowCollectionViewController()
+    self.navigationController?.pushViewController(testVC, animated: true)
   }
   
   

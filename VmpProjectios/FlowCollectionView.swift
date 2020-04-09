@@ -4,19 +4,19 @@ class FlowCollectionView: View, UICollectionViewDataSource, UICollectionViewDele
     
     //MARK: - UI Objects
         
-    let customCellIdentifier : String = "customCell"
+    let myCellIdentifier : String = "myCell"
     
     let flowCollectionView: UICollectionView = { // Scroll Up and Down
         var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(CustomCell.self, forCellWithReuseIdentifier: "customCell")
+        collectionView.register(InsiderCollectionView.self, forCellWithReuseIdentifier: "myCell")
         collectionView.backgroundColor = .clear
         return collectionView
     }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        self.backgroundColor = .black
         setupCollectionView()
         flowCollectionView.dataSource = self
         flowCollectionView.delegate = self
@@ -45,7 +45,7 @@ class FlowCollectionView: View, UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: customCellIdentifier, for: indexPath) as! CustomCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: myCellIdentifier, for: indexPath) as! InsiderCollectionView
         return cell
     }
     
@@ -62,13 +62,13 @@ class FlowCollectionView: View, UICollectionViewDataSource, UICollectionViewDele
     //MARK: - Collection View Flow Layout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width, height: 300)
+        return CGSize(width: frame.width, height: 350)
     }
 }
 
-//MARK: - Custom Cell Class
+    //MARK: - Insider Collection View Class
 
-class CustomCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class InsiderCollectionView: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var collectionView: UICollectionView!
     let cellReuseIdentifier:String = "myInnerCell"
@@ -81,13 +81,13 @@ class CustomCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionVi
         self.layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         self.layout.itemSize = CGSize(width:self.frame.width-40, height:self.frame.height-100)
         self.layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
-
+        
         self.collectionView = UICollectionView(frame:self.frame, collectionViewLayout: self.layout)
-        self.collectionView.backgroundColor = UIColor.purple
+        self.collectionView.backgroundColor = .black
         self.collectionView.frame = self.bounds
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        self.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: self.cellReuseIdentifier)
+        self.collectionView.register(CustomCell.self, forCellWithReuseIdentifier: self.cellReuseIdentifier)
         self.collectionView.reloadData()
         self.addSubview(self.collectionView)
     }
@@ -103,12 +103,9 @@ class CustomCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionVi
 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath as IndexPath)
-        cell.backgroundColor = UIColor.orange
-        cell.layer.cornerRadius = 10
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath as IndexPath) as! CustomCell
         return cell
     }
 
 }
-
 
