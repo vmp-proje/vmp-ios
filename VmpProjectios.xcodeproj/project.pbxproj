@@ -40,6 +40,8 @@
 		180DD9C5242E5CE10096B70D /* IrregularityContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */; };
 		1895F9D02434A32900464848 /* TestFlowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895F9CF2434A32900464848 /* TestFlowCollectionViewController.swift */; };
 		1895F9D22434A36900464848 /* FlowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895F9D12434A36900464848 /* FlowCollectionView.swift */; };
+		18CD0F392440B2F90092F48D /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD0F382440B2F90092F48D /* SubscriptionViewController.swift */; };
+		18CD0F3B2440B32D0092F48D /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD0F3A2440B32D0092F48D /* SubscriptionView.swift */; };
 		E8B4BEC99587836B24DF47D5 /* Pods_VmpProjectios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +82,8 @@
 		180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrregularityContentView.swift; sourceTree = "<group>"; };
 		1895F9CF2434A32900464848 /* TestFlowCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFlowCollectionViewController.swift; sourceTree = "<group>"; };
 		1895F9D12434A36900464848 /* FlowCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCollectionView.swift; sourceTree = "<group>"; };
+		18CD0F382440B2F90092F48D /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
+		18CD0F3A2440B32D0092F48D /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
 		2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VmpProjectios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VmpProjectios.release.xcconfig"; path = "Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +131,8 @@
 				1895F9CF2434A32900464848 /* TestFlowCollectionViewController.swift */,
 				1895F9D12434A36900464848 /* FlowCollectionView.swift */,
 				180BAB29243F615100AC1A5B /* CustomCell.swift */,
+				18CD0F382440B2F90092F48D /* SubscriptionViewController.swift */,
+				18CD0F3A2440B32D0092F48D /* SubscriptionView.swift */,
 				180DD9A4242E5CE10096B70D /* Tabs */,
 				180DD99A242E5CE10096B70D /* Welcome */,
 				180DD982242E5B2B0096B70D /* Main.storyboard */,
@@ -336,6 +342,7 @@
 				180DD9BC242E5CE10096B70D /* RegisterView.swift in Sources */,
 				1895F9D22434A36900464848 /* FlowCollectionView.swift in Sources */,
 				180DD9B8242E5CE10096B70D /* ForgotPasswordViewController.swift in Sources */,
+				18CD0F3B2440B32D0092F48D /* SubscriptionView.swift in Sources */,
 				1895F9D02434A32900464848 /* TestFlowCollectionViewController.swift in Sources */,
 				180DD9B4242E5CE10096B70D /* SettingsView.swift in Sources */,
 				180DD9C0242E5CE10096B70D /* MusicView.swift in Sources */,
@@ -345,6 +352,7 @@
 				180DD9C1242E5CE10096B70D /* ProfileView.swift in Sources */,
 				180DD9AE242E5CE10096B70D /* ViewController.swift in Sources */,
 				180DD9BB242E5CE10096B70D /* LoginViewController.swift in Sources */,
+				18CD0F392440B2F90092F48D /* SubscriptionViewController.swift in Sources */,
 				180DD9B2242E5CE10096B70D /* Color.swift in Sources */,
 				180DD9C2242E5CE10096B70D /* HomeView.swift in Sources */,
 				180DD9B1242E5CE10096B70D /* InputTextField.swift in Sources */,

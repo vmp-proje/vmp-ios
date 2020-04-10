@@ -26,7 +26,7 @@ class WelcomeViewController: ViewController<WelcomeView> {
     customView.loginButton.addTarget(self, action: #selector(goToLogin), for: .touchUpInside)
     customView.registerButton.addTarget(self, action: #selector(goToRegister), for: .touchUpInside)
     
-    let testVC = TestFlowCollectionViewController()
+    let testVC = SubscriptionViewController()
     self.navigationController?.pushViewController(testVC, animated: true)
   }
   
