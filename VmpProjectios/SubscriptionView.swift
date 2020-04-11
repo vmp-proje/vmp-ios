@@ -60,7 +60,6 @@ class SubscriptionView: View {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Choose Plan", for: UIControl.State.normal)
         button.titleColorForNormal = .black
-        button.tintColor = .black
         button.backgroundColor = .systemYellow
         return button
     }()
@@ -75,18 +74,49 @@ class SubscriptionView: View {
     let threeMonthTextTitle: UITextView = {
         var textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
+
+        var normalAttributed = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18)]
+        var boldAttributed = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 22)]
+        let myString = NSMutableAttributedString(string: "3 Months Pro\n", attributes: normalAttributed)
+        let boldAttributedString = NSAttributedString(string: "3.33 USD", attributes: boldAttributed)
+        let normalAttriburtedString = NSAttributedString(string: " / month", attributes: normalAttributed)
+
+        myString.append(boldAttributedString)
+        myString.append(normalAttriburtedString)
+        textView.attributedText = myString
+        
+        textView.backgroundColor = .clear
+        textView.textColor = .white
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.isSelectable = false
+        textView.textAlignment = .center
         return textView
     }()
     
     let threeMonthTextDescription: UITextView = {
         var textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.text = "Billed as one 10 USD \npayment every 3 months"
+        textView.font = .systemFont(ofSize: 12)
+        textView.textColor = UIColor(red: 186/255, green: 186/255, blue: 186/255, alpha: 1)
+        textView.backgroundColor = .clear
+        textView.textColor = .white
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.isSelectable = false
+        textView.textAlignment = .center
         return textView
     }()
     
     let buttonThreeMonth: UIButton = {
         var button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Choose Plan", for: UIControl.State.normal)
+        button.backgroundColor = .clear
+        button.borderWidth = 0.5
+        button.borderColor = .systemYellow
+        button.titleColorForNormal = .systemYellow
         return button
     }()
     
@@ -94,6 +124,7 @@ class SubscriptionView: View {
     let secondLine: UIView = {
         var customView = UIView()
         customView.translatesAutoresizingMaskIntoConstraints = false
+        customView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1)
         return customView
     }()
     
@@ -119,6 +150,10 @@ class SubscriptionView: View {
         self.addSubview(perAnnualTextDescription)
         self.addSubview(buttonPerAnnual)
         self.addSubview(fistLine)
+        self.addSubview(threeMonthTextTitle)
+        self.addSubview(threeMonthTextDescription)
+        self.addSubview(buttonThreeMonth)
+        self.addSubview(secondLine)
         
         self.navigationBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         self.navigationBar.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
@@ -146,6 +181,26 @@ class SubscriptionView: View {
         self.fistLine.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
         self.fistLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
+        self.threeMonthTextTitle.topAnchor.constraint(equalTo: self.fistLine.bottomAnchor, constant: 35).isActive = true
+        self.threeMonthTextTitle.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 70).isActive = true
+        self.threeMonthTextTitle.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -70).isActive = true
+        self.threeMonthTextTitle.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        
+        self.threeMonthTextDescription.topAnchor.constraint(equalTo: self.threeMonthTextTitle.bottomAnchor).isActive = true
+        self.threeMonthTextDescription.leadingAnchor.constraint(equalTo: self.threeMonthTextTitle.leadingAnchor).isActive = true
+        self.threeMonthTextDescription.trailingAnchor.constraint(equalTo: self.threeMonthTextTitle.trailingAnchor).isActive = true
+        self.threeMonthTextDescription.heightAnchor.constraint(equalToConstant: 65).isActive = true
+        
+        self.buttonThreeMonth.topAnchor.constraint(equalTo: self.threeMonthTextDescription.bottomAnchor, constant: 5).isActive = true
+        self.buttonThreeMonth.leadingAnchor.constraint(equalTo: self.threeMonthTextDescription.leadingAnchor).isActive = true
+        self.buttonThreeMonth.trailingAnchor.constraint(equalTo: self.threeMonthTextDescription.trailingAnchor).isActive = true
+        self.buttonThreeMonth.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.buttonThreeMonth.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        self.secondLine.topAnchor.constraint(equalTo: self.buttonThreeMonth.bottomAnchor, constant: 35).isActive = true
+        self.secondLine.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        self.secondLine.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        self.secondLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
     }
     
 }
