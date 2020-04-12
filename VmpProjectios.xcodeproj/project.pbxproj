@@ -42,6 +42,9 @@
 		1895F9D22434A36900464848 /* FlowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895F9D12434A36900464848 /* FlowCollectionView.swift */; };
 		18CD0F392440B2F90092F48D /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD0F382440B2F90092F48D /* SubscriptionViewController.swift */; };
 		18CD0F3B2440B32D0092F48D /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD0F3A2440B32D0092F48D /* SubscriptionView.swift */; };
+		A574A594244293F60067C9BE /* MusicDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574A593244293F60067C9BE /* MusicDownloadManager.swift */; };
+		A574A5962442943E0067C9BE /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574A5952442943E0067C9BE /* Download.swift */; };
+		A574A598244294570067C9BE /* DownloadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574A597244294570067C9BE /* DownloadState.swift */; };
 		E8B4BEC99587836B24DF47D5 /* Pods_VmpProjectios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +88,9 @@
 		18CD0F382440B2F90092F48D /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		18CD0F3A2440B32D0092F48D /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
 		2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VmpProjectios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A574A593244293F60067C9BE /* MusicDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDownloadManager.swift; sourceTree = "<group>"; };
+		A574A5952442943E0067C9BE /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
+		A574A597244294570067C9BE /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
 		C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VmpProjectios.release.xcconfig"; path = "Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +145,9 @@
 				180DD985242E5B2E0096B70D /* Assets.xcassets */,
 				180DD987242E5B2E0096B70D /* LaunchScreen.storyboard */,
 				180DD98A242E5B2E0096B70D /* Info.plist */,
+				A574A593244293F60067C9BE /* MusicDownloadManager.swift */,
+				A574A5952442943E0067C9BE /* Download.swift */,
+				A574A597244294570067C9BE /* DownloadState.swift */,
 			);
 			path = VmpProjectios;
 			sourceTree = "<group>";
@@ -329,6 +338,7 @@
 				180DD97D242E5B2B0096B70D /* AppDelegate.swift in Sources */,
 				180DD97F242E5B2B0096B70D /* SceneDelegate.swift in Sources */,
 				180DD9BA242E5CE10096B70D /* ForgotPasswordView.swift in Sources */,
+				A574A598244294570067C9BE /* DownloadState.swift in Sources */,
 				180DD9BE242E5CE10096B70D /* SettingsViewController.swift in Sources */,
 				180DD9B5242E5CE10096B70D /* MainTabBarController.swift in Sources */,
 				180DD9BD242E5CE10096B70D /* RegisterViewController.swift in Sources */,
@@ -347,8 +357,10 @@
 				180DD9B4242E5CE10096B70D /* SettingsView.swift in Sources */,
 				180DD9C0242E5CE10096B70D /* MusicView.swift in Sources */,
 				180DD9B9242E5CE10096B70D /* WelcomeView.swift in Sources */,
+				A574A594244293F60067C9BE /* MusicDownloadManager.swift in Sources */,
 				180DD9BF242E5CE10096B70D /* MusicViewController.swift in Sources */,
 				180BAB2A243F615100AC1A5B /* CustomCell.swift in Sources */,
+				A574A5962442943E0067C9BE /* Download.swift in Sources */,
 				180DD9C1242E5CE10096B70D /* ProfileView.swift in Sources */,
 				180DD9AE242E5CE10096B70D /* ViewController.swift in Sources */,
 				180DD9BB242E5CE10096B70D /* LoginViewController.swift in Sources */,
