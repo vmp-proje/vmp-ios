@@ -20,6 +20,23 @@ class Color {
     }
   }()
   
+  ///White color for light mode -  Black color for dark mode
+  public static var appBlack: UIColor = {
+    if #available(iOS 13, *) {
+      return UIColor { (UITraitCollection: UITraitCollection) -> UIColor in
+        if UITraitCollection.userInterfaceStyle == .dark { //Dark Mode
+          return .black
+        } else {// Light Mode
+          return .white
+        }
+        
+      }
+    } else { //iOS 12 and lower.
+      return .black
+    }
+  }()
+
+  
   ///Dark color for dark mode - white color for light mode
   public static var appBackground: UIColor = {
     if #available(iOS 13, *) { //Dark Mode

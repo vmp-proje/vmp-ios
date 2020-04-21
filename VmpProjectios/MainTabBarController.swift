@@ -6,7 +6,12 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
 
 
   //MARK: - Variables
+  
   var lastSelectedTabIndex: Int?
+  let musicPlayerVC = MusicPlayerViewController()
+//  var musicPlayerVC: {
+//    return MusicPlayerViewController.shared
+//  }
 
 
   //MARK: - SubView Controllers
@@ -14,7 +19,12 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   let musicVC = MusicViewController()
   let profileVC = ProfileViewController()
 
+  var popupBarPlayButton = UIBarButtonItem(image: UIImage(named: "player-play-small")!, style: .done, target: self, action: #selector(playButtonTapped))
 
+  @objc func playButtonTapped() {
+    
+  }
+  
   //MARK: - Visual Objects
   /// Used to cover Main Tab Bar & Music Player's behind.
   let tabBarBottomContainerView: UIView = {
@@ -29,7 +39,7 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   //MARK: - View Appareance
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     view.backgroundColor = .clear
 
     layoutBottomContainerView()
@@ -39,6 +49,11 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    
+    
+    DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
+      self.presentMusicPlayerPopup()
+    }
   }
 
   //MARK: - Dark Mode
@@ -77,7 +92,7 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
     tabBar.layer.masksToBounds = true
     tabBar.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner]
     UITabBar.appearance().barTintColor = UIColor.darkTabBar
-    UITabBar.appearance().cornerRadius = 29
+//    UITabBar.appearance().cornerRadius = 
 
     homeVC.tabBarItem = ESTabBarItem.init(IrregularityContentView(), title: "Home".localized(), image: UIImage(named: "home_icon")!.withRenderingMode(.alwaysTemplate), selectedImage: nil)
     musicVC.tabBarItem = ESTabBarItem.init(IrregularityContentView(), title: "Music".localized(), image: UIImage(named: "music_icon")!.withRenderingMode(.alwaysTemplate), selectedImage: nil)
@@ -104,7 +119,44 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
 //    lastSelectedTabIndex = tabBarController.selectedIndex
   }
 
-  //MARK: Show - Hide TabBar Animations
+  
+  //MARK: - Music Player Popup
+  func presentMusicPlayerPopup() {
+    navigationController?.popupBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    popupBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    showBottomContainerView()
+    
+    presentPopupBar(withContentViewController: musicPlayerVC, animated: true, completion: nil)
+    self.view.bringSubviewToFront(self.tabBar)
+    
+    //Note: Have to add play button every time. Framework probably has a bug
+    //Add Play Button
+    self.popupBarPlayButton = UIBarButtonItem(image: UIImage(named: "player-play-small")!, style: .done, target: self, action: #selector(playButtonTapped))
+    popupBarPlayButton.addTargetForAction(self, action: #selector(playButtonTapped))
+    popupBarPlayButton.tintColor = .white
+    musicPlayerVC.popupItem.rightBarButtonItems = [popupBarPlayButton]
+
+    LNPopupCloseButton.appearance().alpha = 0.05
+    popupContentView.popupCloseButtonStyle = .round
+    
+    //Update Play Button's icon
+    updatePlayButtonIcon()
+    
+    popupBar.isHidden = false
+    
+  }
+  
+  @objc func updatePlayButtonIcon() {
+    //FIXME: - geri ekle
+//    if audioPlayer.isPlaying() == true { // Playing
+//      self.popupBarPlayButton.image = UIImage(named: "pause-small")!.withRenderingMode(.alwaysTemplate)
+//    } else { // Paused
+//      self.popupBarPlayButton.image = UIImage(named: "player-play-small")!.withRenderingMode(.alwaysTemplate)
+//    }
+  }
+  
+  
+  //MARK: - Show&Hide TabBar Animations
   private func setupNavigationBar() {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
     self.navigationController?.navigationBar.shadowImage = UIImage()

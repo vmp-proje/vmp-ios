@@ -56,7 +56,7 @@ class FlowCollectionView: View, UICollectionViewDataSource, UICollectionViewDele
     //MARK: - Collection View Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Tıklandı.")
+        print("FlowCollectionView.swift Tıklandı.")
     }
     
     //MARK: - Collection View Flow Layout
@@ -87,7 +87,7 @@ class InsiderCollectionView: UICollectionViewCell, UICollectionViewDelegate, UIC
         self.collectionView.frame = self.bounds
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        self.collectionView.register(CustomCell.self, forCellWithReuseIdentifier: self.cellReuseIdentifier)
+        self.collectionView.register(MusicCollectionViewCell.self, forCellWithReuseIdentifier: self.cellReuseIdentifier)
         self.collectionView.reloadData()
         self.addSubview(self.collectionView)
     }
@@ -103,7 +103,7 @@ class InsiderCollectionView: UICollectionViewCell, UICollectionViewDelegate, UIC
 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath as IndexPath) as! CustomCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath as IndexPath) as! MusicCollectionViewCell
         return cell
     }
 

@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol DownloadButtonProtocol {
-  func updateButton(state: DownloadState, percentage: CGFloat, url: URL?)
-  func updateButton(state: DownloadState)
-}
 
 /**
  Singleton Class  used by BaseMusicPlayerVieewController:
