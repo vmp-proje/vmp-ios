@@ -49,11 +49,12 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    
-    
-    DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
-      self.presentMusicPlayerPopup()
-    }
+    let testVC = SubscriptionViewController()
+    self.navigationController?.pushViewController(testVC, animated: true)
+
+//    DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
+//      self.presentMusicPlayerPopup()
+//    }
   }
 
   //MARK: - Dark Mode
