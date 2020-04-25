@@ -245,7 +245,7 @@ class SubscriptionView: View {
         self.scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         self.scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        self.perAnnualTextTitle.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor, constant: 15).isActive = true
+        self.perAnnualTextTitle.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 15).isActive = true
         self.perAnnualTextTitle.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor, constant: 70).isActive = true
         self.perAnnualTextTitle.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor, constant: -70).isActive = true
         self.perAnnualTextTitle.heightAnchor.constraint(equalToConstant: 65).isActive = true
