@@ -49,12 +49,9 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    let testVC = SubscriptionViewController()
-    self.navigationController?.pushViewController(testVC, animated: true)
+//    let testVC = SubscriptionViewController()
+//    self.navigationController?.pushViewController(testVC, animated: true)
 
-//    DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
-//      self.presentMusicPlayerPopup()
-//    }
   }
 
   //MARK: - Dark Mode
@@ -162,5 +159,8 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
     self.navigationController?.navigationBar.isTranslucent = true
+    
+    
+    
   }
 }

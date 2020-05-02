@@ -45,6 +45,9 @@
 		A574A594244293F60067C9BE /* MusicDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574A593244293F60067C9BE /* MusicDownloadManager.swift */; };
 		A574A5962442943E0067C9BE /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574A5952442943E0067C9BE /* Download.swift */; };
 		A574A598244294570067C9BE /* DownloadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574A597244294570067C9BE /* DownloadState.swift */; };
+		A5791B33245DA92200A0E74F /* GlobalSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B32245DA92200A0E74F /* GlobalSearchView.swift */; };
+		A5791B35245DAC6D00A0E74F /* SearchColllectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B34245DAC6D00A0E74F /* SearchColllectionViewCell.swift */; };
+		A5791B37245DB16200A0E74F /* GlobalSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B36245DB16200A0E74F /* GlobalSearchViewController.swift */; };
 		A582B801244FA8E4009DD580 /* LNForwardingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E1244FA8E4009DD580 /* LNForwardingDelegate.m */; };
 		A582B802244FA8E4009DD580 /* LNPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E2244FA8E4009DD580 /* LNPopupController.m */; };
 		A582B803244FA8E4009DD580 /* LNPopupCustomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E3244FA8E4009DD580 /* LNPopupCustomBarViewController.m */; };
@@ -113,6 +116,9 @@
 		A574A593244293F60067C9BE /* MusicDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDownloadManager.swift; sourceTree = "<group>"; };
 		A574A5952442943E0067C9BE /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		A574A597244294570067C9BE /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
+		A5791B32245DA92200A0E74F /* GlobalSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchView.swift; sourceTree = "<group>"; };
+		A5791B34245DAC6D00A0E74F /* SearchColllectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchColllectionViewCell.swift; sourceTree = "<group>"; };
+		A5791B36245DB16200A0E74F /* GlobalSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchViewController.swift; sourceTree = "<group>"; };
 		A582B7D8244FA8E4009DD580 /* LNPopupCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupCloseButton.h; sourceTree = "<group>"; };
 		A582B7D9244FA8E4009DD580 /* LNPopupBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupBar.h; sourceTree = "<group>"; };
 		A582B7DA244FA8E4009DD580 /* LNPopupContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupContentView.h; sourceTree = "<group>"; };
@@ -195,6 +201,7 @@
 		180DD97B242E5B2B0096B70D /* VmpProjectios */ = {
 			isa = PBXGroup;
 			children = (
+				A5791B31245DA91200A0E74F /* Global Search */,
 				A582B816244FAE8A009DD580 /* Music Player */,
 				A582B811244FAB4D009DD580 /* VmpProjectios-LNPopupController-Bridging-Header.h */,
 				A582B7D7244FA8E4009DD580 /* LNPopupController */,
@@ -280,6 +287,16 @@
 				C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A5791B31245DA91200A0E74F /* Global Search */ = {
+			isa = PBXGroup;
+			children = (
+				A5791B32245DA92200A0E74F /* GlobalSearchView.swift */,
+				A5791B34245DAC6D00A0E74F /* SearchColllectionViewCell.swift */,
+				A5791B36245DB16200A0E74F /* GlobalSearchViewController.swift */,
+			);
+			path = "Global Search";
 			sourceTree = "<group>";
 		};
 		A582B7D7244FA8E4009DD580 /* LNPopupController */ = {
@@ -490,6 +507,7 @@
 				A582B807244FA8E4009DD580 /* NSObject+AltKVC.m in Sources */,
 				A582B81C244FAF00009DD580 /* MusicPlayerCenterView.swift in Sources */,
 				A582B80F244FA8E4009DD580 /* _LNPopupBase64Utils.m in Sources */,
+				A5791B35245DAC6D00A0E74F /* SearchColllectionViewCell.swift in Sources */,
 				180DD9B0242E5CE10096B70D /* AppButton.swift in Sources */,
 				180DD9C4242E5CE10096B70D /* ProfileViewController.swift in Sources */,
 				180DD9C5242E5CE10096B70D /* IrregularityContentView.swift in Sources */,
@@ -503,11 +521,13 @@
 				18CD0F3B2440B32D0092F48D /* SubscriptionView.swift in Sources */,
 				1895F9D02434A32900464848 /* TestFlowCollectionViewController.swift in Sources */,
 				180DD9B4242E5CE10096B70D /* SettingsView.swift in Sources */,
+				A5791B33245DA92200A0E74F /* GlobalSearchView.swift in Sources */,
 				A582B80E244FA8E4009DD580 /* UIViewController+LNPopupSupportPrivate.m in Sources */,
 				A582B81E244FAFBC009DD580 /* MusicPlayerProgressView.swift in Sources */,
 				180DD9C0242E5CE10096B70D /* MusicView.swift in Sources */,
 				180DD9B9242E5CE10096B70D /* WelcomeView.swift in Sources */,
 				A582B803244FA8E4009DD580 /* LNPopupCustomBarViewController.m in Sources */,
+				A5791B37245DB16200A0E74F /* GlobalSearchViewController.swift in Sources */,
 				A582B805244FA8E4009DD580 /* MarqueeLabel.m in Sources */,
 				A574A594244293F60067C9BE /* MusicDownloadManager.swift in Sources */,
 				180DD9BF242E5CE10096B70D /* MusicViewController.swift in Sources */,

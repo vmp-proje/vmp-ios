@@ -10,7 +10,7 @@ import PureLayout
 import ESTabBarController_swift
 
 class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-    
+  
   override func loadView() {
     view = V()
   }
@@ -88,7 +88,7 @@ class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UI
     present(alertController, animated: true, completion: nil)
   }
   
-
+  
   //MARK: - Music Player
   let containerView: UIView = {
     let view = UIView()
@@ -104,10 +104,12 @@ class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UI
   }
   
   
+  
   //MARK: - Dark Mode
   override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
     super.traitCollectionDidChange(previousTraitCollection)
   }
+  
   
   
   //MARK: - Tab Bar
@@ -130,6 +132,11 @@ class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UI
         self.tabBarController?.tabBar.frame = tabFrame
       })
     }
+  }
+  
+  func showSearchViewController() {
+    let globalSearchVC = GlobalSearchViewController()
+    navigationController?.present(globalSearchVC, animated: true, completion: nil)
   }
   
 }
