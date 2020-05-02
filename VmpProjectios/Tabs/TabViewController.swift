@@ -16,8 +16,6 @@ class TabViewController<V: View>: ViewController<View> {
   //MARK: - View Appearance
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
-    navigationController?.setNavigationBarHidden(true, animated: true)
   }
   
   override func viewDidLoad() {
@@ -25,8 +23,5 @@ class TabViewController<V: View>: ViewController<View> {
   
   }
   
-  
-  
-  //MARK: - Navigation Bar
   
 }

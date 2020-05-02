@@ -10,14 +10,11 @@ import Foundation
 import NVActivityIndicatorView
 
 class GlobalSearchView: View {
-  
 
   
   //MARK: - Protocol
 //  var delegate: Protocol!
-//  func openSubs() {
-//    self.reportCommunicationDelegate.openSubs()
-//  }
+//  tCommunicationDelegate.openSubs()
   
   
   let cellId = "cellId"
@@ -167,6 +164,7 @@ extension GlobalSearchView: UICollectionViewDelegate, UICollectionViewDataSource
 //    cell.communicationDelegate = self
 //    cell.setInfo(user: user)
     cell.prepareCell(info: 0)
+    cell.backgroundColor = .red
     
     return cell
   }

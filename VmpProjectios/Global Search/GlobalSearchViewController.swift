@@ -54,7 +54,7 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
   private func setupNavigationBar() {
     let closeButton = UIButton()
     closeButton.setImage(UIImage(named: "close_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
-    closeButton.tintColor = .white
+    closeButton.tintColor = Color.appWhite
     closeButton.imageView?.contentMode = .scaleAspectFill
     closeButton.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 0)
     
@@ -92,7 +92,6 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
     timer = BenchTimer()
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.61) {
       self.stopSearchTimer(text: text)
-      
     }
   }
   

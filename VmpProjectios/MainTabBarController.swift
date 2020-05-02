@@ -164,8 +164,11 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   //MARK: - Show&Hide TabBar Animations
   @objc func showSearchViewController() {
     let globalSearchVC = GlobalSearchViewController()
-    globalSearchVC.modalPresentationStyle = .fullScreen
-    navigationController?.present(globalSearchVC, animated: true, completion: nil)
+//    globalSearchVC.modalPresentationStyle = .fullScreen
+    let nav = UINavigationController(rootViewController: globalSearchVC)
+    //nav.modalPresentationStyle = .fullScreen
+    nav.modalPresentationStyle = .overCurrentContext
+    navigationController?.present(nav, animated: true, completion: nil)
   }
   
   private func setupNavigationBar() {
