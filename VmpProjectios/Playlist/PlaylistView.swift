@@ -13,8 +13,6 @@ class PlaylistView: View, CourseDetailCollectionViewProtocol, CourseDetailsViewC
   
   
   //MARK: - CourseDetailsViewControllerCommunicationDelegate
-  func hideNavigationBar() {}
-  func showNavigationBar() {}
   func play(index: Int) {
     self.communicationDelegate.play(index: index)
   }
@@ -22,28 +20,8 @@ class PlaylistView: View, CourseDetailCollectionViewProtocol, CourseDetailsViewC
   
   
   //MARK: - Scroll View
-  var communicationDelegate: CourseDetailsViewControllerCommunicationDelegate!
-  func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    let header = CourseDetailsHeaderCollectionViewCell()
-    
-    if scrollView.contentOffset.y > header.imageViewHeight/2.0 {
-      communicationDelegate.hideNavigationBar()
-    } else {
-      communicationDelegate.showNavigationBar()
-    }
-  }
-  
-  
   
   //MARK: - CourseDetailCollectionViewProtocol
-  func bookmarkButtonTapped() {
-    collectionViewDelegate.bookmarkButtonTapped()
-  }
-  
-  func learnMoreButtonTapped() {
-    collectionViewDelegate.learnMoreButtonTapped()
-  }
-  
   func downloadButtonTapped() {
     collectionViewDelegate.downloadButtonTapped()
   }
@@ -65,16 +43,14 @@ class PlaylistView: View, CourseDetailCollectionViewProtocol, CourseDetailsViewC
   
   
   //MARK: - Constants
-  let playListCellId = "playListCellId"
+  let playlistCellId = "playListCellId"
   let headerCellId = "headerCellId"
-  let authorCellId = "authorCellId"
   
   
   
   //MARK: - Variables
   var downloadButtonDelegate: DownloadButtonProtocol!
   
-  var collectionViewDelegate: CourseDetailCollectionViewProtocol!
   
   var categoryName: String?
   
@@ -126,9 +102,8 @@ class PlaylistView: View, CourseDetailCollectionViewProtocol, CourseDetailsViewC
     collectionView.delegate = self
     collectionView.dataSource = self
     
-    collectionView.register(CourseDetailsHeaderCollectionViewCell.self, forCellWithReuseIdentifier: headerCellId)
-    collectionView.register(CourseDetailsCollectionViewCell.self, forCellWithReuseIdentifier: playListCellId)
-    collectionView.register(AboutAuthorCollectionViewCell.self, forCellWithReuseIdentifier: authorCellId)
+    collectionView.register(PlaylistHeaderCollectionViewCell.self, forCellWithReuseIdentifier: headerCellId)
+    collectionView.register(PlaylistCollectionViewCell.self, forCellWithReuseIdentifier: playlistCellId)
   }
   
   //MARK: Initialization
@@ -155,21 +130,14 @@ class PlaylistView: View, CourseDetailCollectionViewProtocol, CourseDetailsViewC
     collectionView.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 0)
   }
   
-  private func getColorOfBookmarkButton() -> UIColor {
-    guard let id = self.base_content?.id else { return Color.appWhite }
-    return Bookmark.hasBookmark(id: id) ? UIColor.statisticGraphicBlue : Color.appWhite
-  }
 }
 
 
 
 //MARK: - Collection View Extensions
-extension CourseDetailsView:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension PlaylistView:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   
   func numberOfSections(in collectionView: UICollectionView) -> Int {
-    if author != nil {
-      return 3
-    }
     return 2
   }
   
@@ -182,17 +150,14 @@ extension CourseDetailsView:  UICollectionViewDelegate, UICollectionViewDataSour
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if indexPath.section == 0 { // Header
-      let headerCell = collectionView.dequeueReusableCell(withReuseIdentifier: headerCellId, for: indexPath) as! CourseDetailsHeaderCollectionViewCell
+      let headerCell = collectionView.dequeueReusableCell(withReuseIdentifier: headerCellId, for: indexPath) as! PlaylistHeaderCollectionViewCell
       if let headerData = self.headerData {
         headerCell.prepareCell(attributes: headerData, isDetail: true)
       }
-      headerCell.bookmarksButton.tintColor = getColorOfBookmarkButton()
-      headerCell.expandCellDelegate = self
       
       return headerCell
-    } else if indexPath.section == 1 { //Playlist
+    } else { //Playlist
       let playlistCell = collectionView.dequeueReusableCell(withReuseIdentifier: playListCellId, for: indexPath) as! CourseDetailsCollectionViewCell
-      playlistCell.expandDelegate = self
       playlistCell.communicationDelegate = self
       let data = self.data[indexPath.row]
       
@@ -223,14 +188,6 @@ extension CourseDetailsView:  UICollectionViewDelegate, UICollectionViewDataSour
       playlistCell.prepareCell(content: data, downloadState: downloadState, index: indexPath.row, categoryName: self.categoryName ?? "")
       
       return playlistCell
-    } else { //Author
-      let authorCell = collectionView.dequeueReusableCell(withReuseIdentifier: authorCellId, for: indexPath) as! AboutAuthorCollectionViewCell
-      if let attributes = self.author?.attributes{
-        authorCell.prepareCell(author: attributes)
-        authorCell.delegate = self
-      }
-
-      return authorCell
     }
   }
   
@@ -251,12 +208,8 @@ extension CourseDetailsView:  UICollectionViewDelegate, UICollectionViewDataSour
     if section == 0 {
       return UIEdgeInsets(top: -self.safeAreaInsets.top, left: 0, bottom: 24, right: 0)
     }
-//    else if section == 1 {
-      return UIEdgeInsets(top: 0, left: 0, bottom: 35, right: 0)
-//    } else {
-//      return UIEdgeInsets(top: 0, left: 0, bottom: 56 + self.safeAreaInsets.top, right: 0)
-//       return UIEdgeInsets(top: 0, left: 0, bottom: , right: 0)
-//    }
+    return UIEdgeInsets(top: 0, left: 0, bottom: 35, right: 0)
+
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

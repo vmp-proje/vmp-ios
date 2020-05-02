@@ -55,6 +55,8 @@
 		A5791B45245DF62A00A0E74F /* RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B44245DF62A00A0E74F /* RestService.swift */; };
 		A5791B48245DFD4600A0E74F /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B47245DFD4600A0E74F /* PlaylistViewController.swift */; };
 		A5791B4A245DFD4B00A0E74F /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B49245DFD4B00A0E74F /* PlaylistView.swift */; };
+		A5791B4F245E023E00A0E74F /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B4E245E023E00A0E74F /* PlaylistCollectionViewCell.swift */; };
+		A5791B51245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B50245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift */; };
 		A582B801244FA8E4009DD580 /* LNForwardingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E1244FA8E4009DD580 /* LNForwardingDelegate.m */; };
 		A582B802244FA8E4009DD580 /* LNPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E2244FA8E4009DD580 /* LNPopupController.m */; };
 		A582B803244FA8E4009DD580 /* LNPopupCustomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E3244FA8E4009DD580 /* LNPopupCustomBarViewController.m */; };
@@ -133,6 +135,8 @@
 		A5791B44245DF62A00A0E74F /* RestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestService.swift; sourceTree = "<group>"; };
 		A5791B47245DFD4600A0E74F /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		A5791B49245DFD4B00A0E74F /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		A5791B4E245E023E00A0E74F /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
+		A5791B50245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		A582B7D8244FA8E4009DD580 /* LNPopupCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupCloseButton.h; sourceTree = "<group>"; };
 		A582B7D9244FA8E4009DD580 /* LNPopupBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupBar.h; sourceTree = "<group>"; };
 		A582B7DA244FA8E4009DD580 /* LNPopupContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupContentView.h; sourceTree = "<group>"; };
@@ -360,6 +364,8 @@
 			isa = PBXGroup;
 			children = (
 				A5791B47245DFD4600A0E74F /* PlaylistViewController.swift */,
+				A5791B50245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift */,
+				A5791B4E245E023E00A0E74F /* PlaylistCollectionViewCell.swift */,
 				A5791B49245DFD4B00A0E74F /* PlaylistView.swift */,
 			);
 			path = Playlist;
@@ -606,6 +612,7 @@
 				1895F9D22434A36900464848 /* FlowCollectionView.swift in Sources */,
 				A582B815244FAE7C009DD580 /* MusicPlayerView.swift in Sources */,
 				180DD9B8242E5CE10096B70D /* ForgotPasswordViewController.swift in Sources */,
+				A5791B4F245E023E00A0E74F /* PlaylistCollectionViewCell.swift in Sources */,
 				18CD0F3B2440B32D0092F48D /* SubscriptionView.swift in Sources */,
 				1895F9D02434A32900464848 /* TestFlowCollectionViewController.swift in Sources */,
 				180DD9B4242E5CE10096B70D /* SettingsView.swift in Sources */,
@@ -621,6 +628,7 @@
 				A574A594244293F60067C9BE /* MusicDownloadManager.swift in Sources */,
 				180DD9BF242E5CE10096B70D /* MusicViewController.swift in Sources */,
 				A582B818244FAEBF009DD580 /* MusicPlayerBlurryBackgroundImageView.swift in Sources */,
+				A5791B51245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift in Sources */,
 				A5791B43245DF47000A0E74F /* YoutubeService.swift in Sources */,
 				180BAB2A243F615100AC1A5B /* MusicCollectionViewCell.swift in Sources */,
 				A582B804244FA8E4009DD580 /* LNPopupInteractionPanGestureRecognizer.m in Sources */,

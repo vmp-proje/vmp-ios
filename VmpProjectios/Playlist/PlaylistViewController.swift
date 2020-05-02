@@ -8,15 +8,18 @@
 
 import UIKit
 
+protocol CourseDetailsViewDownloadProtocol {
+  func updatePlaylist()
+}
 
-class PlaylistViewController: ViewController<CourseDetailsView>, CourseDetailsViewControllerCommunicationDelegate, DownloadButtonProtocol, CourseDetailsViewDownloadProtocol, CourseDetailCollectionViewProtocol {
+class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtocol, CourseDetailsViewDownloadProtocol { //CourseDetailCollectionViewProtocol
   
   
   //MARK: - CourseDetailCollectionViewProtocol
   func downloadButtonTapped() {
     //Check if user is Premium
     if !isPremium {
-      showUpgradeView()
+      self.showUpgradeView()
       return
     }
     
@@ -38,28 +41,8 @@ class PlaylistViewController: ViewController<CourseDetailsView>, CourseDetailsVi
           self.isDownloading = false
         }
       }
-      
     }
   }
-  
-  func bookmarkButtonTapped() {
-    Bookmark.saveBookmark(data: self.content)
-    self.customView.collectionView.reloadSections(IndexSet(arrayLiteral: 0))
-  }
-  
-  func learnMoreButtonTapped() {
-    print("learnMoreButtonTapped()")
-    guard let author = customView.author else {return}
-    let therapistVC = TherapistProfileViewController(author: author)
-    therapistVC.navigationController?.setNavigationBarHidden(false, animated: true)
-    self.navigationController?.setNavigationBarHidden(false, animated: true)
-    self.navigationController?.pushViewController(therapistVC, animated: true)
-  }
-  
-  func expandCell(index: Int, requiredHeight: CGFloat?) {}
-  
-  func expandHeaderCell(extraHeight: CGFloat) {}
-  
   
   
   //MARK: - CourseDetailsViewDownloadProtocol
@@ -106,22 +89,12 @@ class PlaylistViewController: ViewController<CourseDetailsView>, CourseDetailsVi
   
   func play(index: Int) {
     guard getAPIUrl(link: customView.data[index].attributes?.media) != nil else {return}
-    //FIXME: - authors goster
-    AudioPlayer.shared.prepare(contents: self.customView.data, authors: [], index: index)
+//    AudioPlayer.shared.prepare(contents: self.customView.data, authors: [], index: index)
   }
   
-  
-  func hideNavigationBar() {
-    navigationController?.navigationBar.alpha = 0 // Hide Navigation Bar
-  }
-  
-  func showNavigationBar() {
-    navigationController?.navigationBar.alpha = 1 // Show Navigation Bar
-  }
   
   
   //MARK: - Constants
-  let reachability = try! Reachability()
   let className = "CourseDetailsViewController.swift"
   
   
@@ -337,57 +310,39 @@ class PlaylistViewController: ViewController<CourseDetailsView>, CourseDetailsVi
   }
   
   func updatePlaylistDownloadButton(data: [CategoryContentListData]) {
-    var downloadedCount: Int = 0
-    self.customView.downloadStates = []
-    
-    for content in data { //Check if contents downloaded (one by one)
-      if let apiUrl = getAPIUrl(link: content.attributes?.media) {
-        let downloadState = MusicDownloadManager.shared.getDownloadState(content: content, apiUrl: apiUrl)
-        customView.downloadStates.append(downloadState) //For playlist collection view
-        if downloadState == .downloaded {
-          downloadedCount += 1
-        }
-      } else {
-        customView.downloadStates.append(.startDownload)
-      }
-    }
-    
-    //Update Download Button's UI
-    DispatchQueue.main.asyncAfter(deadline: .now()+0.1) { // wait for ui to load
-      let headerCell = self.customView.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? CourseDetailsHeaderCollectionViewCell
-      if downloadedCount == data.count { //Playlist Downloaded
-        headerCell?.downloadButton.state = .downloaded
-        headerCell?.downloadButton.shapeLayer.strokeEnd = DownloadState.downloaded.getPercentage()
-        self.playlistDownloaded = true
-      } else {
-        let rate = CGFloat(1.0)/CGFloat(self.customView.downloadStates.count)
-        let completed = rate*CGFloat(self.completedDownloadsCount)
-        //        headerCell?.downloadButton.state = .startDownload
-        headerCell?.downloadButton.shapeLayer.strokeEnd = completed
-        self.playlistDownloaded = false
-      }
-    }
+//    var downloadedCount: Int = 0
+//    self.customView.downloadStates = []
+//
+//    for content in data { //Check if contents downloaded (one by one)
+//      if let apiUrl = getAPIUrl(link: content.attributes?.media) {
+//        let downloadState = MusicDownloadManager.shared.getDownloadState(content: content, apiUrl: apiUrl)
+//        customView.downloadStates.append(downloadState) //For playlist collection view
+//        if downloadState == .downloaded {
+//          downloadedCount += 1
+//        }
+//      } else {
+//        customView.downloadStates.append(.startDownload)
+//      }
+//    }
+//
+//    //Update Download Button's UI
+//    DispatchQueue.main.asyncAfter(deadline: .now()+0.1) { // wait for ui to load
+//      let headerCell = self.customView.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? CourseDetailsHeaderCollectionViewCell
+//      if downloadedCount == data.count { //Playlist Downloaded
+//        headerCell?.downloadButton.state = .downloaded
+//        headerCell?.downloadButton.shapeLayer.strokeEnd = DownloadState.downloaded.getPercentage()
+//        self.playlistDownloaded = true
+//      } else {
+//        let rate = CGFloat(1.0)/CGFloat(self.customView.downloadStates.count)
+//        let completed = rate*CGFloat(self.completedDownloadsCount)
+//        //        headerCell?.downloadButton.state = .startDownload
+//        headerCell?.downloadButton.shapeLayer.strokeEnd = completed
+//        self.playlistDownloaded = false
+//      }
+//    }
     
   }
-  
-  
-  //MARK: - Internet Connection
-  @objc func reachabilityChanged(note: Notification) {
-    let reachability = note.object as! Reachability
-    
-    switch reachability.connection {
-    case .unavailable:
-      internetConnectionLost()
-    case .none:
-      return
-    default: //Connected to Internet
-      MusicDownloadManager.shared.resumeDownloads()
-    }
-  }
-  
-  func startInternetNotification() {
-    NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
-  }
+
   
   
   @objc func dismissVC() {
