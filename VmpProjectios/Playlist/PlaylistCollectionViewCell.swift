@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Lottie
 
 class PlaylistCollectionViewCell: UICollectionViewCell {
   
@@ -23,6 +24,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
       }
     }
   }
+  
   
   
   //MARK: - Visual Objects
@@ -54,6 +56,8 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     return icon
   }()
+  
+  
   
   //MARK: - Initialization
   override init(frame: CGRect) {
@@ -110,6 +114,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     //Set downloaded icon
     prepareDownloadIcon(downloadState: downloadState)
   }
+  
   
   
   //MARK: - UI

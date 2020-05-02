@@ -181,9 +181,10 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    if AudioPlayer.shared.isPlaying() == true {
-      presentMusicPlayerView {}
-    }
+    //FIXME: - geri ekle
+//    if AudioPlayer.shared.isPlaying() == true {
+//      presentMusicPlayerView {}
+//    }
     
   }
   
@@ -212,13 +213,6 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
       if self.subContentId != nil {
         //Present Music player
         self.presentMusicPlayerView {
-          
-          // Fetch data and play
-          if self.content == nil {
-            self.getSingleContent(id: self.parentContentId)
-          }
-          self.startLoadingAnimation()
-          self.subContentList(id: self.parentContentId, page: 1)
         }
       }
     }

@@ -88,8 +88,8 @@ class MusicPlayerViewController: BaseMusicPlayerViewController<BaseMusicPlayerVi
   
  
   @objc func dismissVC() {
-    dismissMusicPlayerVCDelegateForViewController?.closeMusicPlayerPopup()
-    dismissMusicPlayerVCDelegateForMainTabBar?.closeMusicPlayerPopup()
+//    dismissMusicPlayerVCDelegateForViewController?.closeMusicPlayerPopup()
+//    dismissMusicPlayerVCDelegateForMainTabBar?.closeMusicPlayerPopup()
   }
   
 }

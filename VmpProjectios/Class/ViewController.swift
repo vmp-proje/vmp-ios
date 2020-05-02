@@ -12,6 +12,7 @@ import ESTabBarController_swift
 class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
   
   
+  
   //MARK: - Variables
   var canShowMusicPlayerPopupBar: Bool = true
   var musicPlayerVC: MusicPlayerViewController {

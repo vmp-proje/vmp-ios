@@ -59,6 +59,7 @@
 		A5791B51245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B50245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift */; };
 		A5791B53245E1A4400A0E74F /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B52245E1A4400A0E74F /* PlayButton.swift */; };
 		A5791B55245E1FD900A0E74F /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B54245E1FD900A0E74F /* MusicPlayerViewController.swift */; };
+		A5791B57245E233300A0E74F /* downloading_animation.json in Resources */ = {isa = PBXBuildFile; fileRef = A5791B56245E233300A0E74F /* downloading_animation.json */; };
 		A582B801244FA8E4009DD580 /* LNForwardingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E1244FA8E4009DD580 /* LNForwardingDelegate.m */; };
 		A582B802244FA8E4009DD580 /* LNPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E2244FA8E4009DD580 /* LNPopupController.m */; };
 		A582B803244FA8E4009DD580 /* LNPopupCustomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E3244FA8E4009DD580 /* LNPopupCustomBarViewController.m */; };
@@ -141,6 +142,7 @@
 		A5791B50245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5791B52245E1A4400A0E74F /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		A5791B54245E1FD900A0E74F /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
+		A5791B56245E233300A0E74F /* downloading_animation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = downloading_animation.json; sourceTree = "<group>"; };
 		A582B7D8244FA8E4009DD580 /* LNPopupCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupCloseButton.h; sourceTree = "<group>"; };
 		A582B7D9244FA8E4009DD580 /* LNPopupBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupBar.h; sourceTree = "<group>"; };
 		A582B7DA244FA8E4009DD580 /* LNPopupContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupContentView.h; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 		180DD97B242E5B2B0096B70D /* VmpProjectios */ = {
 			isa = PBXGroup;
 			children = (
+				A5791B56245E233300A0E74F /* downloading_animation.json */,
 				180DD97C242E5B2B0096B70D /* AppDelegate.swift */,
 				180DD97E242E5B2B0096B70D /* SceneDelegate.swift */,
 				A582B811244FAB4D009DD580 /* VmpProjectios-LNPopupController-Bridging-Header.h */,
@@ -534,6 +537,7 @@
 				180DD989242E5B2E0096B70D /* LaunchScreen.storyboard in Resources */,
 				180DD986242E5B2E0096B70D /* Assets.xcassets in Resources */,
 				180DD984242E5B2B0096B70D /* Main.storyboard in Resources */,
+				A5791B57245E233300A0E74F /* downloading_animation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,9 +20,7 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
 
   var popupBarPlayButton = UIBarButtonItem(image: UIImage(named: "player-play-small")!, style: .done, target: self, action: #selector(playButtonTapped))
 
-  @objc func playButtonTapped() {
-    
-  }
+  @objc func playButtonTapped() {}
   
   //MARK: - Visual Objects
   /// Used to cover Main Tab Bar & Music Player's behind.
@@ -52,7 +50,7 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
     setupTabBar()
     setupNavigationBar()
     
-    musicPlayerVC.dismissdelegat
+//    musicPlayerVC.dismissdelegat
   }
 
   override func viewDidAppear(_ animated: Bool) {

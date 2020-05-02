@@ -8,8 +8,7 @@
 
 import UIKit
 
-class PlaylistView: View, CourseDetailCollectionViewProtocol { //CourseDetailsViewControllerCommunicationDelegate
-  
+class PlaylistView: View { //FIXME: - delegate ekle
   
   //MARK: - CourseDetailsViewControllerCommunicationDelegate
   func play(index: Int) {
