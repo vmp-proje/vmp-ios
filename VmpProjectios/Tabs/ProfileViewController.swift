@@ -7,7 +7,7 @@ class ProfileViewController: ViewController<ProfileView> {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    self.navigationController?.setNavigationBarHidden(true, animated: true)
+//    self.navigationController?.setNavigationBarHidden(true, animated: true)
   }
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -48,6 +48,7 @@
 		A5791B33245DA92200A0E74F /* GlobalSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B32245DA92200A0E74F /* GlobalSearchView.swift */; };
 		A5791B35245DAC6D00A0E74F /* SearchColllectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B34245DAC6D00A0E74F /* SearchColllectionViewCell.swift */; };
 		A5791B37245DB16200A0E74F /* GlobalSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B36245DB16200A0E74F /* GlobalSearchViewController.swift */; };
+		A5791B39245DB3B400A0E74F /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B38245DB3B400A0E74F /* TabViewController.swift */; };
 		A582B801244FA8E4009DD580 /* LNForwardingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E1244FA8E4009DD580 /* LNForwardingDelegate.m */; };
 		A582B802244FA8E4009DD580 /* LNPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E2244FA8E4009DD580 /* LNPopupController.m */; };
 		A582B803244FA8E4009DD580 /* LNPopupCustomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E3244FA8E4009DD580 /* LNPopupCustomBarViewController.m */; };
@@ -119,6 +120,7 @@
 		A5791B32245DA92200A0E74F /* GlobalSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchView.swift; sourceTree = "<group>"; };
 		A5791B34245DAC6D00A0E74F /* SearchColllectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchColllectionViewCell.swift; sourceTree = "<group>"; };
 		A5791B36245DB16200A0E74F /* GlobalSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSearchViewController.swift; sourceTree = "<group>"; };
+		A5791B38245DB3B400A0E74F /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		A582B7D8244FA8E4009DD580 /* LNPopupCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupCloseButton.h; sourceTree = "<group>"; };
 		A582B7D9244FA8E4009DD580 /* LNPopupBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupBar.h; sourceTree = "<group>"; };
 		A582B7DA244FA8E4009DD580 /* LNPopupContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupContentView.h; sourceTree = "<group>"; };
@@ -262,11 +264,10 @@
 		180DD9A4242E5CE10096B70D /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				A5791B38245DB3B400A0E74F /* TabViewController.swift */,
 				180DD9A5242E5CE10096B70D /* Music */,
-				180DD9A8242E5CE10096B70D /* ProfileView.swift */,
-				180DD9A9242E5CE10096B70D /* HomeView.swift */,
-				180DD9AA242E5CE10096B70D /* HomeViewController.swift */,
-				180DD9AB242E5CE10096B70D /* ProfileViewController.swift */,
+				A5791B3B245DB53700A0E74F /* Profile */,
+				A5791B3A245DB53200A0E74F /* Home */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -297,6 +298,24 @@
 				A5791B36245DB16200A0E74F /* GlobalSearchViewController.swift */,
 			);
 			path = "Global Search";
+			sourceTree = "<group>";
+		};
+		A5791B3A245DB53200A0E74F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				180DD9A9242E5CE10096B70D /* HomeView.swift */,
+				180DD9AA242E5CE10096B70D /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		A5791B3B245DB53700A0E74F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				180DD9A8242E5CE10096B70D /* ProfileView.swift */,
+				180DD9AB242E5CE10096B70D /* ProfileViewController.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		A582B7D7244FA8E4009DD580 /* LNPopupController */ = {
@@ -502,6 +521,7 @@
 				A582B806244FA8E4009DD580 /* LNChevronView.m in Sources */,
 				180DD9B3242E5CE10096B70D /* AppFont.swift in Sources */,
 				A582B801244FA8E4009DD580 /* LNForwardingDelegate.m in Sources */,
+				A5791B39245DB3B400A0E74F /* TabViewController.swift in Sources */,
 				180DD9AF242E5CE10096B70D /* View.swift in Sources */,
 				A582B80C244FA8E4009DD580 /* LNPopupOpenTapGesutreRecognizer.m in Sources */,
 				A582B807244FA8E4009DD580 /* NSObject+AltKVC.m in Sources */,

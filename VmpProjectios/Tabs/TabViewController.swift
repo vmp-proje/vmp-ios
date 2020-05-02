@@ -1,27 +1,32 @@
 //
-//  HomeViewController.swift
-//  Vmp
+//  TabViewController.swift
+//  VmpProjectios
 //
-//  Created by Anil Joe on 27.03.2020.
+//  Created by Anil Joe on 2.05.2020.
 //  Copyright © 2020 Metin Yıldız. All rights reserved.
 //
 
-import Foundation
+
 import UIKit
 
-class HomeViewController: ViewController<MusicView> {
+class TabViewController<V: View>: ViewController<View> {
+  
   
   
   //MARK: - View Appearance
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    self.navigationController?.setNavigationBarHidden(true, animated: true)
-  }
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    
+    navigationController?.setNavigationBarHidden(true, animated: true)
   }
   
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  
+  }
+  
+  
+  
+  //MARK: - Navigation Bar
   
 }

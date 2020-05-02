@@ -1,5 +1,5 @@
 //
-//  MusicViewController.swift
+//  HomeViewController.swift
 //  Vmp
 //
 //  Created by Anil Joe on 27.03.2020.
@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 
-class MusicViewController: ViewController<MusicView> {
+//class HomeViewController: ViewController<MusicView> {
+class HomeViewController: TabViewController<MusicView> {
   
+  
+
   
   //MARK: - View Appearance
   override func viewDidLoad() {
     super.viewDidLoad()
-  
+    
   }
-  
-  
 }

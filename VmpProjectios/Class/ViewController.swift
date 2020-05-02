@@ -134,9 +134,6 @@ class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UI
     }
   }
   
-  func showSearchViewController() {
-    let globalSearchVC = GlobalSearchViewController()
-    navigationController?.present(globalSearchVC, animated: true, completion: nil)
-  }
+  
   
 }

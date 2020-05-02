@@ -36,7 +36,14 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   }()
 
 
+  
   //MARK: - View Appareance
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.setNavigationBarHidden(false, animated: true)
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -155,12 +162,24 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   
   
   //MARK: - Show&Hide TabBar Animations
+  @objc func showSearchViewController() {
+    let globalSearchVC = GlobalSearchViewController()
+    globalSearchVC.modalPresentationStyle = .fullScreen
+    navigationController?.present(globalSearchVC, animated: true, completion: nil)
+  }
+  
   private func setupNavigationBar() {
     self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
     self.navigationController?.navigationBar.shadowImage = UIImage()
     self.navigationController?.navigationBar.isTranslucent = true
     
-    
+    let globalSearchButton = UIButton(frame: CGRect(x: 0, y: 0, width: 42, height: 42))
+    globalSearchButton.setImage(UIImage(named: "global_search_icon"), for: .normal)
+    globalSearchButton.imageView?.contentMode = .scaleAspectFit
+    globalSearchButton.addTarget(self, action: #selector(showSearchViewController), for: .touchUpInside)
+    globalSearchButton.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 0)
+    let globalBarButton = UIBarButtonItem(customView: globalSearchButton)
+    navigationItem.rightBarButtonItem = globalBarButton
     
   }
 }
