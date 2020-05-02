@@ -59,17 +59,26 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
   //  var printCount = 0
   func updateButton(state: DownloadState, percentage: CGFloat, url: URL?) {
     DispatchQueue.main.async {
-      let headerCell = self.customView.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? CourseDetailsHeaderCollectionViewCell
+      let headerCell = self.customView.collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? PlaylistHeaderCollectionViewCell
       let rate = CGFloat(1.0)/CGFloat(self.customView.downloadStates.count)
       let completed = rate*CGFloat(self.completedDownloadsCount)
-      headerCell?.downloadButton.state = state
-      headerCell?.downloadButton.shapeLayer.strokeEnd = completed + (percentage/CGFloat(self.customView.downloadStates.count))
+//      headerCell?.downloadButton.state = state
+//      headerCell?.downloadButton.shapeLayer.strokeEnd = completed + (percentage/CGFloat(self.customView.downloadStates.count))
+      
+      
+      
+      
+      //
+      //
+      //  TEST, PRINT
+      //
+      //
+      
       
       //      var isNil = false
       //      if headerCell == nil {
       //        isNil = true
       //      }
-      
       //      let result = completed + (percentage/CGFloat(self.customView.downloadStates.count))
       //      if self.printCount % 30 == 0 {
       //        print("🔥🔥🔥 rate: \(rate) --- completedDownloadsCount:\(self.completedDownloadsCount) --- completed:\(completed) ----- totalDownloadingCount: \(self.totalDownloadingItemCount) == result: \(result) --- percentage: \(percentage)")
@@ -81,6 +90,8 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
   
   func updateButton(state: DownloadState) {}
   
+  
+  
   //MARK: - CourseDetailsViewControllerCommunicationDelegate
   private func getIndex(id: String) -> Int? {
     let index = self.customView.data.firstIndex(where: {$0.id == id})
@@ -88,7 +99,6 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
   }
   
   func play(index: Int) {
-    guard getAPIUrl(link: customView.data[index].attributes?.media) != nil else {return}
 //    AudioPlayer.shared.prepare(contents: self.customView.data, authors: [], index: index)
   }
   
@@ -98,18 +108,18 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
   let className = "CourseDetailsViewController.swift"
   
   
+  
   //MARK: - Variables
   var content: CategoryContentListData!
+  
   var parentContentId: String!
+  
   var subContentId: String?
+  
   var playlistDownloaded: Bool = false
-  var isDownloading = false {
-    didSet {
-      if isDownloading == true {
-        startInternetNotification()
-      }
-    }
-  }
+  
+  var isDownloading = false
+
   
   
   @objc func internetConnectionLost() {
@@ -180,25 +190,23 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    let leftScreenEdgeGestureRecognizer = UIScreenEdgePanGestureRecognizer()
-    leftScreenEdgeGestureRecognizer.addTarget(self, action:#selector(goBack))
-    leftScreenEdgeGestureRecognizer.edges = .left
-    leftScreenEdgeGestureRecognizer.cancelsTouchesInView = true
-    self.view.addGestureRecognizer(leftScreenEdgeGestureRecognizer)
-    
-    NotificationCenter.default.addObserver(self, selector: #selector(updatePlaylist), name: NSNotification.Name.init(AppNotification.shared.updatePlaylistCollectionViewKey), object: nil)
+//    let leftScreenEdgeGestureRecognizer = UIScreenEdgePanGestureRecognizer()
+//    leftScreenEdgeGestureRecognizer.addTarget(self, action:#selector(goBack))
+//    leftScreenEdgeGestureRecognizer.edges = .left
+//    leftScreenEdgeGestureRecognizer.cancelsTouchesInView = true
+//    self.view.addGestureRecognizer(leftScreenEdgeGestureRecognizer)
     
     
-    NotificationCenter.default.addObserver(self, selector: #selector(musicPlayerFullScreen), name: NSNotification.Name.init("MusicPlayerFullScreenOpenedNotification"), object: nil)
-    NotificationCenter.default.addObserver(self, selector: #selector(musicPlayerFullScreenClosed), name: NSNotification.Name.init("MusicPlayerFullScreenClosedNotification"), object: nil)
+//    NotificationCenter.default.addObserver(self, selector: #selector(updatePlaylist), name: NSNotification.Name.init(AppNotification.shared.updatePlaylistCollectionViewKey), object: nil)
+    
+
     
     // Set Delegates
     MusicDownloadManager.shared.playlistDownloadDelegate = self
-    customView.communicationDelegate = self
-    customView.collectionViewDelegate = self
+//    customView.communicationDelegate = self
+//    customView.collectionViewDelegate = self
     
     canShowMusicPlayerPopupBar = false
-    //    canShowMusicPlayerPopupBar = true // Music Player shouldn't be presented from ViewController.swift class. Because we will present it in here with navigationController.
     
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
       if self.subContentId != nil {
@@ -236,7 +244,6 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
       self.navigationController?.popupBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
       self.navigationController?.presentPopupBar(withContentViewController: self.musicPlayerVC, animated: true, completion: nil)
       self.customView.showBottomViewForMusicPlayer()
-//      print("🦷🦷🦷🦷 present music popup")
       completion()
     }
   }
@@ -244,71 +251,6 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
   
   
   //MARK: - Data
-  private func getSingleContent(id: String) {
-    startLoadingAnimation()
-    
-    ContentManager.shared.getSingleContent(id: id).done { (singleContent) in
-      self.stopLoadingAnimation()
-      
-      if let content = singleContent.data {
-        
-        self.content = content
-        
-        // Update UI
-        self.customView.base_content = content
-        self.customView.categoryName = content.attributes?.name ?? ""
-        self.customView.headerData = content.attributes
-        self.customView.collectionView.reloadSections(IndexSet(arrayLiteral: 0))
-      }
-    }.catch { (error) in
-      Debugger.logError(message: "\(self.className) getContentRecommendationList() failed", data: error)
-      ShowErrorMessage.statusLine(message: "Error:".localized() + "\(error.localizedDescription)")
-      self.stopLoadingAnimation()
-      //      self.dismissVC()
-    }
-  }
-  
-  private func subContentList(id: String, page: Int) {
-    //    startLoadingAnimation()
-    print("\n\n subContentList(id: \(id), page: \(page)")
-    
-    ContentManager.shared.subContentList(id: id, page: page).done { (contentRecommendationList) in
-      //      self.stopLoadingAnimation()
-      
-      if let data = contentRecommendationList.data {
-        self.customView.data.append(contentsOf: data)
-        
-        if page == 1 { //
-          if let subContentId = self.subContentId { // Start playing automatically
-            if let index = self.getIndex(id: subContentId) {
-              self.play(index: index)
-            }
-          }
-          let author = contentRecommendationList.included?.first
-          self.customView.author = author
-        }
-        
-        if contentRecommendationList.links?.next != nil { // keep fetch
-          self.subContentList(id: id, page: page+1)
-          print("yeniden data cek -> page: \(page+1)")
-        } else { //Finished fetching
-          // Update Download Button's UI
-          self.customView.collectionView.reloadData()
-          self.updatePlaylistDownloadButton(data: data)
-          self.stopLoadingAnimation()
-          return
-        }
-        
-        
-      }
-      
-    }.catch { (error) in
-      Debugger.logError(message: "\(self.className) getContentRecommendationList() failed", data: error)
-      ShowErrorMessage.statusLine(message: "Error:".localized() + "\(error.localizedDescription)")
-      self.stopLoadingAnimation()
-    }
-  }
-  
   func updatePlaylistDownloadButton(data: [CategoryContentListData]) {
 //    var downloadedCount: Int = 0
 //    self.customView.downloadStates = []
@@ -388,5 +330,19 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
       navigationItem.rightBarButtonItem = lockIconBarButton
     }
     
+  }
+}
+
+
+extension UIViewController {
+  /// Height of status bar + navigation bar (if navigation bar exist)
+  var topbarHeight: CGFloat {
+    if #available(iOS 13.0, *) {
+      return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+        (self.navigationController?.navigationBar.frame.height ?? 0.0)
+    } else {
+      return UIApplication.shared.statusBarFrame.size.height +
+        (self.navigationController?.navigationBar.frame.height ?? 0.0)
+    }
   }
 }

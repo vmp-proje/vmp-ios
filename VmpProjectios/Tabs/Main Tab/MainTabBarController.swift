@@ -7,7 +7,7 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   //MARK: - Variables
   
   var lastSelectedTabIndex: Int?
-  let musicPlayerVC = MusicPlayerViewController()
+  let musicPlayerVC = BaseMusicPlayerViewController()
 //  var musicPlayerVC: {
 //    return MusicPlayerViewController.shared
 //  }
@@ -51,6 +51,8 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
     layoutBottomContainerView()
     setupTabBar()
     setupNavigationBar()
+    
+    musicPlayerVC.dismissdelegat
   }
 
   override func viewDidAppear(_ animated: Bool) {

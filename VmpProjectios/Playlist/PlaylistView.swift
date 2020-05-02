@@ -8,13 +8,12 @@
 
 import UIKit
 
-class PlaylistView: View, CourseDetailCollectionViewProtocol, CourseDetailsViewControllerCommunicationDelegate {
-  
+class PlaylistView: View, CourseDetailCollectionViewProtocol { //CourseDetailsViewControllerCommunicationDelegate
   
   
   //MARK: - CourseDetailsViewControllerCommunicationDelegate
   func play(index: Int) {
-    self.communicationDelegate.play(index: index)
+//    self.communicationDelegate.play(index: index)
   }
   
   
@@ -23,7 +22,7 @@ class PlaylistView: View, CourseDetailCollectionViewProtocol, CourseDetailsViewC
   
   //MARK: - CourseDetailCollectionViewProtocol
   func downloadButtonTapped() {
-    collectionViewDelegate.downloadButtonTapped()
+//    collectionViewDelegate.downloadButtonTapped()
   }
   
   func expandHeaderCell(extraHeight: CGFloat) {
@@ -64,7 +63,7 @@ class PlaylistView: View, CourseDetailCollectionViewProtocol, CourseDetailsViewC
   
   var base_content: CategoryContentListData?
   
-  var author: Included?
+//  var author: Included?
   
   var data: [CategoryContentListData] = []
 
@@ -152,34 +151,29 @@ extension PlaylistView:  UICollectionViewDelegate, UICollectionViewDataSource, U
     if indexPath.section == 0 { // Header
       let headerCell = collectionView.dequeueReusableCell(withReuseIdentifier: headerCellId, for: indexPath) as! PlaylistHeaderCollectionViewCell
       if let headerData = self.headerData {
-        headerCell.prepareCell(attributes: headerData, isDetail: true)
+//        headerCell.prepareCell(attributes: headerData, isDetail: true)
       }
       
       return headerCell
     } else { //Playlist
-      let playlistCell = collectionView.dequeueReusableCell(withReuseIdentifier: playListCellId, for: indexPath) as! CourseDetailsCollectionViewCell
-      playlistCell.communicationDelegate = self
+      let playlistCell = collectionView.dequeueReusableCell(withReuseIdentifier: playlistCellId, for: indexPath) as! PlaylistCollectionViewCell
+//      playlistCell.communicationDelegate = self
       let data = self.data[indexPath.row]
       
-      if expandedCellInfo[indexPath.row] != nil {
-        playlistCell.addDescriptionLabel()
-      } else {
-        playlistCell.removeDescriptionLabel()
-      }
-      
+     
       //Set Play Button's Icon
       playlistCell.playButton.paused()
       // Does music cell playing this cell's content ATM?
       
       
-      if AudioPlayer.shared.currentTrack?.id == data.id {
-        if AudioPlayer.shared.isPlaying() == true {
-          playlistCell.playButton.playing()
-        }
-        playlistCell.isSelected = true
-      } else {
-        playlistCell.isSelected = false
-      }
+//      if AudioPlayer.shared.currentTrack?.id == data.id {
+//        if AudioPlayer.shared.isPlaying() == true {
+//          playlistCell.playButton.playing()
+//        }
+//        playlistCell.isSelected = true
+//      } else {
+//        playlistCell.isSelected = false
+//      }
       
       // Get Download State
       let downloadState = self.downloadStates[indexPath.row]
@@ -215,7 +209,7 @@ extension PlaylistView:  UICollectionViewDelegate, UICollectionViewDataSource, U
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     //Play Music
     if indexPath.section == 1 {
-      self.communicationDelegate.play(index: indexPath.row)
+//      self.communicationDelegate.play(index: indexPath.row)
     }
   }
 }

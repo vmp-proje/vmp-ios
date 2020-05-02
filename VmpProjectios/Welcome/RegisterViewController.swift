@@ -21,15 +21,19 @@ class RegisterViewController: ViewController<RegisterView>, UIImagePickerControl
   var email: String? {
     return customView.emailTextField.textLabel.text
   }
+  
   var password: String? {
     return customView.passwordTextField.textLabel.text
   }
+  
   var firstName: String? {
     return customView.firstNameTextField.textLabel.text
   }
+  
   var lastName: String? {
     return customView.lastNameTextField.textLabel.text
   }
+  
   
   
   //MARK: - View Appearance

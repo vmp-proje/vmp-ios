@@ -11,6 +11,16 @@ import ESTabBarController_swift
 
 class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
   
+  
+  //MARK: - Variables
+  var canShowMusicPlayerPopupBar: Bool = true
+  var musicPlayerVC: MusicPlayerViewController {
+    return MusicPlayerViewController.shared
+  }
+  
+  
+  
+  //MARK: - MVC Pattern
   override func loadView() {
     view = V()
   }
@@ -142,5 +152,18 @@ class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UI
   }
   
   
+  @objc func presentMiniMusicPlayerView() {
+    DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+      if self.canShowMusicPlayerPopupBar == true {
+        self.navigationController?.popupBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        self.navigationController?.presentPopupBar(withContentViewController: self.musicPlayerVC, animated: true, completion: nil)
+
+        self.navigationController?.popupContentView.popupCloseButtonStyle = .round
+        self.musicPlayerVC.popupContentView.popupCloseButtonStyle = .round
+        self.customView.showBottomViewForMusicPlayer()
+      }
+    }
+  }
   
 }

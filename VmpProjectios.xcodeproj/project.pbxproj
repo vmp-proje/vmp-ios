@@ -57,6 +57,8 @@
 		A5791B4A245DFD4B00A0E74F /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B49245DFD4B00A0E74F /* PlaylistView.swift */; };
 		A5791B4F245E023E00A0E74F /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B4E245E023E00A0E74F /* PlaylistCollectionViewCell.swift */; };
 		A5791B51245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B50245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift */; };
+		A5791B53245E1A4400A0E74F /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B52245E1A4400A0E74F /* PlayButton.swift */; };
+		A5791B55245E1FD900A0E74F /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B54245E1FD900A0E74F /* MusicPlayerViewController.swift */; };
 		A582B801244FA8E4009DD580 /* LNForwardingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E1244FA8E4009DD580 /* LNForwardingDelegate.m */; };
 		A582B802244FA8E4009DD580 /* LNPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E2244FA8E4009DD580 /* LNPopupController.m */; };
 		A582B803244FA8E4009DD580 /* LNPopupCustomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E3244FA8E4009DD580 /* LNPopupCustomBarViewController.m */; };
@@ -73,7 +75,7 @@
 		A582B80E244FA8E4009DD580 /* UIViewController+LNPopupSupportPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7FB244FA8E4009DD580 /* UIViewController+LNPopupSupportPrivate.m */; };
 		A582B80F244FA8E4009DD580 /* _LNPopupBase64Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7FD244FA8E4009DD580 /* _LNPopupBase64Utils.m */; };
 		A582B810244FA8E4009DD580 /* UIViewController+LNPopupSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7FE244FA8E4009DD580 /* UIViewController+LNPopupSupport.m */; };
-		A582B813244FAE42009DD580 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582B812244FAE42009DD580 /* MusicPlayerViewController.swift */; };
+		A582B813244FAE42009DD580 /* BaseMusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582B812244FAE42009DD580 /* BaseMusicPlayerViewController.swift */; };
 		A582B815244FAE7C009DD580 /* MusicPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582B814244FAE7C009DD580 /* MusicPlayerView.swift */; };
 		A582B818244FAEBF009DD580 /* MusicPlayerBlurryBackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582B817244FAEBF009DD580 /* MusicPlayerBlurryBackgroundImageView.swift */; };
 		A582B81A244FAED8009DD580 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582B819244FAED8009DD580 /* BlurEffect.swift */; };
@@ -137,6 +139,8 @@
 		A5791B49245DFD4B00A0E74F /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 		A5791B4E245E023E00A0E74F /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5791B50245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
+		A5791B52245E1A4400A0E74F /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
+		A5791B54245E1FD900A0E74F /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 		A582B7D8244FA8E4009DD580 /* LNPopupCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupCloseButton.h; sourceTree = "<group>"; };
 		A582B7D9244FA8E4009DD580 /* LNPopupBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupBar.h; sourceTree = "<group>"; };
 		A582B7DA244FA8E4009DD580 /* LNPopupContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupContentView.h; sourceTree = "<group>"; };
@@ -177,7 +181,7 @@
 		A582B7FE244FA8E4009DD580 /* UIViewController+LNPopupSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LNPopupSupport.m"; sourceTree = "<group>"; };
 		A582B7FF244FA8E4009DD580 /* LNPopupCustomBarViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LNPopupCustomBarViewController+Private.h"; sourceTree = "<group>"; };
 		A582B811244FAB4D009DD580 /* VmpProjectios-LNPopupController-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VmpProjectios-LNPopupController-Bridging-Header.h"; sourceTree = "<group>"; };
-		A582B812244FAE42009DD580 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
+		A582B812244FAE42009DD580 /* BaseMusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMusicPlayerViewController.swift; sourceTree = "<group>"; };
 		A582B814244FAE7C009DD580 /* MusicPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerView.swift; sourceTree = "<group>"; };
 		A582B817244FAEBF009DD580 /* MusicPlayerBlurryBackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerBlurryBackgroundImageView.swift; sourceTree = "<group>"; };
 		A582B819244FAED8009DD580 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 				180DD995242E5CE00096B70D /* InputTextField.swift */,
 				180DD996242E5CE00096B70D /* Color.swift */,
 				180DD997242E5CE00096B70D /* AppFont.swift */,
+				A5791B52245E1A4400A0E74F /* PlayButton.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -447,12 +452,13 @@
 		A582B816244FAE8A009DD580 /* Music Player */ = {
 			isa = PBXGroup;
 			children = (
-				A582B812244FAE42009DD580 /* MusicPlayerViewController.swift */,
+				A582B812244FAE42009DD580 /* BaseMusicPlayerViewController.swift */,
 				A582B814244FAE7C009DD580 /* MusicPlayerView.swift */,
 				A582B81D244FAFBC009DD580 /* MusicPlayerProgressView.swift */,
 				A582B81B244FAF00009DD580 /* MusicPlayerCenterView.swift */,
 				A582B817244FAEBF009DD580 /* MusicPlayerBlurryBackgroundImageView.swift */,
 				A582B819244FAED8009DD580 /* BlurEffect.swift */,
+				A5791B54245E1FD900A0E74F /* MusicPlayerViewController.swift */,
 			);
 			path = "Music Player";
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A582B80A244FA8E4009DD580 /* LNPopupCloseButton.m in Sources */,
+				A5791B53245E1A4400A0E74F /* PlayButton.swift in Sources */,
 				180DD9C3242E5CE10096B70D /* HomeViewController.swift in Sources */,
 				180DD97D242E5B2B0096B70D /* AppDelegate.swift in Sources */,
 				180DD97F242E5B2B0096B70D /* SceneDelegate.swift in Sources */,
@@ -610,6 +617,7 @@
 				180DD9B6242E5CE10096B70D /* LoginView.swift in Sources */,
 				180DD9BC242E5CE10096B70D /* RegisterView.swift in Sources */,
 				1895F9D22434A36900464848 /* FlowCollectionView.swift in Sources */,
+				A5791B55245E1FD900A0E74F /* MusicPlayerViewController.swift in Sources */,
 				A582B815244FAE7C009DD580 /* MusicPlayerView.swift in Sources */,
 				180DD9B8242E5CE10096B70D /* ForgotPasswordViewController.swift in Sources */,
 				A5791B4F245E023E00A0E74F /* PlaylistCollectionViewCell.swift in Sources */,
@@ -648,7 +656,7 @@
 				A5791B48245DFD4600A0E74F /* PlaylistViewController.swift in Sources */,
 				180DD9AD242E5CE10096B70D /* Label.swift in Sources */,
 				A582B802244FA8E4009DD580 /* LNPopupController.m in Sources */,
-				A582B813244FAE42009DD580 /* MusicPlayerViewController.swift in Sources */,
+				A582B813244FAE42009DD580 /* BaseMusicPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

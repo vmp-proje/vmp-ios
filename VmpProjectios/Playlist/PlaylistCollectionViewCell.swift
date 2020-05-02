@@ -13,7 +13,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
   
   //MARK: - Variables
   var content: CategoryContentListData?
-  var communicationDelegate: CourseDetailsViewControllerCommunicationDelegate!
   var index: Int!
   var categoryName: String!
   
@@ -25,23 +24,12 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     }
   }
   
-  var expandDelegate: CourseDetailCollectionViewProtocol!
-  
   
   //MARK: - Visual Objects
   let downloadingAnimationView: AnimationView = {
     let view = AnimationView(name: "downloading_animation")
     view.loopMode = .loop
     return view
-  }()
-  
-  let expandButton: UIButton = {
-    let button = UIButton()
-    button.translatesAutoresizingMaskIntoConstraints = false
-    button.backgroundColor = .clear
-    button.setImage(UIImage(named: "down_arrow")!.withRenderingMode(.alwaysTemplate), for: .normal)
-    
-    return button
   }()
   
   let separatorView: UIView = {
@@ -52,30 +40,20 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     return view
   }()
   
-  let nameLabel = Label(font: AppFont.Bold.pt16, textColor: Color.appWhite, textAlignment: .left, numberOfLines: 2)
-  let durationLabel = Label(font: AppFont.Regular.pt13, textColor: .lightGray, textAlignment: .left)
+  let nameLabel = Label(font: AppFont.Bold.font(size: 16), textColor: Color.appWhite, textAlignment: .left, numberOfLines: 2)
+  
+  let durationLabel = Label(font: AppFont.Regular.font(size: 13), textColor: .lightGray, textAlignment: .left)
+  
   var playButton = PlayButton()
-  let descriptionLabel = Label(font: AppFont.Regular.pt14, textColor: .lightGray, textAlignment: .left)
+  
   let downloadedIcon: UIImageView = {
     let icon = UIImageView()
     icon.translatesAutoresizingMaskIntoConstraints = false
-    icon.image = UIImage(named: "downloaded")?.withRenderingMode(.alwaysTemplate)
+    icon.image = UIImage(named: "downloaded")!.withRenderingMode(.alwaysTemplate)
     icon.tintColor = .statisticGraphicBlue
     
     return icon
   }()
-  
-  var didExpand: Bool! = false {
-    didSet {
-      if didExpand {
-        expandCell()
-      } else {
-        narrowCell()
-      }
-    }
-  }
-  
-  @objc func nothing() {}
   
   //MARK: - Initialization
   override init(frame: CGRect) {
@@ -83,70 +61,22 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     backgroundColor = .clear
     loadUI()
-    descriptionLabel.numberOfLines = 0
-    descriptionLabel.isUserInteractionEnabled = true
-    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(nothing))
-    descriptionLabel.addGestureRecognizer(tapGesture)
-    
-    expandButton.addTarget(self, action: #selector(expandButtonTapped), for: .touchUpInside)
     
     playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
   }
   
   @objc func playButtonTapped() {
-    //TODO: - o anda calan sarkiyla karsilastir. o sarkinin buttonundaysak pause-play DEGILSEK  bir alt satirdaki kodu calistir.
-    if AudioPlayer.shared.currentTrack?.id == self.content?.id {//Play - Pause
-      if playButton.playStatus == .playing {
-        playButton.paused()
-        AudioPlayer.shared.pause()
-//        print("isim: \(self.nameLabel.text) - paused()")
-      } else {
-        playButton.playing()
-        AudioPlayer.shared.resume()
-//        print("isim: \(self.nameLabel.text) - playing")
-      }
-    } else {
-        communicationDelegate.play(index: self.index)
-    }
-  }
-  
-  @objc func expandButtonTapped() {
-    didExpand = !didExpand
-  }
-  
-  func addDescriptionLabel() {
-    expandButton.setImage(UIImage(named: "up_arrow")!.withRenderingMode(.alwaysTemplate), for: .normal)
-    
-    descriptionLabel.removeFromSuperview()
-    addSubview(descriptionLabel)
-    descriptionLabel.autoPinEdge(.top, to: .bottom, of: durationLabel, withOffset: 14)
-    descriptionLabel.autoPinEdge(.left, to: .left, of: self, withOffset: 3)
-    descriptionLabel.autoPinEdge(.right, to: .right, of: self, withOffset: -2)
-  }
-  
-  func removeDescriptionLabel() {
-    expandButton.setImage(UIImage(named: "down_arrow")!.withRenderingMode(.alwaysTemplate), for: .normal)
-    descriptionLabel.removeFromSuperview()
-  }
-  
-  func expandCell() {
-    if descriptionLabel.text != "" && descriptionLabel.text != nil {
-      
-      expandButton.setImage(UIImage(named: "up_arrow")!.withRenderingMode(.alwaysTemplate), for: .normal)
-      
-      addDescriptionLabel()
-      
-      self.layoutIfNeeded()
-      
-      let requiredHeight = descriptionLabel.requiredHeight
-      expandDelegate.expandCell(index: self.index, requiredHeight: requiredHeight)
-    }
-  }
-  
-  private func narrowCell() {
-    expandButton.setImage(UIImage(named: "down_arrow")!.withRenderingMode(.alwaysTemplate), for: .normal)
-    descriptionLabel.removeFromSuperview()
-    expandDelegate.expandCell(index: self.index, requiredHeight: nil)
+//    if AudioPlayer.shared.currentTrack?.id == self.content?.id {//Play - Pause
+//      if playButton.playStatus == .playing {
+//        playButton.paused()
+//        AudioPlayer.shared.pause()
+//      } else {
+//        playButton.playing()
+//        AudioPlayer.shared.resume()
+//      }
+//    } else {
+//      communicationDelegate.play(index: self.index)
+//    }
   }
   
   required init?(coder: NSCoder) {
@@ -179,13 +109,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     //Set downloaded icon
     prepareDownloadIcon(downloadState: downloadState)
-    
-    if let description = content?.attributes?.description {
-      descriptionLabel.text = description
-      expandButton.tintColor = Color.appWhite
-    } else {
-      expandButton.tintColor = .lightGray
-    }
   }
   
   
@@ -197,12 +120,6 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
   }
   
   func loadUI() {
-    addSubview(expandButton)
-    expandButton.autoPinEdge(.top, to: .top, of: self, withOffset: 10)
-    expandButton.autoPinEdge(.right, to: .right, of: self, withOffset: 0)
-    expandButton.autoSetDimension(.height, toSize: 36)
-    expandButton.autoSetDimension(.width, toSize: 36)
-    
     addSubview(playButton)
     playButton.autoPinEdge(.top, to: .top, of: self, withOffset: 8)
     playButton.autoPinEdge(.left, to: .left, of: self, withOffset: 0)
@@ -211,13 +128,13 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     
     addSubview(downloadedIcon)
     downloadedIcon.autoPinEdge(.top, to: .top, of: playButton, withOffset: 10)
-    downloadedIcon.autoPinEdge(.right, to: .left, of: expandButton, withOffset: -20)
+    downloadedIcon.autoPinEdge(.right, to: .right, of: self, withOffset: -20)
     downloadedIcon.autoSetDimension(.height, toSize: 20)
     downloadedIcon.autoSetDimension(.width, toSize: 20)
     
     addSubview(downloadingAnimationView)
     downloadingAnimationView.autoPinEdge(.top, to: .top, of: playButton, withOffset: 10)
-    downloadingAnimationView.autoPinEdge(.right, to: .left, of: expandButton, withOffset: -20)
+    downloadingAnimationView.autoPinEdge(.right, to: .right, of: self, withOffset: -20)
     downloadingAnimationView.autoSetDimension(.height, toSize: 20)
     downloadingAnimationView.autoSetDimension(.width, toSize: 20)
     downloadingAnimationView.isHidden = true

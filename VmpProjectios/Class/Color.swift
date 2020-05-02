@@ -130,4 +130,11 @@ extension UIColor {
     return UIColor(hexString: "#1F1C00")!
   }
   
+  @nonobjc class var statisticGraphicBlue: UIColor {
+    return UIColor(red: 32.0 / 255.0, green: 170.0 / 255.0, blue: 232.0 / 255.0, alpha: 1.0)
+  }
+  
+  @nonobjc class var buttonBlurryBackground: UIColor {
+    return UIColor(white: 1.0, alpha: 0.24)
+  }
 }
