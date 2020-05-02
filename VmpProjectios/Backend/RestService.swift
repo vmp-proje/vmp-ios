@@ -13,7 +13,6 @@ import ObjectMapper
 import PromiseKit
 
 public protocol HeaderMappable : Mappable {
-  
   mutating func headerMapping(_ map: NSDictionary)
 }
 

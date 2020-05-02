@@ -53,6 +53,8 @@
 		A5791B41245DF46600A0E74F /* YoutubeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B40245DF46600A0E74F /* YoutubeManager.swift */; };
 		A5791B43245DF47000A0E74F /* YoutubeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B42245DF47000A0E74F /* YoutubeService.swift */; };
 		A5791B45245DF62A00A0E74F /* RestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B44245DF62A00A0E74F /* RestService.swift */; };
+		A5791B48245DFD4600A0E74F /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B47245DFD4600A0E74F /* PlaylistViewController.swift */; };
+		A5791B4A245DFD4B00A0E74F /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5791B49245DFD4B00A0E74F /* PlaylistView.swift */; };
 		A582B801244FA8E4009DD580 /* LNForwardingDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E1244FA8E4009DD580 /* LNForwardingDelegate.m */; };
 		A582B802244FA8E4009DD580 /* LNPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E2244FA8E4009DD580 /* LNPopupController.m */; };
 		A582B803244FA8E4009DD580 /* LNPopupCustomBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A582B7E3244FA8E4009DD580 /* LNPopupCustomBarViewController.m */; };
@@ -129,6 +131,8 @@
 		A5791B40245DF46600A0E74F /* YoutubeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeManager.swift; sourceTree = "<group>"; };
 		A5791B42245DF47000A0E74F /* YoutubeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeService.swift; sourceTree = "<group>"; };
 		A5791B44245DF62A00A0E74F /* RestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestService.swift; sourceTree = "<group>"; };
+		A5791B47245DFD4600A0E74F /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
+		A5791B49245DFD4B00A0E74F /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 		A582B7D8244FA8E4009DD580 /* LNPopupCloseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupCloseButton.h; sourceTree = "<group>"; };
 		A582B7D9244FA8E4009DD580 /* LNPopupBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupBar.h; sourceTree = "<group>"; };
 		A582B7DA244FA8E4009DD580 /* LNPopupContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNPopupContentView.h; sourceTree = "<group>"; };
@@ -211,30 +215,27 @@
 		180DD97B242E5B2B0096B70D /* VmpProjectios */ = {
 			isa = PBXGroup;
 			children = (
+				180DD97C242E5B2B0096B70D /* AppDelegate.swift */,
+				180DD97E242E5B2B0096B70D /* SceneDelegate.swift */,
+				A582B811244FAB4D009DD580 /* VmpProjectios-LNPopupController-Bridging-Header.h */,
 				A5791B3D245DF45700A0E74F /* Backend */,
 				A5791B31245DA91200A0E74F /* Global Search */,
 				A582B816244FAE8A009DD580 /* Music Player */,
-				A582B811244FAB4D009DD580 /* VmpProjectios-LNPopupController-Bridging-Header.h */,
 				A582B7D7244FA8E4009DD580 /* LNPopupController */,
-				180DD97C242E5B2B0096B70D /* AppDelegate.swift */,
-				180DD97E242E5B2B0096B70D /* SceneDelegate.swift */,
 				180DD990242E5CE00096B70D /* Class */,
-				180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */,
+				A5791B46245DFCBF00A0E74F /* Subscription */,
+				180DD9A4242E5CE10096B70D /* Tabs */,
+				180DD99A242E5CE10096B70D /* Welcome */,
+				A5791B4B245DFD5100A0E74F /* Playlist */,
 				A5791B3C245DCF7900A0E74F /* Settings */,
+				A5791B4D245DFDCD00A0E74F /* Download */,
 				1895F9CF2434A32900464848 /* TestFlowCollectionViewController.swift */,
 				1895F9D12434A36900464848 /* FlowCollectionView.swift */,
 				180BAB29243F615100AC1A5B /* MusicCollectionViewCell.swift */,
-				18CD0F382440B2F90092F48D /* SubscriptionViewController.swift */,
-				18CD0F3A2440B32D0092F48D /* SubscriptionView.swift */,
-				180DD9A4242E5CE10096B70D /* Tabs */,
-				180DD99A242E5CE10096B70D /* Welcome */,
 				180DD982242E5B2B0096B70D /* Main.storyboard */,
 				180DD985242E5B2E0096B70D /* Assets.xcassets */,
 				180DD987242E5B2E0096B70D /* LaunchScreen.storyboard */,
 				180DD98A242E5B2E0096B70D /* Info.plist */,
-				A574A593244293F60067C9BE /* MusicDownloadManager.swift */,
-				A574A5952442943E0067C9BE /* Download.swift */,
-				A574A597244294570067C9BE /* DownloadState.swift */,
 			);
 			path = VmpProjectios;
 			sourceTree = "<group>";
@@ -271,7 +272,7 @@
 		180DD9A4242E5CE10096B70D /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				180DD999242E5CE10096B70D /* MainTabBarController.swift */,
+				A5791B4C245DFD6E00A0E74F /* Main Tab */,
 				A5791B38245DB3B400A0E74F /* TabViewController.swift */,
 				180DD9A5242E5CE10096B70D /* Music */,
 				A5791B3B245DB53700A0E74F /* Profile */,
@@ -344,6 +345,43 @@
 				A5791B44245DF62A00A0E74F /* RestService.swift */,
 			);
 			path = Backend;
+			sourceTree = "<group>";
+		};
+		A5791B46245DFCBF00A0E74F /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				18CD0F382440B2F90092F48D /* SubscriptionViewController.swift */,
+				18CD0F3A2440B32D0092F48D /* SubscriptionView.swift */,
+			);
+			path = Subscription;
+			sourceTree = "<group>";
+		};
+		A5791B4B245DFD5100A0E74F /* Playlist */ = {
+			isa = PBXGroup;
+			children = (
+				A5791B47245DFD4600A0E74F /* PlaylistViewController.swift */,
+				A5791B49245DFD4B00A0E74F /* PlaylistView.swift */,
+			);
+			path = Playlist;
+			sourceTree = "<group>";
+		};
+		A5791B4C245DFD6E00A0E74F /* Main Tab */ = {
+			isa = PBXGroup;
+			children = (
+				180DD9AC242E5CE10096B70D /* IrregularityContentView.swift */,
+				180DD999242E5CE10096B70D /* MainTabBarController.swift */,
+			);
+			path = "Main Tab";
+			sourceTree = "<group>";
+		};
+		A5791B4D245DFDCD00A0E74F /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				A574A593244293F60067C9BE /* MusicDownloadManager.swift */,
+				A574A5952442943E0067C9BE /* Download.swift */,
+				A574A597244294570067C9BE /* DownloadState.swift */,
+			);
+			path = Download;
 			sourceTree = "<group>";
 		};
 		A582B7D7244FA8E4009DD580 /* LNPopupController */ = {
@@ -572,6 +610,7 @@
 				1895F9D02434A32900464848 /* TestFlowCollectionViewController.swift in Sources */,
 				180DD9B4242E5CE10096B70D /* SettingsView.swift in Sources */,
 				A5791B33245DA92200A0E74F /* GlobalSearchView.swift in Sources */,
+				A5791B4A245DFD4B00A0E74F /* PlaylistView.swift in Sources */,
 				A582B80E244FA8E4009DD580 /* UIViewController+LNPopupSupportPrivate.m in Sources */,
 				A582B81E244FAFBC009DD580 /* MusicPlayerProgressView.swift in Sources */,
 				180DD9C0242E5CE10096B70D /* MusicView.swift in Sources */,
@@ -598,6 +637,7 @@
 				A582B81A244FAED8009DD580 /* BlurEffect.swift in Sources */,
 				180DD9B1242E5CE10096B70D /* InputTextField.swift in Sources */,
 				A582B80B244FA8E4009DD580 /* LNPopupItem.m in Sources */,
+				A5791B48245DFD4600A0E74F /* PlaylistViewController.swift in Sources */,
 				180DD9AD242E5CE10096B70D /* Label.swift in Sources */,
 				A582B802244FA8E4009DD580 /* LNPopupController.m in Sources */,
 				A582B813244FAE42009DD580 /* MusicPlayerViewController.swift in Sources */,

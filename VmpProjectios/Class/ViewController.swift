@@ -88,6 +88,13 @@ class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UI
     present(alertController, animated: true, completion: nil)
   }
   
+  func showUpgradeView() {
+    let subsVC = SubscriptionViewController()
+    let nav = UINavigationController(rootViewController: subsVC)
+    nav.modalPresentationStyle = .fullScreen
+    present(nav, animated: true, completion: nil)
+  }
+  
   
   //MARK: - Music Player
   let containerView: UIView = {
