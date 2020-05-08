@@ -4,7 +4,7 @@ import UIKit
 class MusicCollectionViewCell: UICollectionViewCell {
   
   //MARK: - UI Objects
-  let titleOfContent : UITextView = {
+  var titleOfContent : UITextView = {
     var textView = UITextView()
     textView.translatesAutoresizingMaskIntoConstraints = false
     textView.font = .systemFont(ofSize: 18)
@@ -30,11 +30,11 @@ class MusicCollectionViewCell: UICollectionViewCell {
     return textView
   }()
   
-  let imageOfVideo : UIImageView = {
+  var imageOfVideo : UIImageView = {
     var customImageView = UIImageView()
     customImageView.translatesAutoresizingMaskIntoConstraints = false
-    let image = UIImage(named: "image_Of_Video")
-    customImageView.image = image
+//    let image = UIImage(named: "image_Of_Video")
+//    customImageView.image = image
     customImageView.layer.cornerRadius = 10
     customImageView.layer.masksToBounds = true
     return customImageView

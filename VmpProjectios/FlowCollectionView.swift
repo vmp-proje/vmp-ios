@@ -82,7 +82,8 @@ class InsiderCollectionView: UICollectionViewCell, UICollectionViewDelegate, UIC
   //MARK: - Constants
   let cellReuseIdentifier:String = "myInnerCell"
   
-  
+  let imageUrl: String = "https://i.ytimg.com/vi/bXgz1KtqLSA/mqdefault.jpg"
+    
   //MARK: - Variables
   var layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
   
@@ -116,6 +117,17 @@ class InsiderCollectionView: UICollectionViewCell, UICollectionViewDelegate, UIC
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath as IndexPath) as! MusicCollectionViewCell
+    
+    DispatchQueue.global().async {
+        let data = try? Data(contentsOf: URL(string: self.imageUrl)!)
+        if let data = data, let image = UIImage(data: data) {
+            DispatchQueue.main.async {
+                cell.imageOfVideo.image = image
+                
+            }
+        }
+    }
+    
     return cell
   }
   
