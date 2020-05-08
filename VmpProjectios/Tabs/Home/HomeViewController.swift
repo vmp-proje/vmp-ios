@@ -17,20 +17,24 @@ class HomeViewController: ViewController<HomeView> {
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear Çalıştı.")
         customView.getContentTitles()
+        customView.getContentURL()
     }
     
   //MARK: - View Appearance
   override func viewDidLoad() {
     super.viewDidLoad()
     print("\nHomeViewController Çalıştı.")
+    customView.layoutViews() // fetchStandartPhotoUrl
     NotificationCenter.default.addObserver(self, selector: #selector(displayTitles(notification:)), name: Notification.Name(rawValue: "fetchTitlesDone"), object: nil)
     }
     
     @objc func displayTitles(notification: Notification) {
-        print("Notification HomeVC'ye ulaştı.")
+        
         let titles :[String] = notification.object as! [String]
+        var i = 0
         for title in titles {
-            print(title)
+            i += 1
+            print("\(title). Title -> \(title)")
         }
     }
     

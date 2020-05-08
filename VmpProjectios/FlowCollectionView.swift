@@ -1,8 +1,7 @@
 import UIKit
+import Alamofire
 
 class FlowCollectionView: View, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-  
-  
   
   //MARK: - UI Objects
   let myCellIdentifier : String = "myCell"
@@ -14,7 +13,6 @@ class FlowCollectionView: View, UICollectionViewDataSource, UICollectionViewDele
     collectionView.backgroundColor = .clear
     return collectionView
   }()
-  
   
   //MARK: - Initialization
   override init(frame: CGRect) {
@@ -82,7 +80,14 @@ class InsiderCollectionView: UICollectionViewCell, UICollectionViewDelegate, UIC
   //MARK: - Constants
   let cellReuseIdentifier:String = "myInnerCell"
   
-  let imageUrl: String = "https://i.ytimg.com/vi/bXgz1KtqLSA/mqdefault.jpg"
+  let imageUrls: [String] = ["https://i.ytimg.com/vi/qWG21pLc2fw/sddefault.jpg",
+                             "https://i.ytimg.com/vi/g6vegFG3ypA/sddefault.jpg",
+                             "https://i.ytimg.com/vi/eGZWFWGzqcE/sddefault.jpg",
+                             "https://i.ytimg.com/vi/sNqOgPiEiyw/sddefault.jpg",
+                             "https://i.ytimg.com/vi/TgOu00Mf3kI/sddefault.jpg",
+                             "https://i.ytimg.com/vi/tdZh3pZvSZM/sddefault.jpg",
+                             "https://i.ytimg.com/vi/ymJofC78eXY/sddefault.jpg"]
+  static var imageUrlTexts: [String] = []
     
   //MARK: - Variables
   var layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -90,6 +95,8 @@ class InsiderCollectionView: UICollectionViewCell, UICollectionViewDelegate, UIC
   
   override init(frame: CGRect) {
     super.init(frame: frame)
+    
+    InsiderCollectionView.imageUrlTexts.reserveCapacity(25)
     
     self.layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     self.layout.itemSize = CGSize(width:self.frame.width-40, height:self.frame.height-100)
@@ -109,6 +116,7 @@ class InsiderCollectionView: UICollectionViewCell, UICollectionViewDelegate, UIC
     fatalError("init(coder:) has not been implemented")
   }
   
+
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return 5
@@ -119,11 +127,12 @@ class InsiderCollectionView: UICollectionViewCell, UICollectionViewDelegate, UIC
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath as IndexPath) as! MusicCollectionViewCell
     
     DispatchQueue.global().async {
-        let data = try? Data(contentsOf: URL(string: self.imageUrl)!)
-        if let data = data, let image = UIImage(data: data) {
-            DispatchQueue.main.async {
-                cell.imageOfVideo.image = image
-                
+        for image in self.imageUrls { // InsiderCollectionView.imageUrlTexts
+            let data = try? Data(contentsOf: URL(string: image)!)
+            if let data = data, let image = UIImage(data: data) {
+                DispatchQueue.main.async {
+                    cell.imageOfVideo.image = image
+                }
             }
         }
     }

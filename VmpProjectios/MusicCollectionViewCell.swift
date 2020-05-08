@@ -22,7 +22,7 @@ class MusicCollectionViewCell: UICollectionViewCell {
     textView.translatesAutoresizingMaskIntoConstraints = false
     textView.font = .systemFont(ofSize: 14)
     textView.textColor = .lightGray
-    textView.text = "Zeynep Bastık - 4.2M views"
+    textView.text = "Zeynep Bastık"
     textView.backgroundColor = .clear
     textView.isSelectable = false
     textView.isScrollEnabled = false

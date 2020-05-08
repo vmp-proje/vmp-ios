@@ -55,8 +55,8 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
 
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-//    let testVC = TestFlowCollectionViewController()
-//    self.navigationController?.pushViewController(testVC, animated: true)
+    let testVC = TestFlowCollectionViewController()
+    self.navigationController?.pushViewController(testVC, animated: true)
 
   }
 
