@@ -17,7 +17,9 @@ let youtubeBaseUrl = URL(string: "https://www.googleapis.com/youtube/v3/")!
 enum YoutubeService: RestService {
     
   
-  case getPurposes
+  case getMostPopularVideos
+  case search(search: String)
+  
   
   func url() -> URL {
     let url = youtubeBaseUrl.appendingPathComponent(self.path())
@@ -37,7 +39,9 @@ enum YoutubeService: RestService {
   
   func method() -> HTTPMethod {
     switch self {
-    case .getPurposes:
+    case .search:
+      return .get
+    default:
       return .get
     }
   }
@@ -51,18 +55,20 @@ enum YoutubeService: RestService {
   
   func parameterEncoding() -> ParameterEncoding{
     switch self {
-    case .getPurposes:
-      return JSONEncoding.default
+//    case .search:
+//      return JSONEncoding.default
     default:
       return URLEncoding.default
     }
     
   }
   
-  func path()->String{
+  func path()->String {
     switch self {
-    case .getPurposes:
-      return "purposes"
+    case .search(search: let search):
+      return "search/\(search)"
+    case .getMostPopularVideos:
+      return "videos"
     }
   }
   
@@ -70,8 +76,13 @@ enum YoutubeService: RestService {
     var params = [String:AnyObject]()
     var data = [String:AnyObject]()
     
+    
     switch self {
-    case .getPurposes:
+    case .search:
+      return nil
+    case .getMostPopularVideos:
+      return ["part": "snippet" as! AnyObject, "chart": "mostPopular" as! AnyObject, "regionCode":"TR" as! AnyObject, "key": youtube_access_token as! AnyObject] //"maxResults": 25 as! AnyObject,
+    default:
       return nil
     }
     

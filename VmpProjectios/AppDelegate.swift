@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import YoutubeKit
 
 var screenSize = UIScreen.main.bounds.size
 var isPremium: Bool = true
@@ -17,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
+    
+    // Set your API key here
+    YoutubeKit.shared.setAPIKey(youtube_access_token)
+    
     return true
   }
   

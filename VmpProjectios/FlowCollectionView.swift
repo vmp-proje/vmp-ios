@@ -55,8 +55,9 @@ class FlowCollectionView: View, UICollectionViewDataSource, UICollectionViewDele
     return 1
   }
   
-  //MARK: - Collection View Delegate
   
+  
+  //MARK: - Collection View Delegate
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     print("FlowCollectionView.swift Tıklandı.")
   }

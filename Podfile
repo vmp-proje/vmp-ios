@@ -38,6 +38,6 @@ target 'VmpProjectios' do
   pod 'LNPopupController'
   pod 'BottomPopup'
   pod 'Signals', '~> 6.0'
+  pod 'YoutubeKit'
 
 end
-

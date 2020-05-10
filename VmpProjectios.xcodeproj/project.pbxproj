@@ -42,6 +42,8 @@
 		1895F9D22434A36900464848 /* FlowCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1895F9D12434A36900464848 /* FlowCollectionView.swift */; };
 		18CD0F392440B2F90092F48D /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD0F382440B2F90092F48D /* SubscriptionViewController.swift */; };
 		18CD0F3B2440B32D0092F48D /* SubscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CD0F3A2440B32D0092F48D /* SubscriptionView.swift */; };
+		A553210E2467946A000D7452 /* PopularVideos.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553210D2467946A000D7452 /* PopularVideos.swift */; };
+		A5532110246795BF000D7452 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A553210F246795BF000D7452 /* BaseModel.swift */; };
 		A574A594244293F60067C9BE /* MusicDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574A593244293F60067C9BE /* MusicDownloadManager.swift */; };
 		A574A5962442943E0067C9BE /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574A5952442943E0067C9BE /* Download.swift */; };
 		A574A598244294570067C9BE /* DownloadState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A574A597244294570067C9BE /* DownloadState.swift */; };
@@ -125,6 +127,8 @@
 		18CD0F382440B2F90092F48D /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		18CD0F3A2440B32D0092F48D /* SubscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionView.swift; sourceTree = "<group>"; };
 		2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VmpProjectios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A553210D2467946A000D7452 /* PopularVideos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularVideos.swift; sourceTree = "<group>"; };
+		A553210F246795BF000D7452 /* BaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		A574A593244293F60067C9BE /* MusicDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDownloadManager.swift; sourceTree = "<group>"; };
 		A574A5952442943E0067C9BE /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		A574A597244294570067C9BE /* DownloadState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadState.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 		180DD97B242E5B2B0096B70D /* VmpProjectios */ = {
 			isa = PBXGroup;
 			children = (
+				A553210C2467918C000D7452 /* Model */,
 				A5791B56245E233300A0E74F /* downloading_animation.json */,
 				180DD97C242E5B2B0096B70D /* AppDelegate.swift */,
 				180DD97E242E5B2B0096B70D /* SceneDelegate.swift */,
@@ -309,6 +314,15 @@
 				C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		A553210C2467918C000D7452 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A553210D2467946A000D7452 /* PopularVideos.swift */,
+				A553210F246795BF000D7452 /* BaseModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A5791B31245DA91200A0E74F /* Global Search */ = {
@@ -609,6 +623,7 @@
 				A5791B39245DB3B400A0E74F /* TabViewController.swift in Sources */,
 				180DD9AF242E5CE10096B70D /* View.swift in Sources */,
 				A582B80C244FA8E4009DD580 /* LNPopupOpenTapGesutreRecognizer.m in Sources */,
+				A553210E2467946A000D7452 /* PopularVideos.swift in Sources */,
 				A582B807244FA8E4009DD580 /* NSObject+AltKVC.m in Sources */,
 				A582B81C244FAF00009DD580 /* MusicPlayerCenterView.swift in Sources */,
 				A582B80F244FA8E4009DD580 /* _LNPopupBase64Utils.m in Sources */,
@@ -642,6 +657,7 @@
 				A582B818244FAEBF009DD580 /* MusicPlayerBlurryBackgroundImageView.swift in Sources */,
 				A5791B51245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift in Sources */,
 				A5791B43245DF47000A0E74F /* YoutubeService.swift in Sources */,
+				A5532110246795BF000D7452 /* BaseModel.swift in Sources */,
 				180BAB2A243F615100AC1A5B /* MusicCollectionViewCell.swift in Sources */,
 				A582B804244FA8E4009DD580 /* LNPopupInteractionPanGestureRecognizer.m in Sources */,
 				A574A5962442943E0067C9BE /* Download.swift in Sources */,
