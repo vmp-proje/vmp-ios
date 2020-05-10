@@ -21,15 +21,16 @@ class HomeViewController: ViewController<HomeView> {
 //    getContentTitles()
 //    getContentURL()
     
-    YoutubeManager.shared.getPopularVideos().done { (popularVideos) in
-      for item in popularVideos.items ?? [] {
-        print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle)")
-      }
-    }.catch { (error) in
-      print("HomeViewController.swift getPopularVideos error: \(error)")
-    }
-
+//    YoutubeManager.shared.getPopularVideos().done { (popularVideos) in
+//      for item in popularVideos.items ?? [] {
+//        print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle)")
+//      }
+//    }.catch { (error) in
+//      print("HomeViewController.swift getPopularVideos error: \(error)")
+//    }
     
+    let vc = SubscriptionViewController()
+    self.navigationController?.pushViewController(vc)
   }
   
   //MARK: - View Appearance
@@ -51,7 +52,7 @@ class HomeViewController: ViewController<HomeView> {
   }
   
   
-  func getContentTitles(){
+  func getContentTitles() {
     self.customView.titleArray.reserveCapacity(25)
     let trendVideosUrl = URL(string: "https://www.googleapis.com/youtube/v3/videos")
     Alamofire.request(trendVideosUrl!,

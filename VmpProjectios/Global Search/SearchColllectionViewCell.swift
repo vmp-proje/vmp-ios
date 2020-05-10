@@ -6,9 +6,15 @@
 //  Copyright © 2020 Metin Yıldız. All rights reserved.
 //
 
-import Foundation
+
+import UIKit
+import Kingfisher
+
+
 class SearchColllectionViewCell: UICollectionViewCell {
   
+  
+  //MARK: - Visual Objects
   //let imageView = AnimatedProfileImageView(frame: .zero)
   let imageView: UIImageView = {
     let imageView = UIImageView(frame: .zero)
@@ -17,11 +23,9 @@ class SearchColllectionViewCell: UICollectionViewCell {
     return imageView
   }()
   
-  let nameLabel = Label(font: AppFont.Medium.font(size: 15), textColor: Color.appWhite, textAlignment: .left)
-//  let uNameLabel = AppLabel(font: Font.Regular.font(size: 15), textColor: .grayTextColor, textAlignment: .left)
+  let nameLabel = Label(font: AppFont.Medium.font(size: 16), textColor: Color.appWhite, textAlignment: .left)
   
-  
-
+  let channelNameLabel = Label(font: AppFont.Light.font(size: 12), textColor: .gray, textAlignment: .left)
   
   let separatorView: UIView = {
     let view = UIView()
@@ -56,21 +60,13 @@ class SearchColllectionViewCell: UICollectionViewCell {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func prepareCell(info: Int) { //duzelt
-    nameLabel.text = "sdgljndsgljsdnglj sdg"
-    imageView.image = UIImage(named: "profile_photo")
-//    self.user = user
-//
-//    imageView.imageView.kf.setImage(with: user.getProfilePictureLink())
-//    nameLabel.text = user.name ?? ""
+  func prepareCell(info: Snippet) { //duzelt
+    nameLabel.text = info.title
+    channelNameLabel.text = info.channelTitle
     
-//    if user.getLatestReelMedia() != 0 {
-//      imageView.hasStory = true
-//      imageView.isUserInteractionEnabled = true
-//    } else {
-//      imageView.isUserInteractionEnabled = false
-//      imageView.hasStory = false
-//    }
+    if let url = info.thumbnails?.standard?.url?.url {
+      imageView.kf.setImage(with: url)
+    }    
   }
   
   
@@ -90,10 +86,10 @@ class SearchColllectionViewCell: UICollectionViewCell {
     nameLabel.autoPinEdge(.right, to: .right, of: self, withOffset: -110)
     nameLabel.autoSetDimension(.height, toSize: 20)
     
-//    uNameLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: 3)
-//    uNameLabel.autoPinEdge(.left, to: .right, of: imageView, withOffset: 15)
-//    uNameLabel.autoPinEdge(.right, to: .right, of: self, withOffset: -110)
-//    uNameLabel.autoSetDimension(.height, toSize: 17)
+    channelNameLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: 3)
+    channelNameLabel.autoPinEdge(.left, to: .right, of: imageView, withOffset: 15)
+    channelNameLabel.autoPinEdge(.right, to: .right, of: self, withOffset: -110)
+    channelNameLabel.autoSetDimension(.height, toSize: 17)
 
 //    separatorView.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: 0)
 //    separatorView.autoPinEdge(.left, to: .left, of: self, withOffset: 0)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 
 class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarDelegate {
@@ -34,6 +35,47 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
     return bar
   }()
 
+  var searchedUrlText: String = String()
+  func execute(url: URL, query: String) {
+    print("\n\n--------------------------------\n")
+    
+    Alamofire.request(url,
+                      method: HTTPMethod.get,
+                      parameters: ["part": "snippet", "q": query, "key": youtube_access_token, "maxResults": 5, "type": "video"]) // değişmeli
+      .validate()
+      .responseJSON { (response) in
+        // items -> [0] -> id -> videoId
+        if let value = response.result.value as? [String: Any] {
+          
+          if let items = value["items"] as? [[String: Any]] {
+            for steps in items {
+              
+              let propertyId = steps["id"] as? [String: Any]
+              let videoId = propertyId!["videoId"]
+              let videoIdUrlPart = "?v=\(videoId!)"
+              self.searchedUrlText = "https://www.youtube.com/watch\(videoIdUrlPart)"
+              let snippet = steps["snippet"] as? [String: Any]
+              let thumbnails = snippet!["thumbnails"] as? [String: Any]
+              let mediumPhoto = thumbnails!["medium"] as? [String: Any]
+              
+              print("######")
+              print("Url       -> \(self.searchedUrlText)")
+              print("Video Id  -> \(videoId!)")
+              print("Title     -> \(snippet!["title"] ?? "Hata Title")") //items[0].snippet.title -> steps.snippet.title
+              print("Photo Url -> \(mediumPhoto!["url"] ?? "Hata Photo Url")") // items[0].snippet.thumbnails.medium.url -> steps.snippet.thumbnails.medium.url
+              print("######")
+            }
+          }
+          
+        }
+        
+        if response.result.isSuccess != true {
+          print("Error.")
+        }
+        
+    }
+    
+  }
   
   
   //MARK: - View Appearence
@@ -41,6 +83,7 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
     super.viewDidLoad()
     
     
+    execute(url: "https://www.googleapis.com/youtube/v3/search".url!, query: "Sylosis")
 //    customView.delegate = self
     setupNavigationBar()
     
@@ -82,8 +125,8 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
       stopSearchTimer(text: searchField.text!)
       runTimer(text: searchField.text!)
     } else {
-      customView.users = []
-      customView.resultCollectionView.reloadData()
+      customView.videos = nil
+      customView.collectionView.reloadData()
     }
   }
   
@@ -103,13 +146,23 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
         if result > 0.55 { //Can fetch data
           self.customView.startLoading()
           self.sentRequestCount += 1
-           
-          //FIXME: - Youtube API'si ile istek gonder.
+//          YoutubeManager.shared.search(search: self.searchField.text ?? "").done { (result) in
+//            print("🪀🪀🪀🪀🪀 sa: \(result)")
+//          }
+          
+//          self.startLoadingAnimation()
+          
           YoutubeManager.shared.search(search: self.searchField.text ?? "").done { (popularVideos) in
+
+            self.customView.setVideos(videos: popularVideos)
             print("🪀🪀🪀🪀🪀 sa: \(popularVideos)")
             for item in popularVideos.items ?? [] {
               print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle)")
             }
+
+            self.stopLoadingAnimation()
+          }.catch { (error) in
+            self.stopLoadingAnimation()
           }
         }
       }
@@ -127,6 +180,7 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
   override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
     view.endEditing(true)
   }
+  
 }
 
 

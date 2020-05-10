@@ -14,13 +14,18 @@ class GlobalSearchView: View {
   
   //MARK: - Protocol
 //  var delegate: Protocol!
-//  tCommunicationDelegate.openSubs()
-  
-  
+
+
+  //MARK: - Contents
   let cellId = "cellId"
-  var users = [Int]()
+
   
-  let resultCollectionView: UICollectionView = {
+  //MARK: - Variables
+  var videos: PopularVideos?
+  
+  
+  //MARK: - Visual Objects
+  let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
     layout.minimumLineSpacing = 15
@@ -49,9 +54,9 @@ class GlobalSearchView: View {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    resultCollectionView.register(SearchColllectionViewCell.self, forCellWithReuseIdentifier: cellId)
-    resultCollectionView.delegate = self
-    resultCollectionView.dataSource = self
+    collectionView.register(SearchColllectionViewCell.self, forCellWithReuseIdentifier: cellId)
+    collectionView.delegate = self
+    collectionView.dataSource = self
     
     //        setupAnimationView()
     
@@ -73,16 +78,16 @@ class GlobalSearchView: View {
   }
   
   
-  //FIXME: [Model duzelt]
-  func setUsers(users: [Int]) {
-    self.users = users
+  
+  func setVideos(videos: PopularVideos) {
+    self.videos = videos
     
-    if users.count == 0 {
+    if videos.items?.count ?? 0 == 0 {
       showErrorLabel()
     } else {
       hideErrorLabel()
       DispatchQueue.main.async {
-        self.resultCollectionView.reloadData()
+        self.collectionView.reloadData()
         self.endEditing(true)
       }
     }
@@ -92,14 +97,14 @@ class GlobalSearchView: View {
     DispatchQueue.main.async {
       
       self.warningLabel.isHidden = false
-      self.resultCollectionView.isHidden = true
+      self.collectionView.isHidden = true
     }
   }
   
   func hideErrorLabel() {
     DispatchQueue.main.async {
       self.warningLabel.isHidden = true
-      self.resultCollectionView.isHidden = false
+      self.collectionView.isHidden = false
     }
   }
   
@@ -118,15 +123,15 @@ class GlobalSearchView: View {
   }
   
   func loadUI() {
-    addSubview(resultCollectionView)
+    addSubview(collectionView)
     addSubview(warningLabel)
     addSubview(backgroundView)
     addSubview(activityIndicatorView)
     
-    resultCollectionView.autoPinEdge(toSuperviewSafeArea: .top)
-    resultCollectionView.autoPinEdge(.left, to: .left, of: self)
-    resultCollectionView.autoPinEdge(.right, to: .right, of: self)
-    resultCollectionView.autoPinEdge(toSuperviewSafeArea: .bottom)
+    collectionView.autoPinEdge(toSuperviewSafeArea: .top)
+    collectionView.autoPinEdge(.left, to: .left, of: self)
+    collectionView.autoPinEdge(.right, to: .right, of: self)
+    collectionView.autoPinEdge(toSuperviewSafeArea: .bottom)
     
     warningLabel.anchorCenterYToSuperview(constant: 10)
     warningLabel.autoPinEdge(.left, to: .left, of: self)
@@ -154,16 +159,17 @@ class GlobalSearchView: View {
 
 extension GlobalSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-    //return users.count
-    return 25
+    return videos?.items?.count ?? 0
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchColllectionViewCell
-//    let user = users[indexPath.row]
+    if let videoInfo = videos?.items?[indexPath.row].snippet {
+      cell.prepareCell(info: videoInfo)
+    }
 //    cell.communicationDelegate = self
 //    cell.setInfo(user: user)
-    cell.prepareCell(info: 0)
+//    cell.prepareCell(info: 0)
     cell.backgroundColor = .red
     
     return cell

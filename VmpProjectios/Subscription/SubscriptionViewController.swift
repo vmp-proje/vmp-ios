@@ -8,7 +8,7 @@ class SubscriptionViewController: ViewController<SubscriptionView> {
   var searchedUrlText: String = String()
   
   override func viewDidLoad() {
-    //    execute(url: searchUrl!, query: "Zeynep Bastık")
+    execute(url: searchUrl!, query: "Zeynep Bastık")
     customView.setupLayout()
   }
   
@@ -46,7 +46,8 @@ class SubscriptionViewController: ViewController<SubscriptionView> {
         }
         
         if response.result.isSuccess != true{
-          print("Error.")
+          print("Error.: \(response.result.error)")
+          
         }
         
     }

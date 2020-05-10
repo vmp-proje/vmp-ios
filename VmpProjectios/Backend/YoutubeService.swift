@@ -17,7 +17,7 @@ let youtubeBaseUrl = URL(string: "https://www.googleapis.com/youtube/v3/")!
 
 
 enum YoutubeService: RestService {
-    
+  
   
   case getMostPopularVideos
   case search(search: String)
@@ -31,18 +31,23 @@ enum YoutubeService: RestService {
   func HTTPHeaders() -> [String: String] {
     var headers : [String:String] = [:]
     
-    //FIXME;
-//    if let user = UserManager.shared.currentUser()  {
-//      return user.authenticationHeaders()
-//    }
+    //    FIXME;
+    //    if let user = UserManager.shared.currentUser()  {
+    //      return user.authenticationHeaders()
+    //    }
     
+    //    var authHeaders : [String:String] = [:]
+    //    authHeaders["Content-Type"] = "application/json"
+    //    authHeaders["key"] = youtube_access_token
+    
+    //    return authHeaders
     return headers
   }
   
   func method() -> HTTPMethod {
     switch self {
-//    case .search:
-//      return .get
+    case .search:
+      return .get
     default:
       return .get
     }
@@ -57,8 +62,8 @@ enum YoutubeService: RestService {
   
   func parameterEncoding() -> ParameterEncoding{
     switch self {
-//    case .search:
-//      return JSONEncoding.default
+      //    case .search:
+    //      return JSONEncoding.default
     default:
       return URLEncoding.default
     }
@@ -67,7 +72,7 @@ enum YoutubeService: RestService {
   
   func path()->String {
     switch self {
-    case .search(search: let search):
+    case .search:
       return "search"
     case .getMostPopularVideos:
       return "videos"
@@ -81,7 +86,8 @@ enum YoutubeService: RestService {
     
     switch self {
     case .search(search: let search):
-      return ["part": "snippet" as AnyObject, "q": search as AnyObject, "key": youtube_access_token as AnyObject, "type": "video" as AnyObject]//"maxResults": 5,
+//      return ["key": youtube_access_token as AnyObject, "type": "video" as AnyObject, "q": search as AnyObject, "part": "snippet" as AnyObject]
+      return ["part": "snippet" as AnyObject, "q": search as AnyObject, "type": "video" as AnyObject, "key": youtube_access_token as AnyObject]//"maxResults": 5,
     case .getMostPopularVideos:
       return ["part": "snippet" as AnyObject, "chart": "mostPopular" as AnyObject, "regionCode":"TR" as AnyObject, "key": youtube_access_token as AnyObject] //"maxResults": 25 as! AnyObject,
       
@@ -96,14 +102,14 @@ enum YoutubeService: RestService {
       return nil
     }
     
-//    if let response = response,
-//       let responseStr = String(data: response, encoding: String.Encoding.utf8),
-//       let mappedObject = Mapper<BaseResponse>().map(JSONString: responseStr) {
-      
-//      if mappedObject.hasError() {
-//        print("PurposeService -> errorTranslator -> mappedObject.hasError()")
-//      }
-//    }
+    //    if let response = response,
+    //       let responseStr = String(data: response, encoding: String.Encoding.utf8),
+    //       let mappedObject = Mapper<BaseResponse>().map(JSONString: responseStr) {
+    
+    //      if mappedObject.hasError() {
+    //        print("PurposeService -> errorTranslator -> mappedObject.hasError()")
+    //      }
+    //    }
     return nil
   }
 }

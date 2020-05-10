@@ -12,6 +12,10 @@ import PromiseKit
 
 
 let youtube_access_token = "AIzaSyBQmoRsMPI8t5XibRv-suraDfYnfr0hYZE"
+//let youtube_access_token = "AIzaSyDCx26FQV1ZTR5Y6oLGdE2KeQd8on5bVE8"
+//let youtube_access_token = "AIzaSyDis0J35ZeE1GmAyo-MXNlm_t5u7yMRj7w"
+
+//https://www.googleapis.com/youtube/v3/search?part=snippet&q=Sylosis&type=video&key=AIzaSyDis0J35ZeE1GmAyo-MXNlm_t5u7yMRj7w
 
 class YoutubeManager {
   
@@ -29,6 +33,17 @@ class YoutubeManager {
     }
   }
   
+//  func search(search: String) -> Promise<String> {
+//    return Promise { seal in
+//      YoutubeService.search(search: search).performRequest().done { (popularVideos) in
+//        seal.fulfill(popularVideos)
+//      }.catch { (error) in
+//        print("YoutubeManager.swift search(search: \(search) error: \(error)")
+//        seal.reject(error)
+//      }
+//    }
+//  }
+
   
   func getPopularVideos() -> Promise<PopularVideos> {
     return Promise { seal in
