@@ -11,7 +11,7 @@ import ObjectMapper
 import PromiseKit
 
 
-let youtube_access_token = "AIzaSyDis0J35ZeE1GmAyo-MXNlm_t5u7yMRj7w"
+let youtube_access_token = "AIzaSyBQmoRsMPI8t5XibRv-suraDfYnfr0hYZE"
 
 class YoutubeManager {
   
