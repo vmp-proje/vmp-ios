@@ -54,11 +54,12 @@ class PopularVideos: BaseModel {
 
 
 
+
 //MARK: Items
 struct Items : Mappable {
   var kind : String?
   var etag : String?
-  var id : String?
+  var id : Id?
   var snippet : Snippet?
 
   init?(map: Map) {
@@ -71,6 +72,25 @@ struct Items : Mappable {
     etag <- map["etag"]
     id <- map["id"]
     snippet <- map["snippet"]
+  }
+
+}
+
+
+
+//MARK: Id
+struct Id : Mappable {
+  var kind : String?
+  var videoId : String?
+
+  init?(map: Map) {
+
+  }
+
+  mutating func mapping(map: Map) {
+
+    kind <- map["kind"]
+    videoId <- map["videoId"]
   }
 
 }

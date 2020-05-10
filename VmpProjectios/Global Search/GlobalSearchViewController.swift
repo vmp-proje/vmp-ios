@@ -7,11 +7,39 @@
 //
 
 import UIKit
-import Alamofire
+import YoutubeKit
 
 
-class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarDelegate {
+protocol SearchProtocol {
+  func playVideo(videoId: String)
+}
 
+
+class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarDelegate, YTSwiftyPlayerDelegate, SearchProtocol {
+  
+  
+  func playerReady(_ player: YTSwiftyPlayer) {
+    print("\n\n 🌈🌈🌈🌈 player ready")
+  }
+  
+//  func player(_ player: YTSwiftyPlayer, didUpdateCurrentTime currentTime: Double) {
+//    print("\n\n 🌈🌈🌈🌈 player didUpdateCurrentTime")
+//  }
+  
+  func player(_ player: YTSwiftyPlayer, didChangeState state: YTSwiftyPlayerState){
+    print("\n\n 🌈🌈🌈🌈 player didChangeState")
+  }
+  
+  func player(_ player: YTSwiftyPlayer, didChangePlaybackRate playbackRate: Double) {
+    print("\n\n 🌈🌈🌈🌈 player didChangePlaybackRate")
+  }
+  func player(_ player: YTSwiftyPlayer, didReceiveError error: YTSwiftyPlayerError) {
+    
+  }
+  func player(_ player: YTSwiftyPlayer, didChangeQuality quality: YTSwiftyVideoQuality) {
+  
+  }
+  
   //MARK: - Variables
   var sentRequestCount = 0
   
@@ -31,60 +59,32 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
     bar.barTintColor = .white
     bar.backgroundColor = .clear
     //    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedString.Key.foregroundColor: appWhite]
-
+    
     return bar
   }()
-
-  var searchedUrlText: String = String()
-  func execute(url: URL, query: String) {
-    print("\n\n--------------------------------\n")
-    
-    Alamofire.request(url,
-                      method: HTTPMethod.get,
-                      parameters: ["part": "snippet", "q": query, "key": youtube_access_token, "maxResults": 5, "type": "video"]) // değişmeli
-      .validate()
-      .responseJSON { (response) in
-        // items -> [0] -> id -> videoId
-        if let value = response.result.value as? [String: Any] {
-          
-          if let items = value["items"] as? [[String: Any]] {
-            for steps in items {
-              
-              let propertyId = steps["id"] as? [String: Any]
-              let videoId = propertyId!["videoId"]
-              let videoIdUrlPart = "?v=\(videoId!)"
-              self.searchedUrlText = "https://www.youtube.com/watch\(videoIdUrlPart)"
-              let snippet = steps["snippet"] as? [String: Any]
-              let thumbnails = snippet!["thumbnails"] as? [String: Any]
-              let mediumPhoto = thumbnails!["medium"] as? [String: Any]
-              
-              print("######")
-              print("Url       -> \(self.searchedUrlText)")
-              print("Video Id  -> \(videoId!)")
-              print("Title     -> \(snippet!["title"] ?? "Hata Title")") //items[0].snippet.title -> steps.snippet.title
-              print("Photo Url -> \(mediumPhoto!["url"] ?? "Hata Photo Url")") // items[0].snippet.thumbnails.medium.url -> steps.snippet.thumbnails.medium.url
-              print("######")
-            }
-          }
-          
-        }
-        
-        if response.result.isSuccess != true {
-          print("Error.")
-        }
-        
-    }
-    
-  }
   
+  
+  func playVideo(videoId: String) {
+    customView.player = YTSwiftyPlayer(
+    frame: CGRect(x: 200, y: 200, width: 640, height: 480),
+    playerVars: [.videoID(videoId)])
+    
+    customView.player.translatesAutoresizingMaskIntoConstraints = false
+    customView.showPlayer()
+    customView.player.delegate = self
+    customView.player.autoplay = true
+    customView.player.loadPlayer()
+    customView.player.playVideo()
+  }
   
   //MARK: - View Appearence
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    customView.delegate = self
+           
     
-    execute(url: "https://www.googleapis.com/youtube/v3/search".url!, query: "Sylosis")
-//    customView.delegate = self
+    //    customView.delegate = self
     setupNavigationBar()
     
     searchField.becomeFirstResponder()
@@ -146,23 +146,26 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
         if result > 0.55 { //Can fetch data
           self.customView.startLoading()
           self.sentRequestCount += 1
-//          YoutubeManager.shared.search(search: self.searchField.text ?? "").done { (result) in
-//            print("🪀🪀🪀🪀🪀 sa: \(result)")
-//          }
+          //
           
-//          self.startLoadingAnimation()
+          print("🪀send request")
+          self.customView.startLoading()
           
           YoutubeManager.shared.search(search: self.searchField.text ?? "").done { (popularVideos) in
-
-            self.customView.setVideos(videos: popularVideos)
-            print("🪀🪀🪀🪀🪀 sa: \(popularVideos)")
+            
             for item in popularVideos.items ?? [] {
               print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle)")
             }
-
-            self.stopLoadingAnimation()
+            
+            self.customView.setVideos(videos: popularVideos)
+            
+            print("🪀🪀🪀🪀🪀 sa: \(popularVideos)")
+            
+//            self.stopLoadingAnimation()
+            self.customView.stopLoading()
           }.catch { (error) in
-            self.stopLoadingAnimation()
+//            self.stopLoadingAnimation()
+            self.customView.stopLoading()
           }
         }
       }
@@ -173,9 +176,9 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
     dismiss(animated: true, completion: nil)
   }
   
-//  @objc func dismissKeyboard() {
-//    customView.endEditing(true)
-//  }
+  //  @objc func dismissKeyboard() {
+  //    customView.endEditing(true)
+  //  }
   
   override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
     view.endEditing(true)

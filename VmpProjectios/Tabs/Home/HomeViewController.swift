@@ -28,9 +28,6 @@ class HomeViewController: ViewController<HomeView> {
 //    }.catch { (error) in
 //      print("HomeViewController.swift getPopularVideos error: \(error)")
 //    }
-    
-    let vc = SubscriptionViewController()
-    self.navigationController?.pushViewController(vc)
   }
   
   //MARK: - View Appearance

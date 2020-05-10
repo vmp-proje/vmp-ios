@@ -19,7 +19,7 @@ class SearchColllectionViewCell: UICollectionViewCell {
   let imageView: UIImageView = {
     let imageView = UIImageView(frame: .zero)
     imageView.translatesAutoresizingMaskIntoConstraints = false
-    
+    imageView.contentMode = .scaleAspectFill
     return imageView
   }()
   
@@ -40,13 +40,13 @@ class SearchColllectionViewCell: UICollectionViewCell {
     
     loadUI()
     
-    layer.cornerRadius = 15
-    layer.borderWidth = 1
-    layer.masksToBounds = true
-    layer.borderColor = UIColor.gray.withAlphaComponent(0.4).cgColor
+//    layer.cornerRadius = 18
+//    layer.borderWidth = 2
+//    layer.masksToBounds = true
+//    layer.borderColor = UIColor.gray.withAlphaComponent(0.4).cgColor
     
     imageView.layer.masksToBounds = true
-    imageView.layer.cornerRadius = 30
+    imageView.layer.cornerRadius = 7
   
 //    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
 //    imageView.addGestureRecognizer(tapGesture)
@@ -64,17 +64,18 @@ class SearchColllectionViewCell: UICollectionViewCell {
     nameLabel.text = info.title
     channelNameLabel.text = info.channelTitle
     
-    if let url = info.thumbnails?.standard?.url?.url {
+    if let url = info.thumbnails?.medium?.url?.url {
       imageView.kf.setImage(with: url)
-    }    
+      print("url: \(url)")
+    }
   }
   
   
   private func loadUI() {
     addSubview(imageView)
     addSubview(nameLabel)
-//    addSubview(uNameLabel)
-//    addSubview(separatorView)
+    addSubview(channelNameLabel)
+    addSubview(separatorView)
     
     imageView.autoPinEdge(.left, to: .left, of: self, withOffset: 12)
     imageView.autoSetDimension(.height, toSize: 57)
@@ -91,9 +92,9 @@ class SearchColllectionViewCell: UICollectionViewCell {
     channelNameLabel.autoPinEdge(.right, to: .right, of: self, withOffset: -110)
     channelNameLabel.autoSetDimension(.height, toSize: 17)
 
-//    separatorView.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: 0)
-//    separatorView.autoPinEdge(.left, to: .left, of: self, withOffset: 0)
-//    separatorView.autoPinEdge(.right, to: .right, of: self, withOffset: 0)
-//    separatorView.autoSetDimension(.height, toSize: 1)
+    separatorView.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: 0)
+    separatorView.autoPinEdge(.left, to: .left, of: self, withOffset: 0)
+    separatorView.autoPinEdge(.right, to: .right, of: self, withOffset: 0)
+    separatorView.autoSetDimension(.height, toSize: 1)
   }
 }

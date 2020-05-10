@@ -8,17 +8,20 @@
 
 import Foundation
 import NVActivityIndicatorView
+import YoutubeKit
 
 class GlobalSearchView: View {
-
+  
   
   //MARK: - Protocol
-//  var delegate: Protocol!
-
-
+  //  var delegate: Protocol!
+  
+  var player = YTSwiftyPlayer()
+  
+  
   //MARK: - Contents
   let cellId = "cellId"
-
+  
   
   //MARK: - Variables
   var videos: PopularVideos?
@@ -47,7 +50,7 @@ class GlobalSearchView: View {
     
     return view
   }()
-
+  
   let warningLabel = Label(text: "No results found.".localized(), font: AppFont.Regular.font(size: 15), textColor: .gray, textAlignment: .center, numberOfLines: 0)
   
   
@@ -57,17 +60,14 @@ class GlobalSearchView: View {
     collectionView.register(SearchColllectionViewCell.self, forCellWithReuseIdentifier: cellId)
     collectionView.delegate = self
     collectionView.dataSource = self
-    
-    //        setupAnimationView()
-    
     NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    loadUI()
   }
   
   var keyboardHeight: CGFloat = 0
   @objc func keyboardWillShow(notification: NSNotification) {
     if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
       let keyboardHeight = keyboardSize.height
-      print("\n\n keyboardHeight: \(keyboardHeight)")
       self.keyboardHeight = keyboardHeight
       //            layoutAnimView()
     }
@@ -77,49 +77,52 @@ class GlobalSearchView: View {
     fatalError("init(coder:) has not been implemented")
   }
   
-  
-  
   func setVideos(videos: PopularVideos) {
     self.videos = videos
     
+    print("setVideos: \(videos.items?.count)")
     if videos.items?.count ?? 0 == 0 {
       showErrorLabel()
     } else {
       hideErrorLabel()
-      DispatchQueue.main.async {
-        self.collectionView.reloadData()
-        self.endEditing(true)
-      }
+      //      DispatchQueue.main.async {
+      
+      print("reload: \(videos.items?.count)")
+      self.collectionView.reloadData()
+      self.endEditing(true)
+      //      }
     }
   }
   
   func showErrorLabel() {
-    DispatchQueue.main.async {
-      
-      self.warningLabel.isHidden = false
-      self.collectionView.isHidden = true
-    }
+    self.warningLabel.isHidden = false
+    self.collectionView.isHidden = true
   }
   
   func hideErrorLabel() {
-    DispatchQueue.main.async {
-      self.warningLabel.isHidden = true
-      self.collectionView.isHidden = false
-    }
+    self.warningLabel.isHidden = true
+    self.collectionView.isHidden = false
   }
   
-
+  
   override func startLoading() {
-    DispatchQueue.main.async {
-      self.backgroundView.isHidden = false
-    }
+    self.backgroundView.isHidden = false
+    self.activityIndicatorView.startAnimating()
+  }
+
+  override func stopLoading() {
+    self.activityIndicatorView.stopAnimating()
+    self.backgroundView.isHidden = true
   }
   
-  override func stopLoading() {
-    DispatchQueue.main.async {
-      self.activityIndicatorView.stopAnimating()
-      self.backgroundView.isHidden = true
-    }
+  func showPlayer() {
+    addSubview(player)
+    player.cornerRadius = 20
+    player.layer.masksToBounds = true
+    player.autoSetDimension(.height, toSize: 180)
+    player.autoSetDimension(.width, toSize: 300)
+    player.autoPinEdge(.right, to: .right, of: self)
+    player.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 0)
   }
   
   func loadUI() {
@@ -149,8 +152,9 @@ class GlobalSearchView: View {
     backgroundView.autoPinEdge(.bottom, to: .bottom, of: self)
     backgroundView.autoPinEdge(.left, to: .left, of: self)
     backgroundView.autoPinEdge(.right, to: .right, of: self)
-    backgroundView.isHidden = true
+//    backgroundView.isHidden = true
   }
+  var delegate: SearchProtocol!
 }
 
 
@@ -158,19 +162,20 @@ class GlobalSearchView: View {
 
 
 extension GlobalSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-  func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    print("count: \(videos?.items?.count ?? 0)")
     return videos?.items?.count ?? 0
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchColllectionViewCell
     if let videoInfo = videos?.items?[indexPath.row].snippet {
+      print("prepareCell worked: \(videoInfo)")
       cell.prepareCell(info: videoInfo)
+    } else {
+      print("prepareCell didnt work")
     }
-//    cell.communicationDelegate = self
-//    cell.setInfo(user: user)
-//    cell.prepareCell(info: 0)
-    cell.backgroundColor = .red
+    //    cell.communicationDelegate = self
     
     return cell
   }
@@ -189,10 +194,8 @@ extension GlobalSearchView: UICollectionViewDelegate, UICollectionViewDataSource
   
   
   func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//    guard let userPk = users[indexPath.row].pk()  else {
-//      return
-//    }
-//    self.delegate.
+    guard let videoId = videos?.items?[indexPath.row].id?.videoId  else {return}
+    self.delegate.playVideo(videoId: videoId)
   }
   
 }
