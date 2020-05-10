@@ -30,19 +30,6 @@ class YoutubeManager {
   }
   
   
-//  func search(search: String) -> Promise<String> {
-//    return Promise { seal in
-//      YoutubeService.search(search: search).performRequest().done { (popularVideos) in
-//        seal.fulfill(popularVideos)
-//      }.catch { (error) in
-//        print("YoutubeManager.swift search(search: \(search) error: \(error)")
-//        seal.reject(error)
-//      }
-//    }
-//  }
-
-  
-  
   func getPopularVideos() -> Promise<PopularVideos> {
     return Promise { seal in
       YoutubeService.getMostPopularVideos.performRequest(PopularVideos.self).done { (popularVideos) in

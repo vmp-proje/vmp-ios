@@ -111,15 +111,6 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
               print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle)")
             }
           }
-          
-          
-//          API.shared.searchUser(uName: "\(self.searchField.text ?? "")") { users in
-//            self.doneRequestCount += 1
-//            if self.doneRequestCount == self.sentRequestCount {
-//              self.customView.stopLoading()
-//              self.customView.setUsers(users: users)
-//            }
-//          }
         }
       }
     }
