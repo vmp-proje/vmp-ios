@@ -105,9 +105,14 @@ class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarD
           self.sentRequestCount += 1
            
           //FIXME: - Youtube API'si ile istek gonder.
-          YoutubeManager.shared.search(search: "sylosis") { (result) in
-            print("\n\n 🪀🪀🪀🪀 search really completed: \(result)")
+          YoutubeManager.shared.search(search: self.searchField.text ?? "").done { (popularVideos) in
+            print("🪀🪀🪀🪀🪀 sa: \(popularVideos)")
+            for item in popularVideos.items ?? [] {
+              print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle)")
+            }
           }
+          
+          
 //          API.shared.searchUser(uName: "\(self.searchField.text ?? "")") { users in
 //            self.doneRequestCount += 1
 //            if self.doneRequestCount == self.sentRequestCount {

@@ -14,6 +14,8 @@ import ObjectMapper
 
 let youtubeBaseUrl = URL(string: "https://www.googleapis.com/youtube/v3/")!
 
+
+
 enum YoutubeService: RestService {
     
   
@@ -39,8 +41,8 @@ enum YoutubeService: RestService {
   
   func method() -> HTTPMethod {
     switch self {
-    case .search:
-      return .get
+//    case .search:
+//      return .get
     default:
       return .get
     }
@@ -66,7 +68,7 @@ enum YoutubeService: RestService {
   func path()->String {
     switch self {
     case .search(search: let search):
-      return "search/\(search)"
+      return "search"
     case .getMostPopularVideos:
       return "videos"
     }
@@ -78,10 +80,11 @@ enum YoutubeService: RestService {
     
     
     switch self {
-    case .search:
-      return nil
+    case .search(search: let search):
+      return ["part": "snippet" as AnyObject, "q": search as AnyObject, "key": youtube_access_token as AnyObject, "type": "video" as AnyObject]//"maxResults": 5,
     case .getMostPopularVideos:
-      return ["part": "snippet" as! AnyObject, "chart": "mostPopular" as! AnyObject, "regionCode":"TR" as! AnyObject, "key": youtube_access_token as! AnyObject] //"maxResults": 25 as! AnyObject,
+      return ["part": "snippet" as AnyObject, "chart": "mostPopular" as AnyObject, "regionCode":"TR" as AnyObject, "key": youtube_access_token as AnyObject] //"maxResults": 25 as! AnyObject,
+      
     default:
       return nil
     }

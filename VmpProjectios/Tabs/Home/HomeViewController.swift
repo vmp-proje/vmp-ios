@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import YoutubeKit
-
 
 
 //class HomeViewController: ViewController<FlowCollectionView> {
@@ -30,9 +28,7 @@ class HomeViewController: ViewController<HomeView> {
     }.catch { (error) in
       print("HomeViewController.swift getPopularVideos error: \(error)")
     }
-    
-//    YoutubeDataAPI.
-//    let request = VideoListRequest(part: [.snippet], filter: .chart)
+
     
   }
   

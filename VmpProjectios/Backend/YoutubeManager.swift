@@ -17,16 +17,30 @@ class YoutubeManager {
   
   
   static let shared = YoutubeManager()
-  
-  func search(search: String, onComplete: @escaping(_ result: String) -> ()) {
-    YoutubeService.search(search: search).performRequest().done { (result) in
-      //      print("\n\n search completed: \(result)")
-      onComplete(result)
-    }.catch { (error) in
-      //      print("search error: \(error)")
-      onComplete("failed")
+//
+  func search(search: String) -> Promise<PopularVideos> {
+    return Promise { seal in
+      YoutubeService.search(search: search).performRequest(PopularVideos.self).done { (popularVideos) in
+        seal.fulfill(popularVideos)
+      }.catch { (error) in
+        print("YoutubeManager.swift search(search: \(search) error: \(error)")
+        seal.reject(error)
+      }
     }
   }
+  
+  
+//  func search(search: String) -> Promise<String> {
+//    return Promise { seal in
+//      YoutubeService.search(search: search).performRequest().done { (popularVideos) in
+//        seal.fulfill(popularVideos)
+//      }.catch { (error) in
+//        print("YoutubeManager.swift search(search: \(search) error: \(error)")
+//        seal.reject(error)
+//      }
+//    }
+//  }
+
   
   
   func getPopularVideos() -> Promise<PopularVideos> {
