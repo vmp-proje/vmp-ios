@@ -17,7 +17,7 @@ class SubscriptionViewController: ViewController<SubscriptionView> {
     
     Alamofire.request(url,
                       method: HTTPMethod.get,
-                      parameters: ["part": "snippet", "q": query, "key": "AIzaSyBQmoRsMPI8t5XibRv-suraDfYnfr0hYZE", "maxResults": 5, "type": "video"]) // değişmeli
+                      parameters: ["part": "snippet", "q": query, "key": youtube_access_token, "maxResults": 5, "type": "video"]) // değişmeli
       .validate()
       .responseJSON { (response) in
         // items -> [0] -> id -> videoId
