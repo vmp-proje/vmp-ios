@@ -14,17 +14,30 @@ import Alamofire
 //class HomeViewController: ViewController<FlowCollectionView> {
 class HomeViewController: ViewController<HomeView> {
   
-  var titleTexts: [String] = []
-  
+  var videoTitleTexts: [String] = []
+  var channelTitleTexts: [String] = []
+  var videoImageUrl: [String] = []
+    /*
+     viewWillAppear daki .done içinde print edebildiğim datayı ben nasıl collectionView metodları içine göndericem bi fikrin var mı ?
+     */
   override func viewWillAppear(_ animated: Bool) {
     print("viewWillAppear Çalıştı.")
 //    getContentTitles()
 //    getContentURL()
+//    var i = 0
+    
+//    print("----****----")
     
 //    YoutubeManager.shared.getPopularVideos().done { (popularVideos) in
-//      for item in popularVideos.items ?? [] {
-//        print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle)")
-//      }
+//
+//        self.videoTitleTexts.reserveCapacity(popularVideos.items!.count)
+//        self.channelTitleTexts.reserveCapacity(popularVideos.items!.count)
+//        self.videoImageUrl.reserveCapacity(popularVideos.items!.count)
+//
+//        for item in popularVideos.items ?? [] {
+//            print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle) photo url: \(item.snippet?.thumbnails?.standard?.url)")
+//            i += 1
+//        }
 //    }.catch { (error) in
 //      print("HomeViewController.swift getPopularVideos error: \(error)")
 //    }
@@ -34,8 +47,12 @@ class HomeViewController: ViewController<HomeView> {
   override func viewDidLoad() {
     super.viewDidLoad()
     print("\nHomeViewController Çalıştı.")
-    customView.layoutViews() // fetchStandartPhotoUrl
-    NotificationCenter.default.addObserver(self, selector: #selector(displayTitles(notification:)), name: Notification.Name(rawValue: "fetchTitlesDone"), object: nil)
+    
+//    NotificationCenter.default.addObserver(self, selector: #selector(displayTitles(notification:)), name: Notification.Name(rawValue: "fetchTitlesDone"), object: nil)
+//
+//    for counter in self.videoTitleTexts {
+//        print(counter)
+//    }
   }
   
   @objc func displayTitles(notification: Notification) {
@@ -51,7 +68,9 @@ class HomeViewController: ViewController<HomeView> {
   
   func getContentTitles() {
     self.customView.titleArray.reserveCapacity(25)
+    
     let trendVideosUrl = URL(string: "https://www.googleapis.com/youtube/v3/videos")
+    
     Alamofire.request(trendVideosUrl!,
                       method: .get,
                       parameters: ["part": "snippet", "chart": "mostPopular", "regionCode":"TR", "maxResults": 25, "key": youtube_access_token])
@@ -119,4 +138,20 @@ class HomeViewController: ViewController<HomeView> {
     }
   }
   
+}
+
+//MARK: - Collection View
+
+extension HomeViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath)
+        return cell
+    }
+    
+    
 }
