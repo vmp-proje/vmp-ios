@@ -137,7 +137,7 @@ class CustomHomeCell: UICollectionViewCell {
         addSubview(videoName)
         addSubview(channelName)
         // Total : 350
-        videoImage.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        videoImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
         videoImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
         videoImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15).isActive = true
         videoImage.bottomAnchor.constraint(equalTo: videoName.topAnchor).isActive = true
