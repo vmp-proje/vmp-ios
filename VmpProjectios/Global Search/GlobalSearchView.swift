@@ -154,6 +154,7 @@ class GlobalSearchView: View {
     backgroundView.autoPinEdge(.right, to: .right, of: self)
 //    backgroundView.isHidden = true
   }
+  
   var delegate: SearchProtocol!
 }
 

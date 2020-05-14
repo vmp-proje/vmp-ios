@@ -14,21 +14,14 @@ class BaseModel: HeaderMappable {
 
 //  var createAt:String?
   
-  required init?(map: Map) {
-
-  }
+  required init?(map: Map) {}
 
   init() { }
 
-  func mapping(map: Map)
-  {
-    //createAt <- (map["created_at"],DateTransform())
-//    createAt <- map["created_at"]
-  }
+  func mapping(map: Map){}
 
-  func headerMapping(_ data: NSDictionary) {
-
-  }
+  func headerMapping(_ data: NSDictionary) {}
+  
 }
 //
 //class  NoModel: HeaderMappable {

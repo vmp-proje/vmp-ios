@@ -22,7 +22,7 @@ class RegisterView: View {
   //MARK: - Visual Objects
   let scrollView = TPKeyboardAvoidingScrollView(frame: .zero)
   let firstNameTextField = InputTextField(frame: .zero)
-  let lastNameTextField = InputTextField(frame: .zero)
+//  let lastNameTextField = InputTextField(frame: .zero)
   let emailTextField = InputTextField(frame: .zero)
   let passwordTextField = InputTextField(frame: .zero)
   
@@ -77,8 +77,8 @@ class RegisterView: View {
   
   
   private func setupTextFields() {
-    firstNameTextField.placeholder = "First Name".localized()
-    lastNameTextField.placeholder = "Last Name".localized()
+    firstNameTextField.placeholder = "Username".localized()
+//    lastNameTextField.placeholder = "Last Name".localized()
     emailTextField.placeholder = "Email Address".localized()
     passwordTextField.placeholder = "Password (8+ characters)".localized()
     
@@ -96,7 +96,7 @@ class RegisterView: View {
     scrollView.addSubview(addPhotoButton)
     scrollView.addSubview(addPhotoTextButton)
     scrollView.addSubview(firstNameTextField)
-    scrollView.addSubview(lastNameTextField)
+//    scrollView.addSubview(lastNameTextField)
     scrollView.addSubview(emailTextField)
     scrollView.addSubview(passwordTextField)
     scrollView.addSubview(signUpButton)
@@ -121,12 +121,13 @@ class RegisterView: View {
     firstNameTextField.autoPinEdge(.right, to: .right, of: self, withOffset: -23)
     firstNameTextField.autoSetDimension(.height, toSize: 65)
     
-    lastNameTextField.autoPinEdge(.top, to: .bottom, of: self.firstNameTextField, withOffset: 23)
-    lastNameTextField.autoPinEdge(.left, to: .left, of: self, withOffset: 24)
-    lastNameTextField.autoPinEdge(.right, to: .right, of: self, withOffset: -23)
-    lastNameTextField.autoSetDimension(.height, toSize: 65)
+//    lastNameTextField.autoPinEdge(.top, to: .bottom, of: self.firstNameTextField, withOffset: 23)
+//    lastNameTextField.autoPinEdge(.left, to: .left, of: self, withOffset: 24)
+//    lastNameTextField.autoPinEdge(.right, to: .right, of: self, withOffset: -23)
+//    lastNameTextField.autoSetDimension(.height, toSize: 65)
     
-    emailTextField.autoPinEdge(.top, to: .bottom, of: self.lastNameTextField, withOffset: 23)
+    //emailTextField.autoPinEdge(.top, to: .bottom, of: self.lastNameTextField, withOffset: 23)
+    emailTextField.autoPinEdge(.top, to: .bottom, of: self.firstNameTextField, withOffset: 23)
     emailTextField.autoPinEdge(.left, to: .left, of: self, withOffset: 24)
     emailTextField.autoPinEdge(.right, to: .right, of: self, withOffset: -23)
     emailTextField.autoSetDimension(.height, toSize: 65)

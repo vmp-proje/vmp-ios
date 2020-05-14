@@ -19,11 +19,23 @@ class HomeViewController: ViewController<HomeView> {
   var videoImageUrl: [String] = []
 
   override func viewWillAppear(_ animated: Bool) {
-    print("viewWillAppear Çalıştı.")
 //    getContentTitles()
 //    getContentURL()
-    var i = 0
+  }
+  
+  //MARK: - View Appearance
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    print("\nHomeViewController Çalıştı.")
     
+//    NotificationCenter.default.addObserver(self, selector: #selector(displayTitles(notification:)), name: Notification.Name(rawValue: "fetchTitlesDone"), object: nil)
+//
+//    for counter in self.videoTitleTexts {
+//        print(counter)
+//    }
+
+    var i = 0
+
     print("----****----")
     
     YoutubeManager.shared.getPopularVideos().done { (popularVideos) in
@@ -43,18 +55,6 @@ class HomeViewController: ViewController<HomeView> {
     }.catch { (error) in
       print("HomeViewController.swift getPopularVideos error: \(error)")
     }
-  }
-  
-  //MARK: - View Appearance
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    print("\nHomeViewController Çalıştı.")
-    
-//    NotificationCenter.default.addObserver(self, selector: #selector(displayTitles(notification:)), name: Notification.Name(rawValue: "fetchTitlesDone"), object: nil)
-//
-//    for counter in self.videoTitleTexts {
-//        print(counter)
-//    }
   }
   
   @objc func displayTitles(notification: Notification) {

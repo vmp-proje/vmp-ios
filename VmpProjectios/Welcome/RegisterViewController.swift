@@ -30,9 +30,9 @@ class RegisterViewController: ViewController<RegisterView>, UIImagePickerControl
     return customView.firstNameTextField.textLabel.text
   }
   
-  var lastName: String? {
-    return customView.lastNameTextField.textLabel.text
-  }
+//  var lastName: String? {
+//    return customView.lastNameTextField.textLabel.text
+//  }
   
   
   
@@ -95,10 +95,10 @@ class RegisterViewController: ViewController<RegisterView>, UIImagePickerControl
     let emailErrorMessage: String = "Invalid Email".localized()
     let passwordErrorMessage: String = "Password must be longer than 8 characters".localized()
     
-    var firstNameHasError: Bool!
-    var lastNameHasError: Bool!
-    var emailHasError: Bool!
-    var passwordHasError: Bool!
+    var firstNameHasError: Bool = false
+//    var lastNameHasError: Bool!
+    var emailHasError: Bool = false
+    var passwordHasError: Bool = false
     if hasNoEmptyField() {
       if email!.isEmail {
         emailHasError = false
@@ -109,17 +109,16 @@ class RegisterViewController: ViewController<RegisterView>, UIImagePickerControl
       if firstName!.isAlphabetic {
         firstNameHasError = false
       } else { // error
-        self.customView.firstNameTextField.errorText = alphabeticErrorMessage
-        firstNameHasError = true
-        
+//        self.customView.firstNameTextField.errorText = alphabeticErrorMessage
+//        firstNameHasError = true
       }
-      if lastName!.isAlphabetic {
-        lastNameHasError = false
-      } else { // error
-        lastNameHasError = true
-        self.customView.lastNameTextField.errorText = alphabeticErrorMessage
-        
-      }
+      
+//      if lastName!.isAlphabetic {
+//        lastNameHasError = false
+//      } else { // error
+//        lastNameHasError = true
+//        self.customView.lastNameTextField.errorText = alphabeticErrorMessage
+//      }
       if password!.count > 7 {
         passwordHasError = false
       } else { // error
@@ -127,7 +126,8 @@ class RegisterViewController: ViewController<RegisterView>, UIImagePickerControl
         passwordHasError = true
       }
       
-      if firstNameHasError == false && lastNameHasError == false && emailHasError == false && passwordHasError == false { //Register
+      //if firstNameHasError == false && lastNameHasError == false && emailHasError == false && passwordHasError == false { //Register
+      if firstNameHasError == false && emailHasError == false && passwordHasError == false { //Register
         self.register()
       }
     }
@@ -145,33 +145,32 @@ class RegisterViewController: ViewController<RegisterView>, UIImagePickerControl
   
   //MARK: - Backend
   func register() {
-    //FIXME: - dummy
-    NotificationCenter.default.post(name: NSNotification.Name.init("reloadApp"), object: nil)
+    startLoadingAnimation()
     
-//    startLoadingAnimation()
-//    UserManager.shared.signUp(self.firstName!, lastName: self.lastName!, email: self.email!, password: self.password!, image: self.profileImage ).done { (user) in
-//
-//      self.stopLoadingAnimation()
-//      self.showMainTabBarVC()
-//      AppNotification.shared.userLoggedIn()
-//
-//    }.catch({ (error) in
-//      ShowErrorMessage.statusLine(message: "\(self.className) register() Error occured: \(error)".localized())
-//      self.stopLoadingAnimation()
-//    })
+    UserManager.shared.register(self.firstName!, email: self.email!, password: self.password!).done { (user) in
+
+      self.stopLoadingAnimation()
+      self.showMainTabBarVC()
+      NotificationCenter.default.post(name: NSNotification.Name.init("reloadApp"), object: nil)
+
+    }.catch({ (error) in
+      ShowErrorMessage.statusLine(message: "\(self.className) register() Error occured: \(error)".localized())
+      self.stopLoadingAnimation()
+    })
   }
   
   private func showMainTabBarVC() {
-//    let mainTabBarVC = MainTabBarController()
-//    let nav = UINavigationController(rootViewController: mainTabBarVC)
-//    nav.modalPresentationStyle = .fullScreen
-//    self.navigationController?.present(nav, animated: true, completion: nil)
+    let mainTabBarVC = MainTabBarController()
+    let nav = UINavigationController(rootViewController: mainTabBarVC)
+    nav.modalPresentationStyle = .fullScreen
+    self.navigationController?.present(nav, animated: true, completion: nil)
   }
   
   //MARK: - Valid Input Checker
   /// true: NO Empty Fields - false: there are empty fields
   private func hasNoEmptyField() -> Bool {
-    let arr = [firstName, lastName, email, password]
+    //let arr = [firstName, lastName, email, password]
+    let arr = [firstName,  email, password]
     
     for text in arr {
       if text == nil || text == "" {
@@ -183,7 +182,7 @@ class RegisterViewController: ViewController<RegisterView>, UIImagePickerControl
   
   private func checkEmptyFields() {
     let errorMessage = "This field can't be empty".localized()
-    let textFields = [customView.emailTextField, customView.passwordTextField, customView.firstNameTextField, customView.lastNameTextField]
+    let textFields = [customView.emailTextField, customView.passwordTextField, customView.firstNameTextField]// customView.lastNameTextField
     
     for textField in textFields {
       if textField.textLabel.text == nil || textField.textLabel.text == "" {

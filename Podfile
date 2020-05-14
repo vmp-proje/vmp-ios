@@ -39,5 +39,6 @@ target 'VmpProjectios' do
   pod 'BottomPopup'
   pod 'Signals', '~> 6.0'
   pod 'YoutubeKit'
+  pod 'KeychainSwift'
 
 end

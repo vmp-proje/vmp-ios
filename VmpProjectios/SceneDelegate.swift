@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   
@@ -30,9 +31,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   }
   
   @objc func reloadApp() {
-    let mainTabVC = MainTabBarController()
-    window?.rootViewController = UINavigationController(rootViewController: mainTabVC)
+    let keychain = KeychainSwift()
+    if let token = keychain.get("access_token") { //not logged in
+      let mainTabVC = MainTabBarController()
+      window?.rootViewController = UINavigationController(rootViewController: mainTabVC)
+    } else { //not logged in
+      let welcomeVC = WelcomeViewController()
+      window?.rootViewController = UINavigationController(rootViewController: welcomeVC)
+    }
+    
     window?.makeKeyAndVisible()
+    
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {

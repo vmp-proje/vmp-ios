@@ -84,6 +84,8 @@
 		A582B81A244FAED8009DD580 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582B819244FAED8009DD580 /* BlurEffect.swift */; };
 		A582B81C244FAF00009DD580 /* MusicPlayerCenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582B81B244FAF00009DD580 /* MusicPlayerCenterView.swift */; };
 		A582B81E244FAFBC009DD580 /* MusicPlayerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A582B81D244FAFBC009DD580 /* MusicPlayerProgressView.swift */; };
+		A5E7478B246D6BE60042E484 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E7478A246D6BE60042E484 /* UserService.swift */; };
+		A5E7478D246D6F360042E484 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E7478C246D6F360042E484 /* User.swift */; };
 		E8B4BEC99587836B24DF47D5 /* Pods_VmpProjectios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */; };
 /* End PBXBuildFile section */
 
@@ -193,6 +195,8 @@
 		A582B819244FAED8009DD580 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
 		A582B81B244FAF00009DD580 /* MusicPlayerCenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerCenterView.swift; sourceTree = "<group>"; };
 		A582B81D244FAFBC009DD580 /* MusicPlayerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerProgressView.swift; sourceTree = "<group>"; };
+		A5E7478A246D6BE60042E484 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		A5E7478C246D6F360042E484 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VmpProjectios.release.xcconfig"; path = "Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -321,6 +325,7 @@
 			children = (
 				A553210D2467946A000D7452 /* PopularVideos.swift */,
 				A553210F246795BF000D7452 /* BaseModel.swift */,
+				A5E7478C246D6F360042E484 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -369,6 +374,7 @@
 				A5791B40245DF46600A0E74F /* YoutubeManager.swift */,
 				A5791B42245DF47000A0E74F /* YoutubeService.swift */,
 				A5791B44245DF62A00A0E74F /* RestService.swift */,
+				A5E7478A246D6BE60042E484 /* UserService.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -618,6 +624,7 @@
 				180DD9BD242E5CE10096B70D /* RegisterViewController.swift in Sources */,
 				A582B806244FA8E4009DD580 /* LNChevronView.m in Sources */,
 				180DD9B3242E5CE10096B70D /* AppFont.swift in Sources */,
+				A5E7478B246D6BE60042E484 /* UserService.swift in Sources */,
 				A582B801244FA8E4009DD580 /* LNForwardingDelegate.m in Sources */,
 				A5791B45245DF62A00A0E74F /* RestService.swift in Sources */,
 				A5791B39245DB3B400A0E74F /* TabViewController.swift in Sources */,
@@ -656,6 +663,7 @@
 				180DD9BF242E5CE10096B70D /* MusicViewController.swift in Sources */,
 				A582B818244FAEBF009DD580 /* MusicPlayerBlurryBackgroundImageView.swift in Sources */,
 				A5791B51245E024A00A0E74F /* PlaylistHeaderCollectionViewCell.swift in Sources */,
+				A5E7478D246D6F360042E484 /* User.swift in Sources */,
 				A5791B43245DF47000A0E74F /* YoutubeService.swift in Sources */,
 				A5532110246795BF000D7452 /* BaseModel.swift in Sources */,
 				180BAB2A243F615100AC1A5B /* MusicCollectionViewCell.swift in Sources */,
