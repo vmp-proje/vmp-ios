@@ -67,6 +67,7 @@
 {
 	_effectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight]];
 	_effectView.userInteractionEnabled = NO;
+  _effectView.alpha = 0.25;
 	[self addSubview:_effectView];
 	
 	UIVisualEffectView* highlightEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:(UIBlurEffect*)_effectView.effect]];

@@ -161,7 +161,7 @@ extension PlaylistView:  UICollectionViewDelegate, UICollectionViewDataSource, U
       
      
       //Set Play Button's Icon
-      playlistCell.playButton.paused()
+//      playlistCell.playButton.paused()
       // Does music cell playing this cell's content ATM?
       
       

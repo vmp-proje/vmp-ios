@@ -184,8 +184,8 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     
     // Add Targets
     customView.centerView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-    customView.centerView.prevButton.addTarget(self, action: #selector(prevButtonTapped), for: .touchUpInside)
-    customView.centerView.nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
+//    customView.centerView.prevButton.addTarget(self, action: #selector(prevButtonTapped), for: .touchUpInside)
+//    customView.centerView.nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     customView.progressView.progressDisplay.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
     
     

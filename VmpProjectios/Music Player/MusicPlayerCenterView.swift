@@ -29,8 +29,8 @@ class MusicPlayerCenterView: UIView {
   let titleLabel = Label(font: AppFont.Bold.font(size: 25), textColor: Color.appWhite, textAlignment: .center)
   
   let playButton = Button(image: UIImage(named: "player-play")!, tintColor: Color.appWhite, backgroundColor: Color.appBlack.withAlphaComponent(0.55))
-  let prevButton = Button(image: UIImage(named: "backward2")!, tintColor: Color.appWhite, backgroundColor: .clear)
-  let nextButton = Button(image: UIImage(named: "forward2")!, tintColor: Color.appWhite, backgroundColor: .clear)
+//  let prevButton = Button(image: UIImage(named: "backward2")!, tintColor: Color.appWhite, backgroundColor: .clear)
+//  let nextButton = Button(image: UIImage(named: "forward2")!, tintColor: Color.appWhite, backgroundColor: .clear)
   
   
   //MARK: - Initialization
@@ -59,8 +59,8 @@ class MusicPlayerCenterView: UIView {
     addSubview(contentTypeLabel)
     addSubview(titleLabel)
     addSubview(playButton)
-    addSubview(nextButton)
-    addSubview(prevButton)
+//    addSubview(nextButton)
+//    addSubview(prevButton)
     
     contentTypeLabel.autoPinEdge(.top, to: .top, of: self)
     contentTypeLabel.autoPinEdge(.left, to: .left, of: self)
@@ -79,17 +79,17 @@ class MusicPlayerCenterView: UIView {
     playButton.autoSetDimension(.height, toSize: playButtonHeight+10)
     playButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
-    nextButton.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: -5)
-    nextButton.autoPinEdge(.left, to: .right, of: playButton, withOffset: 20)
-    nextButton.autoSetDimension(.width, toSize: playButtonHeight)
-    nextButton.autoSetDimension(.height, toSize: playButtonHeight)
-    nextButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
+//    nextButton.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: -5)
+//    nextButton.autoPinEdge(.left, to: .right, of: playButton, withOffset: 20)
+//    nextButton.autoSetDimension(.width, toSize: playButtonHeight)
+//    nextButton.autoSetDimension(.height, toSize: playButtonHeight)
+//    nextButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
     
-    prevButton.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: -5)
-    prevButton.autoPinEdge(.right, to: .left, of: playButton, withOffset: -20)
-    prevButton.autoSetDimension(.width, toSize: playButtonHeight)
-    prevButton.autoSetDimension(.height, toSize: playButtonHeight)
-    prevButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
+//    prevButton.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: -5)
+//    prevButton.autoPinEdge(.right, to: .left, of: playButton, withOffset: -20)
+//    prevButton.autoSetDimension(.width, toSize: playButtonHeight)
+//    prevButton.autoSetDimension(.height, toSize: playButtonHeight)
+//    prevButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
   }
   
 }

@@ -18,7 +18,8 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   let musicVC = MusicViewController()
   let profileVC = ProfileViewController()
 
-  var popupBarPlayButton = UIBarButtonItem(image: UIImage(named: "player-play-small")!, style: .done, target: self, action: #selector(playButtonTapped))
+  var popupBarPlayButton = UIBarButtonItem(image: nil, style: .done, target: self, action: #selector(playButtonTapped))
+  let playButton = PopupBarPlayButton(frame: .zero)
 
   @objc func playButtonTapped() {}
   
@@ -41,6 +42,7 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
     navigationController?.setNavigationBarHidden(false, animated: true)
   }
   
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -53,11 +55,29 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
 //    musicPlayerVC.dismissdelegat
   }
 
+
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
 //    let testVC = TestFlowCollectionViewController()
 //    self.navigationController?.pushViewController(testVC, animated: true)
 
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+      if let playableClass = CategoryContentListAttributes(JSON: ["name" : "",
+      "content_type": "",
+      "multiple": false,
+      "description": "",
+      "tag_list": "",
+      "image": "",
+      "media": "",
+      "duration": 0,
+      "is_favorited": false,
+      "section_type": "",
+      "is_premium": true,
+      "is_new" : false]) {
+      CategoryContentListData(id: "1", type: nil, attributes: playableClass, relationships: nil)
+      self.presentPlayerPopupBar()
+      }
+    }
   }
 
   //MARK: - Dark Mode
@@ -125,30 +145,48 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
 
   
   //MARK: - Music Player Popup
-  func presentMusicPlayerPopup() {
-    navigationController?.popupBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-    popupBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-    showBottomContainerView()
-    
-    presentPopupBar(withContentViewController: musicPlayerVC, animated: true, completion: nil)
-    self.view.bringSubviewToFront(self.tabBar)
-    
-    //Note: Have to add play button every time. Framework probably has a bug
-    //Add Play Button
-    self.popupBarPlayButton = UIBarButtonItem(image: UIImage(named: "player-play-small")!, style: .done, target: self, action: #selector(playButtonTapped))
-    popupBarPlayButton.addTargetForAction(self, action: #selector(playButtonTapped))
-    popupBarPlayButton.tintColor = .white
-    musicPlayerVC.popupItem.rightBarButtonItems = [popupBarPlayButton]
+  @objc func presentPlayerPopupBar() {
+      ///Not: CourseDetailsViewController ekraninda navigationController?. ile gosterince bu kod ise yarar hale geldi.
+      navigationController?.popupBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+      popupBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+      showBottomContainerView()
+      
+  //    presentPopupBar(withContentViewController: musicPlayerVC, animated: true, completion: nil)
+      self.playButton.contentId = AudioPlayer.shared.currentTrack?.id
+      self.playButton.playButton.updateButtonUI()
+      presentPopupBar(withContentViewController: musicPlayerVC, animated: true) { }
+      self.view.bringSubviewToFront(self.tabBar)
+      
+      
+  
+      
+  //    let playButton = PopupBarPlayButton(frame: .zero)
+      self.popupBarPlayButton = UIBarButtonItem(customView: self.playButton)
+      self.musicPlayerVC.popupItem.rightBarButtonItems = [self.popupBarPlayButton]
+      
+      if let superView = self.playButton.superview {
+        self.playButton.autoPinEdge(.right, to: .right, of: superView, withOffset: -2)
+      }
+      self.playButton.anchorCenterYToSuperview()
+      self.playButton.autoSetDimension(.height, toSize: 46) //34
+      self.playButton.autoSetDimension(.width, toSize: 46+5)
+      
+  //    popupBarPlayButton.addTargetForAction(self, action: #selector(playButtonTapped))
+  //    playButton.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
 
-    LNPopupCloseButton.appearance().alpha = 0.05
-    popupContentView.popupCloseButtonStyle = .round
-    
-    //Update Play Button's icon
-    updatePlayButtonIcon()
-    
-    popupBar.isHidden = false
-    
-  }
+      
+      LNPopupCloseButton.appearance().isHidden = false
+      LNPopupCloseButton.appearance().alpha = 0.02
+      popupContentView.popupCloseButtonStyle = .round
+
+      
+      //Update Play Button's icon
+      DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
+        self.updatePlayButtonIcon()
+      }
+      
+      popupBar.isHidden = false
+    }
   
   @objc func updatePlayButtonIcon() {
     //FIXME: - geri ekle

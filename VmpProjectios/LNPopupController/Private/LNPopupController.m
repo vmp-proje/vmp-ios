@@ -679,7 +679,7 @@ static CGFloat __smoothstep(CGFloat a, CGFloat b, CGFloat x)
 			
 			pgr.enabled = NO;
 			pgr.enabled = YES;
-			
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"MusicPlayerFullScreenClosedNotification" object:self];
 			_popupControllerTargetState = LNPopupPresentationStateClosed;
 			[self _transitionToState:_popupControllerTargetState animated:YES useSpringAnimation:_popupControllerTargetState == LNPopupPresentationStateClosed ? YES : NO allowPopupBarAlphaModification:YES completion:^ {
 				[_popupContentView.popupCloseButton _setButtonContainerStationary];
@@ -693,7 +693,7 @@ static CGFloat __smoothstep(CGFloat a, CGFloat b, CGFloat x)
 		{
 			_statusBarThresholdDir = -_statusBarThresholdDir;
 			
-      [[NSNotificationCenter defaultCenter] postNotificationName:@"MusicPlayerFullScreenClosedNotification" object:self];
+//      [[NSNotificationCenter defaultCenter] postNotificationName:@"MusicPlayerFullScreenClosedNotification" object:self];
 			[UIView animateWithDuration:0.3 delay:0.0 usingSpringWithDamping:500 initialSpringVelocity:0 options:0 animations:^{
 				[_containerController setNeedsStatusBarAppearanceUpdate];
 			} completion:nil];
@@ -1071,6 +1071,7 @@ static CGFloat __smoothstep(CGFloat a, CGFloat b, CGFloat x)
 	}
 }
 
+
 - (void)_setUpCloseButtonForPopupContentView
 {
 	[_popupContentView.popupCloseButton removeFromSuperview];
@@ -1082,6 +1083,14 @@ static CGFloat __smoothstep(CGFloat a, CGFloat b, CGFloat x)
 	{
 		_popupContentView.popupCloseButton = [[LNPopupCloseButton alloc] initWithStyle:buttonStyle];
 		_popupContentView.popupCloseButton.translatesAutoresizingMaskIntoConstraints = NO;
+    
+
+    [[NSNotificationCenter defaultCenter] addObserver:self
+    selector:@selector(_closePopupContent)
+        name:@"ClosePopup" object:nil];
+
+    
+    
 		[_popupContentView.popupCloseButton addTarget:self action:@selector(_closePopupContent) forControlEvents:UIControlEventTouchUpInside];
 		[_popupContentView.contentView addSubview:self.popupContentView.popupCloseButton];
 
