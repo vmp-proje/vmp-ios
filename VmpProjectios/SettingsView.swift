@@ -1,6 +1,7 @@
 import UIKit
 
-class SettingsView: View, UITableViewDelegate, UITableViewDataSource {
+//class SettingsView: View, UITableViewDelegate, UITableViewDataSource {
+class SettingsView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - Visual Objects
     
@@ -88,7 +89,8 @@ class SettingsView: View, UITableViewDelegate, UITableViewDataSource {
         backgroundColor = .black
         customTableView.delegate = self
         customTableView.dataSource = self
-
+      translatesAutoresizingMaskIntoConstraints = false
+      customTableViewLayout()
     }
     
     required init?(coder aDecoder: NSCoder) {

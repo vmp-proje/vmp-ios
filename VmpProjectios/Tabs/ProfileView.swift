@@ -65,38 +65,47 @@ class ProfileView: View {
        //MARK: - UI
        
        func profileLayoutView() {
-           addSubview(profileView)
-           
-           profileView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
-           profileView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
-           profileView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
-           profileView.heightAnchor.constraint(equalToConstant: 300).isActive = true
-           
-           profileView.addSubview(profileImage)
-           profileView.addSubview(profileUserName)
-           profileView.addSubview(profileMailAdress)
-           
-           //profileImage
-           profileImage.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 15).isActive = true
-           profileImage.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive = true
-           profileImage.heightAnchor.constraint(equalToConstant: 160).isActive = true
-           profileImage.widthAnchor.constraint(equalToConstant: 160).isActive = true
-           
-//           profileImage.layer.cornerRadius = 160 / 2.0
-           
-           //profileUserName
-           profileUserName.topAnchor.constraint(equalTo: profileImage.bottomAnchor).isActive = true
-           profileUserName.leadingAnchor.constraint(equalTo: profileView.leadingAnchor).isActive = true
-           profileUserName.trailingAnchor.constraint(equalTo: profileView.trailingAnchor).isActive = true
-           profileUserName.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive = true
-           profileUserName.heightAnchor.constraint(equalToConstant: 50).isActive = true
-           
-           //profileMailAdress
-           profileMailAdress.topAnchor.constraint(equalTo: profileUserName.bottomAnchor).isActive = true
-           profileMailAdress.leadingAnchor.constraint(equalTo: profileView.leadingAnchor).isActive = true
-           profileMailAdress.trailingAnchor.constraint(equalTo: profileView.trailingAnchor).isActive = true
-           profileMailAdress.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive = true
-           profileMailAdress.heightAnchor.constraint(equalToConstant: 40).isActive = true
+//           addSubview(profileView)
+//
+//           profileView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor).isActive = true
+//           profileView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor).isActive = true
+//           profileView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor).isActive = true
+//           profileView.heightAnchor.constraint(equalToConstant: 300).isActive = true
+//
+//           profileView.addSubview(profileImage)
+//           profileView.addSubview(profileUserName)
+//           profileView.addSubview(profileMailAdress)
+//
+//           //profileImage
+//           profileImage.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 15).isActive = true
+//           profileImage.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive = true
+//           profileImage.heightAnchor.constraint(equalToConstant: 160).isActive = true
+//           profileImage.widthAnchor.constraint(equalToConstant: 160).isActive = true
+//
+////           profileImage.layer.cornerRadius = 160 / 2.0
+//
+//           //profileUserName
+//           profileUserName.topAnchor.constraint(equalTo: profileImage.bottomAnchor).isActive = true
+//           profileUserName.leadingAnchor.constraint(equalTo: profileView.leadingAnchor).isActive = true
+//           profileUserName.trailingAnchor.constraint(equalTo: profileView.trailingAnchor).isActive = true
+//           profileUserName.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive = true
+//           profileUserName.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//
+//           //profileMailAdress
+//           profileMailAdress.topAnchor.constraint(equalTo: profileUserName.bottomAnchor).isActive = true
+//           profileMailAdress.leadingAnchor.constraint(equalTo: profileView.leadingAnchor).isActive = true
+//           profileMailAdress.trailingAnchor.constraint(equalTo: profileView.trailingAnchor).isActive = true
+//           profileMailAdress.centerXAnchor.constraint(equalTo: profileView.centerXAnchor).isActive = true
+//           profileMailAdress.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        let settingsView = SettingsView(frame: .zero)
+        addSubview(settingsView)
+        //settingsView.autoPinEdge(.top, to: .bottom, of: self.profileUserName, withOffset: 25)
+        settingsView.autoPinEdge(toSuperviewSafeArea: .top, withInset: 10)
+        settingsView.autoPinEdge(.left, to: .left, of: self, withOffset: 20)
+        settingsView.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: 0)
+        settingsView.autoPinEdge(.right, to: .right, of: self, withOffset: -20)
+        settingsView.backgroundColor = .red
        }
 
     
