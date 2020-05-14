@@ -16,6 +16,7 @@ class HomeView: View, UICollectionViewDataSource, UICollectionViewDelegate, UICo
   let homeVC = HomeViewController()
   var titleArray : [String] = []
   var urlArray : [String] = []
+//  var count = 0
   
   //MARK: - Visual Objects
     let flowCollectionView: UICollectionView = { // Scroll Up and Down
@@ -58,12 +59,31 @@ class HomeView: View, UICollectionViewDataSource, UICollectionViewDelegate, UICo
     //MARK: - Collection View Data Source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-      return 5
+        if urlArray.isEmpty {
+            return 5
+        } else {
+            return self.urlArray.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! CustomHomeCell
-      return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! CustomHomeCell
+        
+        cell.videoName.text = titleArray.item(at: indexPath.row)
+        
+        DispatchQueue.global().async {
+            if let image = self.urlArray.item(at: indexPath.row) {
+                let data = try? Data(contentsOf: URL(string: image)!)
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        cell.videoImage.image = image
+                    }
+                }
+            }
+        }
+
+
+        return cell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -153,7 +173,6 @@ class CustomHomeCell: UICollectionViewCell {
         channelName.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
         channelName.trailingAnchor.constraint(equalTo: self.trailingAnchor,  constant: -15).isActive = true
         channelName.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        channelName.heightAnchor.constraint(equalToConstant: 35).isActive = true
         
 //        channelTitle.topAnchor.constra
         

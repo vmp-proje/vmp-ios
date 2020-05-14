@@ -17,30 +17,33 @@ class HomeViewController: ViewController<HomeView> {
   var videoTitleTexts: [String] = []
   var channelTitleTexts: [String] = []
   var videoImageUrl: [String] = []
-    /*
-     viewWillAppear daki .done içinde print edebildiğim datayı ben nasıl collectionView metodları içine göndericem bi fikrin var mı ?
-     */
+
   override func viewWillAppear(_ animated: Bool) {
     print("viewWillAppear Çalıştı.")
 //    getContentTitles()
 //    getContentURL()
-//    var i = 0
+    var i = 0
     
-//    print("----****----")
+    print("----****----")
     
-//    YoutubeManager.shared.getPopularVideos().done { (popularVideos) in
-//
-//        self.videoTitleTexts.reserveCapacity(popularVideos.items!.count)
-//        self.channelTitleTexts.reserveCapacity(popularVideos.items!.count)
-//        self.videoImageUrl.reserveCapacity(popularVideos.items!.count)
-//
-//        for item in popularVideos.items ?? [] {
-//            print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle) photo url: \(item.snippet?.thumbnails?.standard?.url)")
-//            i += 1
-//        }
-//    }.catch { (error) in
-//      print("HomeViewController.swift getPopularVideos error: \(error)")
-//    }
+    YoutubeManager.shared.getPopularVideos().done { (popularVideos) in
+
+        self.videoTitleTexts.reserveCapacity(popularVideos.items!.count)
+        self.channelTitleTexts.reserveCapacity(popularVideos.items!.count)
+        self.videoImageUrl.reserveCapacity(popularVideos.items!.count)
+
+        for item in popularVideos.items ?? [] {
+            print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle) photo url: \(item.snippet?.thumbnails?.standard?.url)")
+//            self.customView.urlArray[i] = (item.snippet?.thumbnails?.standard?.url)!
+            self.customView.urlArray.append((item.snippet?.thumbnails?.standard?.url)!)
+            self.customView.titleArray.append((item.snippet?.title)!)
+            i += 1
+        }
+        print("i -> \(i)")
+        self.customView.flowCollectionView.reloadData() // !!!!!!
+    }.catch { (error) in
+      print("HomeViewController.swift getPopularVideos error: \(error)")
+    }
   }
   
   //MARK: - View Appearance
