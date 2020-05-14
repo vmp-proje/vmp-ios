@@ -108,8 +108,8 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     self.index = index
     
     nameLabel.text = content?.attributes?.name ?? ""
-    let min = (content?.attributes?.duration ?? 0) / 60
-    durationLabel.text = "\(min) " + "mins".localized()
+//    let min = (content?.attributes?.duration ?? 0) / 60
+//    durationLabel.text = "\(min) " + "mins".localized()
     
     //Set downloaded icon
     prepareDownloadIcon(downloadState: downloadState)

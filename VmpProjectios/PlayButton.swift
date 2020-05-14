@@ -270,3 +270,83 @@ class PopupBarPlayButton: UIView {
     playButton.autoPinEdge(.right, to: .right, of: self, withOffset: -5)
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//MARK: -  MusicPlayerPlayButton
+class MusicPlayerPlayButton: PlayButton {
+  
+  override var playStatus: PlayStatus {
+    didSet {
+      if playStatus == .loading {
+        startLoadingAnimation()
+      } else {
+        stoploadingAnimation()
+        
+        DispatchQueue.main.async {
+          if self.playStatus == .paused {
+            self.setImage(UIImage(named: "player-play")!.withRenderingMode(.alwaysTemplate), for: .normal)
+          } else {
+            self.setImage(UIImage(named: "pause")!.withRenderingMode(.alwaysTemplate), for: .normal)
+          }
+        }
+      }
+    }
+  }
+  ///Update UI automaticaly.
+  override func updateButtonUI() {
+    if !locked {
+      DispatchQueue.main.async {
+        if AudioPlayer.shared.currentTrack?.id == self.contentId {
+          
+          if AudioPlayer.shared.isLoading == true {
+            self.playStatus = .loading
+          } else if AudioPlayer.shared.isPlaying() {
+            self.playStatus = .playing
+          } else {
+            self.playStatus = .paused
+          }
+          
+        } else {
+          //          self.isUserInteractionEnabled = false
+          self.playStatus = .paused
+        }
+      }
+    }
+  }
+  
+  ///Update UI by the given PlayStatus value
+  override func updateUI(notification: Notification) {
+    if !locked {
+      if let playStatus = notification.userInfo?["playStatus"] as? PlayStatus {
+        DispatchQueue.main.async {
+          if AudioPlayer.shared.currentTrack?.id == self.contentId {
+            self.playStatus = playStatus
+            
+            //FIXME: - bug olabilir dikkatli dusun.
+            if playStatus == .playing {
+              self.isUserInteractionEnabled = true
+            }
+          } else {
+            //            self.isUserInteractionEnabled = false
+            self.playStatus = .paused
+          }
+        }
+      }
+    }
+  }
+}
+

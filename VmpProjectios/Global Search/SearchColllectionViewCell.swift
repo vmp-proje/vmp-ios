@@ -83,7 +83,7 @@ class SearchColllectionViewCell: UICollectionViewCell {
     
     nameLabel.autoPinEdge(.top, to: .top, of: imageView, withOffset: 8)
     nameLabel.autoPinEdge(.left, to: .right, of: imageView, withOffset: 15)
-    nameLabel.autoPinEdge(.right, to: .right, of: self, withOffset: -110)
+    nameLabel.autoPinEdge(.right, to: .right, of: self, withOffset: -20)
     nameLabel.autoSetDimension(.height, toSize: 20)
     
     channelNameLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: 3)

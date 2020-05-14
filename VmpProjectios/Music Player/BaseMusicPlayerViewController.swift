@@ -11,6 +11,7 @@ import UIKit
 import NVActivityIndicatorView
 import AVFoundation
 import MediaPlayer
+import LNPopupController
 
 
 //MARK: - Protocol
@@ -41,15 +42,15 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
   
   //MARK: - MusicPlayerCommunicationProtocol
   func startedPlaying() {
-    updatePlayButton(isPlaying: true)
+//    updatePlayButton(isPlaying: true)
   }
   
   func resume() {
-    updatePlayButton(isPlaying: true)
+//    updatePlayButton(isPlaying: true)
   }
   
   func paused() {
-    updatePlayButton(isPlaying: false)
+//    updatePlayButton(isPlaying: false)
   }
   
   func readyToPlay() {
@@ -81,27 +82,30 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     
     self.customView.progressView.currentSecondLabel.text = "00:00"
     self.customView.progressView.progressDisplay.value = 0.0
-    self.updatePlayButton(isPlaying: false)
+//    self.updatePlayButton(isPlaying: false)
   }
   
-  func musicIndexChanged(content: CategoryContentListData) {
-//    guard let attribute = content.attributes,
-//      let url = self.getAPIUrl(link: content.attributes?.media) else {
-//        return
-//    }
+//  func musicIndexChanged(content: CategoryContentListData) {
+  @objc func musicIndexChanged(notification: Notification) {
+    guard let content = notification.userInfo?["content"] as? CategoryContentListData else {return}
+    guard let attribute = content.attributes else {return}
+    print("\n\n musicIndexChanged()  😎😎😎😎😎 new song: \(attribute.name)")
     
-//    print("\n\n musicIndexChanged()  😎😎😎😎😎 new song: \(attribute.name)")
+    customView.centerView.playButton.contentId = content.id!
     
-//    self.resetMusicPlayerUI()
-//    self.updatePopupBar(info: attribute)
-//    self.customView.blurryImageView.backgroundImageView.image = nil
-//    self.customView.centerView.titleLabel.text = content.attributes?.name ?? ""
-//    self.customView.centerView.contentTypeLabel.text = audioPlayer.section_type.capitalizingFirstLetter()
+    self.resetMusicPlayerUI()
+    self.updatePopupBar(info: attribute)
+    self.customView.blurryImageView.backgroundImageView.image = nil
+    self.customView.centerView.titleLabel.text = content.attributes?.name ?? ""
     
-//    self.updateProgressViewUI()
+    self.updateProgressViewUI()
+    
+    
+    
 //    self.updatePlayButton(isPlaying: false)
     
-    // Updates download button with delegate
+//     Updates download button with delegate
+    //FIXME: - add this later
 //    let state = MusicDownloadManager.shared.getDownloadState(content: content, apiUrl: url)
 //    self.updateButton(state: state, percentage: -1.0, url: nil) //Update DownloadButton's UI
 //    self.customView.setNeedsDisplay()
@@ -168,6 +172,8 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     
 //    AudioPlayer.shared.delegate = self
     
+    NotificationCenter.default.setObserver(self, selector: #selector(musicIndexChanged(notification:)), name: NSNotification.Name.init(AppNotification.shared.musicIndexChangedKey), object: nil)
+    
     //Set Delegates
     MusicDownloadManager.shared.downloadDelegate = self
     
@@ -194,18 +200,22 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
   }
   
   
+  var audioPlayer: AudioPlayer {
+    return AudioPlayer.shared
+    
+  }
   //MARK: - Button Actions
   @objc func playButtonTapped() {
-//    if audioPlayer.finishedPlayingPlaylist == true {
-//      audioPlayer.playCurrentTrack()
-//    } else {
-//      if audioPlayer.isPlaying() == true { //Playing ATM
-//        audioPlayer.pause()
-//      } else {
-//        audioPlayer.resume()
-//      }
+    if audioPlayer.finishedPlayingPlaylist == true {
+      audioPlayer.playCurrentTrack()
+    } else {
+      if audioPlayer.isPlaying() == true { //Playing ATM
+        audioPlayer.pause()
+      } else {
+        audioPlayer.resume()
+      }
 //      updatePlayButtons()
-//    }
+    }
   }
   
   
@@ -293,20 +303,20 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     }
   }
   
-  func updatePlayButton(isPlaying: Bool) {
-    //    DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) {
-    if !isPlaying { // Not Playing
-      self.customView.centerView.playButton.setImage(UIImage(named: "player-play")?.withRenderingMode(.alwaysTemplate), for: .normal)
-      self.popupBarPlayButton.image = UIImage(named: "player-play-small")!.withRenderingMode(.alwaysTemplate)
-    } else { // Playing ATM
-      print("playing atm")
-      self.customView.centerView.playButton.setImage(UIImage(named: "pause")?.withRenderingMode(.alwaysTemplate), for: .normal)
-      self.popupBarPlayButton.image = UIImage(named: "pause-small")!.withRenderingMode(.alwaysTemplate)
-    }
-    
-    //Update MainTabBar's popupBarPlayButton
-//    AppNotification.shared.updateTabBarPlayButton()
-  }
+//  func updatePlayButton(isPlaying: Bool) {
+//    //    DispatchQueue.main.asyncAfter(deadline: .now() + 0.65) {
+//    if !isPlaying { // Not Playing
+//      self.customView.centerView.playButton.setImage(UIImage(named: "player-play")?.withRenderingMode(.alwaysTemplate), for: .normal)
+//      self.popupBarPlayButton.image = UIImage(named: "player-play-small")!.withRenderingMode(.alwaysTemplate)
+//    } else { // Playing ATM
+//      print("playing atm")
+//      self.customView.centerView.playButton.setImage(UIImage(named: "pause")?.withRenderingMode(.alwaysTemplate), for: .normal)
+//      self.popupBarPlayButton.image = UIImage(named: "pause-small")!.withRenderingMode(.alwaysTemplate)
+//    }
+//
+//    //Update MainTabBar's popupBarPlayButton
+////    AppNotification.shared.updateTabBarPlayButton()
+//  }
   
   ///Checks Automatically
   @objc func updatePlayButtons() {
@@ -331,12 +341,12 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
   
   
    @objc func timerAction() {
-//     let duration = self.audioPlayer.player.currentItem?.duration.seconds ?? 0.0
-//     let currentTime = self.audioPlayer.player.currentTime().seconds ?? 0.0
-//     
-//     // Update Slider
-//     let time = Float(currentTime / duration)
-//     self.customView.progressView.updateProgress(currentSecond: currentTime, value: time)
+     let duration = self.audioPlayer.player.currentItem?.duration.seconds ?? 0.0
+     let currentTime = self.audioPlayer.player.currentTime().seconds ?? 0.0
+     
+     // Update Slider
+     let time = Float(currentTime / duration)
+     self.customView.progressView.updateProgress(currentSecond: currentTime, value: time)
    }
   
   func updateBookmarkButton(exists: Bool) {}
@@ -362,3 +372,11 @@ extension AVPlayer {
   }
 }
 
+
+
+extension NotificationCenter {
+  func setObserver(_ observer: AnyObject, selector: Selector, name: NSNotification.Name, object: AnyObject?) {
+    NotificationCenter.default.removeObserver(observer, name: name, object: object)
+    NotificationCenter.default.addObserver(observer, selector: selector, name: name, object: object)
+  }
+}

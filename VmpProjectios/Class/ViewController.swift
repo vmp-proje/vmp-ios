@@ -8,6 +8,8 @@
 import NVActivityIndicatorView
 import PureLayout
 import ESTabBarController_swift
+import LNPopupController
+
 
 class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
   

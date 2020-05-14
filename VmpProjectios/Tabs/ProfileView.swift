@@ -105,7 +105,6 @@ class ProfileView: View {
         settingsView.autoPinEdge(.left, to: .left, of: self, withOffset: 20)
         settingsView.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: 0)
         settingsView.autoPinEdge(.right, to: .right, of: self, withOffset: -20)
-        settingsView.backgroundColor = .red
        }
 
     

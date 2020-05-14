@@ -76,13 +76,14 @@ class AudioPlayer: NSObject {
   
   
   var currentTrackURL: String {
-    let link = self.trackArr[currentIndex].attributes?.media
-    if getAPIUrl(link: link) != nil {
-      return getAPIUrl(link: link)!
-    } else {
-      nextTrack()
-      return ""
-    }
+    return self.currentTrack?.attributes?.media ?? ""
+//    let link = self.trackArr[currentIndex].attributes?.media
+//    if getAPIUrl(link: link) != nil {
+//      return getAPIUrl(link: link)!
+//    } else {
+//      nextTrack()
+//      return ""
+//    }
   }
   
   /// Is fetching content from url?
@@ -329,12 +330,9 @@ class AudioPlayer: NSObject {
             
             self.isLoading = false
             DispatchQueue.main.asyncAfter(deadline: .now()+0.15) {
-//              self.cellUIDelegate?.updateButtonUI(playStatus: .playing)
               AppNotification.shared.updatePlayButtonUIManually(playStatus: .playing)
-              self.delegate?.startedPlaying()
+//              self.delegate?.startedPlaying()
             }
-//            AppNotification.shared.audioPlayerStartedPlaying()
-            
             self.setupObservers()
             
             
@@ -506,6 +504,7 @@ class AudioPlayer: NSObject {
   }
   
   internal func playCurrentTrack() {
+    print("currentTrackUrl = self.currentTrackURL.url: \(self.currentTrackURL.url)")
     guard let currentTrack = currentTrack,
       let currentTrackUrl = self.currentTrackURL.url
       else {return}

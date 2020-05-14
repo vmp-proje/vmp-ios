@@ -1,3 +1,4 @@
+
 //
 //  MusicPlayerCenterView.swift
 //  VmpProjectios
@@ -23,12 +24,15 @@ class MusicPlayerCenterView: UIView {
   }
   
   
+  
   //MARK: - Visual Objects
   let contentTypeLabel = Label(font: AppFont.Regular.font(size: 14), textColor: Color.appWhite, textAlignment: .center)
 //  let titleLabel = TTTAttributedLabel(frame: .zero)
   let titleLabel = Label(font: AppFont.Bold.font(size: 25), textColor: Color.appWhite, textAlignment: .center)
   
-  let playButton = Button(image: UIImage(named: "player-play")!, tintColor: Color.appWhite, backgroundColor: Color.appBlack.withAlphaComponent(0.55))
+  
+  let playButton = MusicPlayerPlayButton()
+  //let playButton = Button(image: UIImage(named: "player-play")!, tintColor: Color.appWhite, backgroundColor: Color.appBlack.withAlphaComponent(0.55))
 //  let prevButton = Button(image: UIImage(named: "backward2")!, tintColor: Color.appWhite, backgroundColor: .clear)
 //  let nextButton = Button(image: UIImage(named: "forward2")!, tintColor: Color.appWhite, backgroundColor: .clear)
   
@@ -77,6 +81,7 @@ class MusicPlayerCenterView: UIView {
     playButton.anchorCenterXToSuperview()
     playButton.autoSetDimension(.width, toSize: playButtonHeight+10)
     playButton.autoSetDimension(.height, toSize: playButtonHeight+10)
+    playButton.cornerRadius = (playButtonHeight+10)/2
     playButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     
 //    nextButton.autoPinEdge(.bottom, to: .bottom, of: self, withOffset: -5)

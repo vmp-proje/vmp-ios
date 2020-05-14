@@ -43,9 +43,15 @@ class BaseMusicPlayerView: View {
     fatalError("init(coder:) has not been implemented")
   }
   
+  let imageView = UIImageView(image: nil)
   
   //MARK: - UI
   private func loadUI() {
+    
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.backgroundColor = .red
+//    addSubview(imageView)
+    
     addSubview(blurryImageView)
     blurryImageView.fillToSuperview()
     

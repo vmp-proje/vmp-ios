@@ -26,24 +26,25 @@ class Download {
 
 struct CategoryContentListData: Mappable {
   var id: String?
-  var type: String?
+//  var type: String?
   var attributes: CategoryContentListAttributes?
-  var relationships: CategoryContentListRelationships?
+//  var relationships: CategoryContentListRelationships?
   
-  init(id: String?, type: String?, attributes: CategoryContentListAttributes?, relationships: CategoryContentListRelationships?) {
+  //init(id: String?, type: String?, attributes: CategoryContentListAttributes?, relationships: CategoryContentListRelationships?) {
+  init(id: String?, attributes: CategoryContentListAttributes?) {
     self.id = id
+//    self.type = type
     self.attributes = attributes
-    self.attributes = attributes
-    self.relationships = relationships
+//    self.relationships = relationships
   }
   
   init?(map: Map) {}
   
   mutating func mapping(map: Map) {
     id <- map["id"]
-    type <- map["type"]
+//    type <- map["type"]
     attributes <- map["attributes"]
-    relationships <- map["relationships"]
+//    relationships <- map["relationships"]
   }
   
 }
@@ -51,33 +52,17 @@ struct CategoryContentListData: Mappable {
 
 internal struct CategoryContentListAttributes: Mappable {
   var name : String?
-  var content_type : String?
-  var multiple : Bool?
-  var description : String?
-  var tag_list : [String]?
   var image : String?
+  var description : String?
   var media : String?
-  var duration : Int?
-  var is_favorited : Bool?
-  var section_type : String?
-  var is_premium : Bool?
-  var is_new : Bool?
   
   init?(map: Map) {}
   
   mutating func mapping(map: Map) {
     name <- map["name"]
-    content_type <- map["content_type"]
-    multiple <- map["multiple"]
     description <- map["description"]
-    tag_list <- map["tag_list"]
     image <- map["image"]
     media <- map["media"]
-    duration <- map["duration"]
-    is_favorited <- map["is_favorited"]
-    section_type <- map["section_type"]
-    is_premium <- map["is_premium"]
-    is_new <- map["is_new"]
   }
   
 }
