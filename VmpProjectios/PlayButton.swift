@@ -310,7 +310,7 @@ class MusicPlayerPlayButton: PlayButton {
   override func updateButtonUI() {
     if !locked {
       DispatchQueue.main.async {
-        if AudioPlayer.shared.currentTrack?.id == self.contentId {
+        if AudioPlayer.shared.currentTrack?.attributes?.id == self.contentId {
           
           if AudioPlayer.shared.isLoading == true {
             self.playStatus = .loading
@@ -333,7 +333,7 @@ class MusicPlayerPlayButton: PlayButton {
     if !locked {
       if let playStatus = notification.userInfo?["playStatus"] as? PlayStatus {
         DispatchQueue.main.async {
-          if AudioPlayer.shared.currentTrack?.id == self.contentId {
+          if AudioPlayer.shared.currentTrack?.attributes?.id == self.contentId {
             self.playStatus = playStatus
             
             //FIXME: - bug olabilir dikkatli dusun.

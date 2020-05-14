@@ -1,4 +1,5 @@
 import UIKit
+import KeychainSwift
 
 //class SettingsView: View, UITableViewDelegate, UITableViewDataSource {
 class SettingsView: UIView, UITableViewDelegate, UITableViewDataSource {
@@ -78,7 +79,7 @@ class SettingsView: UIView, UITableViewDelegate, UITableViewDataSource {
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        tableView.backgroundColor = .black
+        tableView.backgroundColor = .clear
         return tableView
     }()
     
@@ -106,6 +107,16 @@ class SettingsView: UIView, UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
+  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    if indexPath.row == 6 {
+      let keychain = KeychainSwift()
+      keychain.delete("access_token")
+      
+      NotificationCenter.default.post(name: NSNotification.Name.init("reloadApp"), object: nil)
+    }
+  }
+  
+  
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = cellNameArray[indexPath.row]

@@ -24,45 +24,40 @@ class Download {
 }
 
 
+
 struct CategoryContentListData: Mappable {
-  var id: String?
-//  var type: String?
-  var attributes: CategoryContentListAttributes?
-//  var relationships: CategoryContentListRelationships?
   
-  //init(id: String?, type: String?, attributes: CategoryContentListAttributes?, relationships: CategoryContentListRelationships?) {
+  var status : String?
+  var attributes: CategoryContentListAttributes?
+  
   init(id: String?, attributes: CategoryContentListAttributes?) {
-    self.id = id
-//    self.type = type
     self.attributes = attributes
-//    self.relationships = relationships
   }
   
   init?(map: Map) {}
   
   mutating func mapping(map: Map) {
-    id <- map["id"]
-//    type <- map["type"]
+    status <- map["status"]
     attributes <- map["attributes"]
-//    relationships <- map["relationships"]
   }
-  
 }
 
 
 internal struct CategoryContentListAttributes: Mappable {
-  var name : String?
-  var image : String?
-  var description : String?
-  var media : String?
+  var url : String?
+  var duration : Int?
+  var title : String?
+  var thumbnail : String?
+  var id : String?
   
   init?(map: Map) {}
   
   mutating func mapping(map: Map) {
-    name <- map["name"]
-    description <- map["description"]
-    image <- map["image"]
-    media <- map["media"]
+    url <- map["url"]
+    duration <- map["duration"]
+    title <- map["title"]
+    thumbnail <- map["thumbnail"]
+    id <- map["id"]
   }
   
 }

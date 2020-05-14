@@ -65,7 +65,7 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   
   @objc func musicIndexChanged(notification: Notification) {
     if let content = notification.userInfo?["content"] as? CategoryContentListData {
-      self.playButton.contentId = content.id
+      self.playButton.contentId = content.attributes?.id
     }
   }
   
@@ -91,22 +91,15 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-      if let playableClass = CategoryContentListAttributes(JSON: ["name" : "yo yo whatup",
-                                                                  "description": "channel name olsun bura",
-                                                                  "image": "",
-                                                                  "media": "https://223df87c.ngrok.io/medias/HgzGwKwLmgM.mp3"
-      ]) {
-        let data = CategoryContentListData(id: "1", attributes: playableClass)
-        //      self.presentPlayerPopupBar()
-        //        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-        //AppNotification.shared.musicIndexChanged(content: data)
-        AudioPlayer.shared.prepareTabBarController(contents: [data], startIndex: 0)
-        //        }
-      }
-    }
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//      if let playableClass = CategoryContentListAttributes(JSON: [id:,"title" : "yo yo whatup",
+//                                                                  "thumbnail": "",
+//                                                                  "url": "https://223df87c.ngrok.io/medias/HgzGwKwLmgM.mp3"
+//      ]) {
+//        let data = CategoryContentListData(id: "1", attributes: playableClass)
+//        AudioPlayer.shared.prepareTabBarController(contents: [data], startIndex: 0)
+//      }
+//    }
   }
   
   //MARK: - Dark Mode
@@ -181,7 +174,8 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
     showBottomContainerView()
     
     //    presentPopupBar(withContentViewController: musicPlayerVC, animated: true, completion: nil)
-    self.playButton.contentId = AudioPlayer.shared.currentTrack?.id
+    //self.playButton.contentId = AudioPlayer.shared.currentTrack?.id
+    self.playButton.contentId = AudioPlayer.shared.currentTrack?.attributes?.id
     self.playButton.playButton.updateButtonUI()
     presentPopupBar(withContentViewController: musicPlayerVC, animated: true) { }
     self.view.bringSubviewToFront(self.tabBar)

@@ -16,7 +16,6 @@ class BaseMusicPlayerView: View {
   
   let blurryImageView = MusicPlayerBlurryBackgroundImageView()
   
-  ///Hide prev-next buttons for course players
   let centerView = MusicPlayerCenterView(frame: .zero)
   
   ///Displays progress and minutes
@@ -48,15 +47,24 @@ class BaseMusicPlayerView: View {
   //MARK: - UI
   private func loadUI() {
     
-    imageView.translatesAutoresizingMaskIntoConstraints = false
-    imageView.backgroundColor = .red
-//    addSubview(imageView)
-    
     addSubview(blurryImageView)
     blurryImageView.fillToSuperview()
     
+    
+    imageView.translatesAutoresizingMaskIntoConstraints = false
+    imageView.backgroundColor = .red
+    
+    addSubview(imageView)
+    imageView.autoSetDimension(.width, toSize: screenSize.width*0.4)
+    imageView.autoSetDimension(.height, toSize: screenSize.width*0.4)
+    imageView.autoPinEdge(toSuperviewSafeArea: .top, withInset: 65)
+//    imageView.anchorCenterYToSuperview(constant: -screenSize.width*0.4)
+    imageView.anchorCenterXToSuperview()
+    
+    
     addSubview(centerView)
-    centerView.anchorCenterYToSuperview(constant: -centerView.selfHeight * 0.33)
+    //centerView.anchorCenterYToSuperview(constant: -centerView.selfHeight * 0.1)
+    centerView.anchorCenterYToSuperview()
     centerView.autoPinEdge(.left, to: .left, of: self, withOffset: 24)
     centerView.autoPinEdge(.right, to: .right, of: self, withOffset: -24)
     centerView.autoSetDimension(.height, toSize: centerView.selfHeight)
