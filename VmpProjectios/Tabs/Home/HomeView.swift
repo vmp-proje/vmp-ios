@@ -108,32 +108,30 @@ class HomeView: View, UICollectionViewDataSource, UICollectionViewDelegate, UICo
 
 class CustomHomeCell: UICollectionViewCell {
     
-    let videoName: UITextView = {
-        var customTextView = UITextView()
-        customTextView.translatesAutoresizingMaskIntoConstraints = false
-        customTextView.text = "Eklemedir Koca Konak"
-        customTextView.textColor = .black
-        customTextView.backgroundColor = .clear
-        customTextView.font = .systemFont(ofSize: 20)
-        customTextView.textAlignment = .left // değişecek
-        customTextView.isEditable = false
-        customTextView.isSelectable = false
-        customTextView.isScrollEnabled = false
-        return customTextView
+    let videoName: UILabel = {
+        var customLabel = UILabel()
+        customLabel.translatesAutoresizingMaskIntoConstraints = false
+        customLabel.text = "Eklemedir Koca Konak"
+        customLabel.textColor = .black
+        customLabel.backgroundColor = .clear
+        customLabel.font = .systemFont(ofSize: 20)
+        customLabel.textAlignment = .left
+        customLabel.adjustsFontSizeToFitWidth = true
+        customLabel.minimumScaleFactor = 15
+        return customLabel
     }()
     
-    let channelName: UITextView = {
-        var customTextView = UITextView()
-        customTextView.translatesAutoresizingMaskIntoConstraints = false
-        customTextView.text = "Zeynep Bastık"
-        customTextView.textColor = .black
-        customTextView.backgroundColor = .clear
-        customTextView.font = .systemFont(ofSize: 14)
-        customTextView.textAlignment = .left // değişecek
-        customTextView.isEditable = false
-        customTextView.isSelectable = false
-        customTextView.isScrollEnabled = false
-        return customTextView
+    let channelName: UILabel = {
+        var customLabel = UILabel()
+        customLabel.translatesAutoresizingMaskIntoConstraints = false
+        customLabel.text = "Zeynep Bastık"
+        customLabel.textColor = .black
+        customLabel.backgroundColor = .clear
+        customLabel.font = .systemFont(ofSize: 14)
+        customLabel.textAlignment = .left
+        customLabel.adjustsFontSizeToFitWidth = true
+        customLabel.minimumScaleFactor = 14
+        return customLabel
     }()
     
     let videoImage: UIImageView = {

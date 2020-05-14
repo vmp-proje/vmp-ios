@@ -79,34 +79,29 @@ class MusicView: View, UICollectionViewDataSource, UICollectionViewDelegate, UIC
 
 class CustomMusicCell: UICollectionViewCell {
     
-    let videoName: UITextView = {
-        var customTextView = UITextView()
-        customTextView.translatesAutoresizingMaskIntoConstraints = false
-        customTextView.text = "Eklemedir Koca"
-        customTextView.textColor = .black
-        customTextView.backgroundColor = .clear
-        customTextView.font = .systemFont(ofSize: 18)
-        customTextView.textAlignment = .left
-        customTextView.isEditable = false
-        customTextView.isSelectable = false
-        customTextView.isScrollEnabled = false
-        customTextView.sizeToFit()
-        return customTextView
+    let videoName: UILabel = {
+        var customlabel = UILabel()
+        customlabel.translatesAutoresizingMaskIntoConstraints = false
+        customlabel.text = "Eklemedir Koca Konak"
+        customlabel.textColor = .black
+        customlabel.backgroundColor = .clear
+        customlabel.font = .systemFont(ofSize: 18)
+        customlabel.textAlignment = .left
+        customlabel.adjustsFontSizeToFitWidth = true
+        customlabel.minimumScaleFactor = 15
+        return customlabel
     }()
     
-    let channelName: UITextView = {
-        var customTextView = UITextView()
-        customTextView.translatesAutoresizingMaskIntoConstraints = false
-        customTextView.text = "Zeynep Bastık"
-        customTextView.textColor = .black
-        customTextView.backgroundColor = .clear
-        customTextView.font = .systemFont(ofSize: 14)
-        customTextView.textAlignment = .left // değişecek
-        customTextView.isEditable = false
-        customTextView.isSelectable = false
-        customTextView.isScrollEnabled = false
-        customTextView.sizeToFit()
-        return customTextView
+    let channelName: UILabel = {
+        var customlabel = UILabel()
+        customlabel.translatesAutoresizingMaskIntoConstraints = false
+        customlabel.text = "Zeynep Bastık"
+        customlabel.textColor = .black
+        customlabel.backgroundColor = .clear
+        customlabel.font = .systemFont(ofSize: 14)
+        customlabel.textAlignment = .left // değişecek
+        customlabel.adjustsFontSizeToFitWidth = true
+        return customlabel
     }()
     
     let videoImage: UIImageView = {

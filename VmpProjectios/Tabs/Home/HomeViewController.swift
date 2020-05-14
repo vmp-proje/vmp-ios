@@ -34,13 +34,12 @@ class HomeViewController: ViewController<HomeView> {
 
         for item in popularVideos.items ?? [] {
             print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle) photo url: \(item.snippet?.thumbnails?.standard?.url)")
-//            self.customView.urlArray[i] = (item.snippet?.thumbnails?.standard?.url)!
             self.customView.urlArray.append((item.snippet?.thumbnails?.standard?.url)!)
             self.customView.titleArray.append((item.snippet?.title)!)
             i += 1
         }
         print("i -> \(i)")
-        self.customView.flowCollectionView.reloadData() // !!!!!!
+        self.customView.flowCollectionView.reloadData()
     }.catch { (error) in
       print("HomeViewController.swift getPopularVideos error: \(error)")
     }
