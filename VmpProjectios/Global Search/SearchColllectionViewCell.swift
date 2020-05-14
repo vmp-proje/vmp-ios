@@ -66,7 +66,6 @@ class SearchColllectionViewCell: UICollectionViewCell {
     
     if let url = info.thumbnails?.medium?.url?.url {
       imageView.kf.setImage(with: url)
-      print("url: \(url)")
     }
   }
   

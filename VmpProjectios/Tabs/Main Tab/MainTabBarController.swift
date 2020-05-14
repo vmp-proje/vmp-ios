@@ -176,7 +176,8 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
     self.navigationController?.navigationBar.isTranslucent = true
     
     let globalSearchButton = UIButton(frame: CGRect(x: 0, y: 0, width: 42, height: 42))
-    globalSearchButton.setImage(UIImage(named: "global_search_icon"), for: .normal)
+    globalSearchButton.setImage(UIImage(named: "global_search_icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
+    globalSearchButton.tintColor = Color.appWhite
     globalSearchButton.imageView?.contentMode = .scaleAspectFit
     globalSearchButton.addTarget(self, action: #selector(showSearchViewController), for: .touchUpInside)
     globalSearchButton.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 0)

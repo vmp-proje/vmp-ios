@@ -83,7 +83,7 @@ class CustomMusicCell: UICollectionViewCell {
         var customlabel = UILabel()
         customlabel.translatesAutoresizingMaskIntoConstraints = false
         customlabel.text = "Eklemedir Koca Konak"
-        customlabel.textColor = .black
+        customlabel.textColor = Color.appWhite
         customlabel.backgroundColor = .clear
         customlabel.font = .systemFont(ofSize: 18)
         customlabel.textAlignment = .left
@@ -96,7 +96,7 @@ class CustomMusicCell: UICollectionViewCell {
         var customlabel = UILabel()
         customlabel.translatesAutoresizingMaskIntoConstraints = false
         customlabel.text = "Zeynep Bastık"
-        customlabel.textColor = .black
+      customlabel.textColor = Color.appWhite
         customlabel.backgroundColor = .clear
         customlabel.font = .systemFont(ofSize: 14)
         customlabel.textAlignment = .left // değişecek
@@ -109,7 +109,7 @@ class CustomMusicCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.cornerRadius = 5
         imageView.layer.masksToBounds = true
-        imageView.backgroundColor = .black
+        imageView.backgroundColor = Color.appWhite
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()

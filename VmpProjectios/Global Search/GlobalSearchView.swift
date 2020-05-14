@@ -24,7 +24,7 @@ class GlobalSearchView: View {
   
   
   //MARK: - Variables
-  var videos: PopularVideos?
+  var videos: SearchVideos?
   
   
   //MARK: - Visual Objects
@@ -77,7 +77,7 @@ class GlobalSearchView: View {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func setVideos(videos: PopularVideos) {
+  func setVideos(videos: SearchVideos) {
     self.videos = videos
     
     print("setVideos: \(videos.items?.count)")

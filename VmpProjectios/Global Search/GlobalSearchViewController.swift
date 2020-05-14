@@ -18,27 +18,14 @@ protocol SearchProtocol {
 class GlobalSearchViewController: ViewController<GlobalSearchView>, UISearchBarDelegate, YTSwiftyPlayerDelegate, SearchProtocol {
   
   
-  func playerReady(_ player: YTSwiftyPlayer) {
-    print("\n\n 🌈🌈🌈🌈 player ready")
-  }
+  func playerReady(_ player: YTSwiftyPlayer) {}
+  func player(_ player: YTSwiftyPlayer, didUpdateCurrentTime currentTime: Double) {}
+  func player(_ player: YTSwiftyPlayer, didChangeState state: YTSwiftyPlayerState){}
+  func player(_ player: YTSwiftyPlayer, didChangePlaybackRate playbackRate: Double) {}
+  func player(_ player: YTSwiftyPlayer, didReceiveError error: YTSwiftyPlayerError) {}
+  func player(_ player: YTSwiftyPlayer, didChangeQuality quality: YTSwiftyVideoQuality) {}
   
-//  func player(_ player: YTSwiftyPlayer, didUpdateCurrentTime currentTime: Double) {
-//    print("\n\n 🌈🌈🌈🌈 player didUpdateCurrentTime")
-//  }
   
-  func player(_ player: YTSwiftyPlayer, didChangeState state: YTSwiftyPlayerState){
-    print("\n\n 🌈🌈🌈🌈 player didChangeState")
-  }
-  
-  func player(_ player: YTSwiftyPlayer, didChangePlaybackRate playbackRate: Double) {
-    print("\n\n 🌈🌈🌈🌈 player didChangePlaybackRate")
-  }
-  func player(_ player: YTSwiftyPlayer, didReceiveError error: YTSwiftyPlayerError) {
-    
-  }
-  func player(_ player: YTSwiftyPlayer, didChangeQuality quality: YTSwiftyVideoQuality) {
-  
-  }
   
   //MARK: - Variables
   var sentRequestCount = 0

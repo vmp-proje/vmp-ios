@@ -8,17 +8,24 @@
 
 import Foundation
 import UIKit
+import YoutubeKit
 
 
 class HomeView: View, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
   
+  
+  
   //MARK: - Variables
+  var delegate: SearchProtocol!
   let homeVC = HomeViewController()
-  var titleArray : [String] = []
-  var urlArray : [String] = []
+//  var titleArray : [String] = []
+//  var urlArray : [String] = []
+  var videos: PopularVideos?
 //  var count = 0
   
   //MARK: - Visual Objects
+  var player = YTSwiftyPlayer()
+  
     let flowCollectionView: UICollectionView = { // Scroll Up and Down
         var collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout.init())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +42,17 @@ class HomeView: View, UICollectionViewDataSource, UICollectionViewDelegate, UICo
     layoutViews()
     flowCollectionView.dataSource = self
     flowCollectionView.delegate = self
+  }
+  
+  
+  func showPlayer() {
+    addSubview(player)
+    player.cornerRadius = 20
+    player.layer.masksToBounds = true
+    player.autoSetDimension(.height, toSize: 180)
+    player.autoSetDimension(.width, toSize: 300)
+    player.autoPinEdge(.right, to: .right, of: self)
+    player.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 0)
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -59,45 +77,51 @@ class HomeView: View, UICollectionViewDataSource, UICollectionViewDelegate, UICo
     //MARK: - Collection View Data Source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if urlArray.isEmpty {
-            return 5
-        } else {
-            return self.urlArray.count
-        }
+//        if urlArray.isEmpty {
+//            return 5
+//        } else {
+//            return self.urlArray.count
+//        }
+      return videos?.items?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "myCell", for: indexPath) as! CustomHomeCell
         
-        cell.videoName.text = titleArray.item(at: indexPath.row)
-        
-        DispatchQueue.global().async {
-            if let image = self.urlArray.item(at: indexPath.row) {
-                let data = try? Data(contentsOf: URL(string: image)!)
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        cell.videoImage.image = image
-                    }
-                }
-            }
-        }
+        //cell.videoName.text = titleArray.item(at: indexPath.row)
+//        DispatchQueue.global().async {
+//            if let image = self.urlArray.item(at: indexPath.row) {
+//                let data = try? Data(contentsOf: URL(string: image)!)
+//                if let data = data, let image = UIImage(data: data) {
+//                    DispatchQueue.main.async {
+//                        cell.videoImage.image = image
+//                    }
+//                }
+//            }
+//        }
 
+//      print("✅✅✅ id: \()")
+      if let videoInfo = videos?.items?[indexPath.row].snippet {
+//        print("prepareCell worked: \(videoInfo)")
+        cell.prepareCell(info: videoInfo)
+      } else {
+//        print("prepareCell didnt work")
+      }
+//      cell.prepareCell(info: infio)
 
         return cell
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-      return 1
     }
 
     //MARK: - Collection View Delegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
       print("HomeView Cell'e Tıklandı.")
+      //guard let videoId = videos?.items?[indexPath.row].id?.videoId  else {return}
+      guard let videoId = videos?.items?[indexPath.row].id else {return}
+      delegate.playVideo(videoId: videoId)
     }
     
     //MARK: - Collection View Flow Layout
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
       return CGSize(width: frame.width, height: 270)
     }
@@ -112,7 +136,7 @@ class CustomHomeCell: UICollectionViewCell {
         var customLabel = UILabel()
         customLabel.translatesAutoresizingMaskIntoConstraints = false
         customLabel.text = "Eklemedir Koca Konak"
-        customLabel.textColor = .black
+        customLabel.textColor = Color.appWhite
         customLabel.backgroundColor = .clear
         customLabel.font = .systemFont(ofSize: 20)
         customLabel.textAlignment = .left
@@ -125,7 +149,7 @@ class CustomHomeCell: UICollectionViewCell {
         var customLabel = UILabel()
         customLabel.translatesAutoresizingMaskIntoConstraints = false
         customLabel.text = "Zeynep Bastık"
-        customLabel.textColor = .black
+        customLabel.textColor = Color.appWhite
         customLabel.backgroundColor = .clear
         customLabel.font = .systemFont(ofSize: 14)
         customLabel.textAlignment = .left
@@ -150,6 +174,15 @@ class CustomHomeCell: UICollectionViewCell {
         setupCellViews()
     }
     
+  func prepareCell(info: Snippet) { //duzelt
+    videoName.text = info.title
+    channelName.text = info.channelTitle
+    
+    if let url = info.thumbnails?.medium?.url?.url {
+      videoImage.kf.setImage(with: url)
+    }
+  }
+  
     func setupCellViews() {
         addSubview(videoImage)
         addSubview(videoName)

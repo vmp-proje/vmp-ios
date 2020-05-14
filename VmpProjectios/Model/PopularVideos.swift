@@ -33,6 +33,24 @@ import Localize_Swift
 //  }
 //
 //}
+class SearchVideos: BaseModel {
+  var kind : String?
+  var etag : String?
+  var items : [MostPopularItems]?
+  var nextPageToken : String?
+  var pageInfo : PageInfo?
+
+  override func mapping(map: Map) {
+    super.mapping(map: map)
+
+    kind <- map["kind"]
+    etag <- map["etag"]
+    items <- map["items"]
+    nextPageToken <- map["nextPageToken"]
+    pageInfo <- map["pageInfo"]
+  }
+}
+
 
 class PopularVideos: BaseModel {
   var kind : String?
@@ -56,10 +74,30 @@ class PopularVideos: BaseModel {
 
 
 //MARK: Items
-struct Items : Mappable {
+struct MostPopularItems : Mappable {
   var kind : String?
   var etag : String?
   var id : Id?
+  var snippet : Snippet?
+
+  init?(map: Map) {
+
+  }
+
+  mutating func mapping(map: Map) {
+
+    kind <- map["kind"]
+    etag <- map["etag"]
+    id <- map["id"]
+    snippet <- map["snippet"]
+  }
+
+}
+
+struct Items : Mappable {
+  var kind : String?
+  var etag : String?
+  var id : String?
   var snippet : Snippet?
 
   init?(map: Map) {
