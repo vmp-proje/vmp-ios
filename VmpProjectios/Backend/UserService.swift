@@ -51,7 +51,7 @@ enum UserService: RestService {
   
   
   case signUp(username:String,  email:String, password:String)
-  case signIn(username: String, password: String)
+  case signIn(mail: String, password: String)
   
   func url() -> URL {
 //    switch self {
@@ -65,26 +65,23 @@ enum UserService: RestService {
   
   func HTTPHeaders() -> [String: String] {
     let headers : [String:String] = [:]
-    
-    switch self {
-    case .signUp:
-      return headers
-    case .signIn:
-      return headers
-    }
+    return headers
+//
+//    switch self {
+//    case .signUp:
+//      return headers
+//    case .signIn:
+//      return headers
+//    }
     
   }
   
   func keyPath() -> String? {
     switch self {
     case .signIn, .signUp:
-      //return "user"
       return ""
-      //return nil
-      //    case .forgotPassword,.updateFCM,.signOut, .applyPromotionCode, .selfUser, .singleUser, .getMonthlyActivity, .getWeeklyActivity, .update:
-      return ""
-    default:
-      return "data"
+//    default:
+//      return "data"
     }
   }
   
@@ -97,7 +94,6 @@ enum UserService: RestService {
     case .signIn:
       return JSONEncoding.default
     case .signUp:
-//      return URLEncoding.default
       return JSONEncoding.default
     }
   }
@@ -121,8 +117,8 @@ enum UserService: RestService {
       params["mail"] = email as AnyObject
       params["password"] = password as AnyObject
       return params
-    case .signIn(username: let username, password: let password):
-      params["email"] = username as AnyObject
+    case .signIn(mail: let mail, password: let password):
+      params["mail"] = mail as AnyObject
       params["password"] = password as AnyObject
       //        return params
       //      data["user"] = params as AnyObject

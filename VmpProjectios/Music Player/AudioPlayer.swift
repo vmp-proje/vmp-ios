@@ -178,7 +178,7 @@ class AudioPlayer: NSObject {
   public func pause() {
     self.player.pause()
 //    AppNotification.shared.updatePlaylistCollectionView()
-    delegate?.paused()
+//    delegate?.paused()
   }
   
   
@@ -186,7 +186,7 @@ class AudioPlayer: NSObject {
   public func resume() {
     self.player.play()
 //    AppNotification.shared.updatePlaylistCollectionView()
-    delegate?.resume()
+//    delegate?.resume()
   }
   
   

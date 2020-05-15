@@ -24,12 +24,7 @@ protocol DownloadButtonProtocol {
 
 protocol MusicPlayerCommunicationProtocol {
   func readyToPlay()
-  
-  //FIXME: - geri ekle
-  func paused()
-  func resume()
   func finishedPlaying()
-  func startedPlaying()
 }
 
 
@@ -41,17 +36,7 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
 //  static var shared = MusicPlayerViewController()
   
   //MARK: - MusicPlayerCommunicationProtocol
-  func startedPlaying() {
-//    updatePlayButton(isPlaying: true)
-  }
-  
-  func resume() {
-//    updatePlayButton(isPlaying: true)
-  }
-  
-  func paused() {
-//    updatePlayButton(isPlaying: false)
-  }
+
   
   func readyToPlay() {
     //Set duration

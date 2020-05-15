@@ -107,14 +107,6 @@ class SettingsView: UIView, UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
-  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-    if indexPath.row == 6 {
-      let keychain = KeychainSwift()
-      keychain.delete("access_token")
-      
-      NotificationCenter.default.post(name: NSNotification.Name.init("reloadApp"), object: nil)
-    }
-  }
   
   
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -129,7 +121,13 @@ class SettingsView: UIView, UITableViewDelegate, UITableViewDataSource {
     //MARK: - TableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Tıklandı.")
+//        print("Tıklandı.")
+      if indexPath.row == 6 {
+        let keychain = KeychainSwift()
+        keychain.delete("access_token")
+        
+        NotificationCenter.default.post(name: NSNotification.Name.init("reloadApp"), object: nil)
+      }
     }
     
     //MARK: - UI Layout

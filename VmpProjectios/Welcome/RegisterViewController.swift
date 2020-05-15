@@ -150,7 +150,7 @@ class RegisterViewController: ViewController<RegisterView>, UIImagePickerControl
     UserManager.shared.register(self.firstName!, email: self.email!, password: self.password!).done { (user) in
 
       self.stopLoadingAnimation()
-      self.showMainTabBarVC()
+//      self.showMainTabBarVC()
       NotificationCenter.default.post(name: NSNotification.Name.init("reloadApp"), object: nil)
 
     }.catch({ (error) in

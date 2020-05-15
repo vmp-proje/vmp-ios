@@ -26,8 +26,15 @@ class UserManager {
   static let shared = UserManager()
   
   
-  func login() {
-    
+  func login(mail: String, password: String) -> Promise<RegisterModel> {
+    return Promise { seal in
+      UserService.signIn(mail: mail, password: password).performRequest(RegisterModel.self).done { (registerModel) in
+        self.saveToken(register: registerModel)
+        seal.fulfill(registerModel)
+      }.catch({ (error) in
+        seal.reject(error)
+      })
+    }
   }
   
   func register(_ username:String, email:String, password:String) -> Promise<RegisterModel> {
@@ -45,7 +52,6 @@ class UserManager {
     guard let token = register.data?.token else {return}
     let keychain = KeychainSwift()
     keychain.set(token, forKey: "access_token")
-    
     print("token saved: \(keychain.get("access_token"))")
   }
   

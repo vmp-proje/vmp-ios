@@ -103,20 +103,17 @@ class LoginViewController: ViewController<LoginView> {
   
   //MARK: - Backend
   private func login(email: String, password: String) {
-//    startLoadingAnimation()
+    startLoadingAnimation()
     
-//    UserManager.shared.login(email, password: password).done { (user) in
-//      self.stopLoadingAnimation()
-//
+    //UserManager.shared.login(email, password: password).done { (user) in
+    UserManager.shared.login(mail: email, password: password).done { (user) in
+      self.stopLoadingAnimation()
 //      self.showMainTabBarVC()
-//      AppNotification.shared.userLoggedIn()
-//
     NotificationCenter.default.post(name: NSNotification.Name.init("reloadApp"), object: nil)
-//    }.catch({ (error) in
-//      self.stopLoadingAnimation()
-//      Debugger.logError(message: "\(self.className) login failed", data: error)
-//    })
-
+    }.catch({ (error) in
+      self.stopLoadingAnimation()
+      ShowErrorMessage.statusLine(message: "Something went wrong")
+    })
   }
   
   private func showMainTabBarVC() {
