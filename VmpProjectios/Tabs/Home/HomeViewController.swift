@@ -64,25 +64,25 @@ class HomeViewController: ViewController<HomeView>, SearchProtocol, YTSwiftyPlay
     
     print("----****----")
     
-//    startLoadingAnimation()
-//    YoutubeManager.shared.getPopularVideos().done { (popularVideos) in
-//      self.stopLoadingAnimation()
-//      for item in popularVideos.items ?? [] {
-//        print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle) photo url: \(item.snippet?.thumbnails?.standard?.url)")
-//        //            self.customView.urlArray.append((item.snippet?.thumbnails?.standard?.url)!)
-//        //            self.customView.titleArray.append((item.snippet?.title)!)
-//        
-//        i += 1
-//      }
-//      
-//      self.customView.videos = popularVideos
-//      print("i -> \(i)")
-//      self.customView.flowCollectionView.reloadData()
-//    }.catch { (error) in
-//      self.stopLoadingAnimation()
-//      ShowErrorMessage.statusLine(message: "Something went wrongl")
-//      print("HomeViewController.swift getPopularVideos error: \(error)")
-//    }
+    startLoadingAnimation()
+    YoutubeManager.shared.getPopularVideos().done { (popularVideos) in
+      self.stopLoadingAnimation()
+      for item in popularVideos.items ?? [] {
+        print("🔥🔥🔥 title: \(item.snippet?.title) channel name: \(item.snippet?.channelTitle) photo url: \(item.snippet?.thumbnails?.standard?.url)")
+        //            self.customView.urlArray.append((item.snippet?.thumbnails?.standard?.url)!)
+        //            self.customView.titleArray.append((item.snippet?.title)!)
+        
+        i += 1
+      }
+      
+      self.customView.videos = popularVideos
+      print("i -> \(i)")
+      self.customView.flowCollectionView.reloadData()
+    }.catch { (error) in
+      self.stopLoadingAnimation()
+      ShowErrorMessage.statusLine(message: "Something went wrongl")
+      print("HomeViewController.swift getPopularVideos error: \(error)")
+    }
   }
   
   @objc func displayTitles(notification: Notification) {
