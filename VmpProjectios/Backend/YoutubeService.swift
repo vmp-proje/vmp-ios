@@ -14,7 +14,7 @@ import ObjectMapper
 
 let youtubeBaseUrl = URL(string: "https://www.googleapis.com/youtube/v3/")!
 
-let audio_base_url = URL(string: "https://223df87c.ngrok.io/api/v1/media/audio")!
+let audio_base_url = URL(string: "https://1db7aed7.ngrok.io/api/v1/media/audio")!
 
 
 enum YoutubeService: RestService {
