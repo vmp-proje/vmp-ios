@@ -83,7 +83,7 @@ class SettingsView: UIView, UITableViewDelegate, UITableViewDataSource {
         return tableView
     }()
     
-    let cellNameArray = ["Downloads", "History", "Get Premium", "Support", "Privacy Policy", "Terms Of Use", "Logout"]
+    let cellNameArray = ["Downloads", "Get Premium", "Support", "Privacy Policy", "Terms Of Use", "Logout"]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -120,12 +120,19 @@ class SettingsView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     //MARK: - TableViewDelegate
     
+  var delegate: SettingsProtocol!
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        print("Tıklandı.")
-      if indexPath.row == 6 {
+      
+      if indexPath.row == 1 {
+        delegate.getPremium()
+      } else if indexPath.row == 3 {
+        delegate.showPolicy()
+      } else if indexPath.row == 4 {
+        delegate.showTermsOfUse()
+      } else if indexPath.row == 5 {
         let keychain = KeychainSwift()
         keychain.delete("access_token")
-        
         NotificationCenter.default.post(name: NSNotification.Name.init("reloadApp"), object: nil)
       }
     }

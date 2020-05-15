@@ -1,9 +1,23 @@
 import  Foundation
 import UIKit
 
-class ProfileView: View {
+class ProfileView: View, SettingsProtocol {
+  func showPolicy() {
+    delegate.showPolicy()
+  }
+  
+  func showTermsOfUse() {
+    delegate.showTermsOfUse()
+  }
+  
+  func getPremium() {
+    delegate.getPremium()
+  }
+  
     //MARK: - UI Objects
     
+  var delegate: SettingsProtocol!
+  
     let profileView: UIView = {
         var view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -99,6 +113,7 @@ class ProfileView: View {
 //           profileMailAdress.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         let settingsView = SettingsView(frame: .zero)
+        settingsView.delegate = self
         addSubview(settingsView)
         //settingsView.autoPinEdge(.top, to: .bottom, of: self.profileUserName, withOffset: 25)
         settingsView.autoPinEdge(toSuperviewSafeArea: .top, withInset: 10)

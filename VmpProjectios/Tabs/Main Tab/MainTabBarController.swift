@@ -88,17 +88,17 @@ class MainTabBarController: ESTabBarController, UITabBarControllerDelegate {
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-      if let playableClass = CategoryContentListAttributes(JSON: [
-        "id": "LsTD4Y9O-mQ",
-        "title" : "Abandon",
-        "thumbnail": "https://img.youtube.com/vi/LsTD4Y9O-mQ/hqdefault.jpg",
-        "url": "http://223df87c.ngrok.io/medias/LsTD4Y9O-mQ.mp3"
-      ]) {
-        let data = CategoryContentListData(id: "1", attributes: playableClass)
-        AudioPlayer.shared.prepareTabBarController(contents: [data], startIndex: 0)
-      }
-    }
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+//      if let playableClass = CategoryContentListAttributes(JSON: [
+//        "id": "LsTD4Y9O-mQ",
+//        "title" : "Abandon",
+//        "thumbnail": "https://img.youtube.com/vi/LsTD4Y9O-mQ/hqdefault.jpg",
+//        "url": "http://223df87c.ngrok.io/medias/LsTD4Y9O-mQ.mp3"
+//      ]) {
+//        let data = CategoryContentListData(id: "1", attributes: playableClass)
+//        AudioPlayer.shared.prepareTabBarController(contents: [data], startIndex: 0)
+//      }
+//    }
   }
   
   //MARK: - Dark Mode

@@ -11,17 +11,20 @@ class SubscriptionView: View {
     return scrollView
   }()
   
-  let navigationBar: UINavigationBar = {
-    var navBar = UINavigationBar()
-    navBar.translatesAutoresizingMaskIntoConstraints = false
-    navBar.tintColor = .white
-    navBar.setColors(background: UIColor(red: 54/255, green: 54/255, blue: 54/255, alpha: 1), text: .white)
-    var navItem = UINavigationItem(title: "Choose Your Plan")
-    var backItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.done, target: nil, action: nil)
-    navItem.leftBarButtonItem = backItem
-    navBar.setItems([navItem], animated: false)
-    return navBar
-  }()
+//  var backItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.done, target: nil, action: nil)
+//  var backItem: UIBarButtonItem!
+  
+//  let navigationBar: UINavigationBar = {
+//    var navBar = UINavigationBar()
+//    navBar.translatesAutoresizingMaskIntoConstraints = false
+//    navBar.tintColor = .white
+//    navBar.setColors(background: UIColor(red: 54/255, green: 54/255, blue: 54/255, alpha: 1), text: .white)
+//    var navItem = UINavigationItem(title: "Choose Your Plan")
+////    backItem = UIBarButtonItem(title: "Back", style: UIBarButtonItem.Style.done, target: nil, action: nil)
+////    navItem.leftBarButtonItem = backitem
+//    navBar.setItems([navItem], animated: false)
+//    return navBar
+//  }()
   
   let perAnnualTextTitle: UITextView = {
     var textView = UITextView()
@@ -203,7 +206,6 @@ class SubscriptionView: View {
   }
   
   func getScreenWith() -> CGFloat {
-    print("Width -> \(screenSize.width)")
     return screenSize.width
   }
   
@@ -219,7 +221,7 @@ class SubscriptionView: View {
     scrollView.showsHorizontalScrollIndicator = true
     scrollView.contentSize = CGSize(width: 414.0, height: 1200.0)
     
-    self.addSubview(navigationBar)
+//    self.addSubview(navigationBar)
     self.addSubview(scrollView)
     
     scrollView.addSubview(perAnnualTextTitle)
@@ -233,12 +235,13 @@ class SubscriptionView: View {
     scrollView.addSubview(stackView)
     scrollView.addSubview(longFinalText)
     
-    self.navigationBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
-    self.navigationBar.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
-    self.navigationBar.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
-    self.navigationBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+//    self.navigationBar.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+//    self.navigationBar.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
+//    self.navigationBar.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
+//    self.navigationBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
     
-    self.scrollView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor).isActive = true
+    //self.scrollView.topAnchor.constraint(equalTo: self.navigationBar.bottomAnchor).isActive = true
+    self.scrollView.autoPinEdge(toSuperviewSafeArea: .top, withInset: 0)
     self.scrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
     self.scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     self.scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true

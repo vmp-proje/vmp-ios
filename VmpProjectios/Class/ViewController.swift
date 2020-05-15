@@ -54,8 +54,6 @@ class ViewController<V: View>: UIViewController, NVActivityIndicatorViewable, UI
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    
-    navigationController?.dismiss(animated: true, completion: nil)
   }
   
   override func viewDidLoad() {
