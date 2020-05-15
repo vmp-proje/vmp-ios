@@ -31,6 +31,9 @@ protocol MusicPlayerCommunicationProtocol {
 //MARK: - BaseMusicPlayerViewController
 ///Created to implement MVC's ViewController<V:> View Protocol
 class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarViewController, NVActivityIndicatorViewable, DownloadButtonProtocol, MusicPlayerCommunicationProtocol {
+  func finishedPlaying() {
+  }
+  
   
   
 //  static var shared = MusicPlayerViewController()
@@ -87,9 +90,12 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     
 //     Updates download button with delegate
     //FIXME: - add this later
-//    let state = MusicDownloadManager.shared.getDownloadState(content: content, apiUrl: url)
-//    self.updateButton(state: state, percentage: -1.0, url: nil) //Update DownloadButton's UI
-//    self.customView.setNeedsDisplay()
+    if let url = content.attributes?.url?.url {
+      let state = MusicDownloadManager.shared.getDownloadState(content: content, apiUrl: url)
+      print("okok state: \(state)")
+      self.updateButton(state: state, percentage: -1.0, url: nil) //Update DownloadButton's UI
+      self.customView.setNeedsDisplay()
+    }
   }
   
   
@@ -163,6 +169,7 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     
     // Add Targets
     customView.centerView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+    customView.bottomView.downloadButton.downloadButton.addTarget(self, action: #selector(downloadButtonTapped), for: .touchUpInside)
 //    customView.centerView.prevButton.addTarget(self, action: #selector(prevButtonTapped), for: .touchUpInside)
 //    customView.centerView.nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
     customView.progressView.progressDisplay.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
@@ -215,30 +222,30 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
 //    return getAPIUrl(link: self.currentMedia?.attributes?.media
   }
   
-//  @objc func downloadButtonTapped() {
-    func downloadButtonTapped() {
+  @objc func downloadButtonTapped() {
+//    func downloadButtonTapped() {
     //Check if user is Premium
 //    if UserManager.shared.currentUser()?.is_premium == false {
 //      showUpgradeView()
 //      return
 //  }
-//
-//    guard let currentMedia = self.currentMedia,
-//      let mediaUrl = self.currentMediaURL
-//      else {return}
-//
-//    let localURL = MusicDownloadManager.shared.getLocalURL(url: mediaUrl, id: currentMedia.attributes!.id!)
-//    if MusicDownloadManager.shared.hasDownloaded(url: localURL) {
-//      self.showAlert(title: "Remove from Downloads?".localized(), message: "You won't be able to play this offline.".localized(), buttonTitles: ["Cancel".localized(), "Remove".localized()], highlightedButtonIndex: 0) { (index) in
-//        if index == 1 { // Remove song
-//          MusicDownloadManager.shared.removeFile(localURL: localURL, updatePlaylistCollectionView: true)
-//        }
-//      }
-//    } else if self.downloadState == .downloading { //Cancel current download.
-//      MusicDownloadManager.shared.cancelDownload(url: mediaUrl)
-//    } else {
-//      MusicDownloadManager.shared.prepare(queue: [currentMedia])
-//    }
+      
+    guard let currentMedia = self.currentMedia,
+      let mediaUrl = self.currentMediaURL
+      else {return}
+
+    let localURL = MusicDownloadManager.shared.getLocalURL(url: mediaUrl, id: currentMedia.attributes!.id!)
+    if MusicDownloadManager.shared.hasDownloaded(url: localURL) {
+      self.showAlert(title: "Remove from Downloads?".localized(), message: "You won't be able to play this offline.".localized(), buttonTitles: ["Cancel".localized(), "Remove".localized()], highlightedButtonIndex: 0) { (index) in
+        if index == 1 { // Remove song
+          MusicDownloadManager.shared.removeFile(localURL: localURL, updatePlaylistCollectionView: true)
+        }
+      }
+    } else if self.downloadState == .downloading { //Cancel current download.
+      MusicDownloadManager.shared.cancelDownload(url: mediaUrl)
+    } else {
+      MusicDownloadManager.shared.prepare(queue: [currentMedia])
+    }
   }
   
  

@@ -53,16 +53,14 @@ class MusicDownloadManager: NSObject, URLSessionDownloadDelegate {
   func prepare(queue: [CategoryContentListData]) {
     
     for content in queue {
-      if let url = getAPIUrl(link: content.attributes?.url) {
+      if let url = content.attributes?.url?.url {
         activeDownloads[url] = Download(content: content)
       }
     }
     
-//    AppNotification.shared.updatePlaylistCollectionView()
-    
     for content in queue {
       dispatchQueue.async {
-        if let url = self.getAPIUrl(link: content.attributes?.url) {
+        if let url = content.attributes?.url?.url {
           self.currentURL = url
           let localUrl = self.getLocalURL(url: url, id: content.attributes!.id!)
           if !self.isDownloaded(url: localUrl) {
@@ -192,7 +190,7 @@ class MusicDownloadManager: NSObject, URLSessionDownloadDelegate {
     print("🌈🌈🌈🌈🌈 cancelDownloads(data: activeUrl count: \(self.activeDownloads.count)")
     
     for content in data {
-      if let url = self.getAPIUrl(link: content.attributes?.url) {
+      if let url = content.attributes?.url?.url {
         
         let localUrl = self.getLocalURL(url: url, id: content.attributes!.id!)
         
@@ -290,8 +288,6 @@ class MusicDownloadManager: NSObject, URLSessionDownloadDelegate {
       self.updateUI(status: .downloaded, percentage: 1.0)
       self.activeDownloads[self.currentURL!]?.state = .downloaded
       
-//      AppNotification.shared.updatePlaylistCollectionView()
-      
     } catch let error as NSError {
       print(error.localizedDescription)
     }
@@ -306,13 +302,13 @@ class MusicDownloadManager: NSObject, URLSessionDownloadDelegate {
     updateUI(status: .startDownload, percentage: 0)
   }
   
-  func getAPIUrl(link: String?) -> URL? {
-    if let link = link {
-      return nil
-      //return "\(baseLinkUrl.absoluteString)\(link)".url
-    } else {
-      return nil
-    }
-  }
+//  func getAPIUrl(link: String?) -> URL? {
+//    if let link = link {
+//      return nil
+//      //return "\(baseLinkUrl.absoluteString)\(link)".url
+//    } else {
+//      return nil
+//    }
+//  }
   
 }

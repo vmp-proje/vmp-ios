@@ -21,7 +21,7 @@ class BaseMusicPlayerView: View {
   ///Displays progress and minutes
   let progressView = MusicPlayerProgressView(frame: .zero)
   
-//  let bottomView = CoursePlayerBottomView(frame: .zero)
+  let bottomView = CoursePlayerBottomView(frame: .zero)
 
   
   //MARK: - Variables
@@ -70,11 +70,11 @@ class BaseMusicPlayerView: View {
     centerView.autoPinEdge(.right, to: .right, of: self, withOffset: -24)
     centerView.autoSetDimension(.height, toSize: centerView.selfHeight)
     
-//    addSubview(bottomView)
-//    bottomView.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 24)
-//    bottomView.autoPinEdge(.left, to: .left, of: self, withOffset: 24)
-//    bottomView.autoPinEdge(.right, to: .right, of: self, withOffset: -24)
-//    bottomView.autoSetDimension(.height, toSize: bottomView.buttonSize)
+    addSubview(bottomView)
+    bottomView.autoPinEdge(toSuperviewSafeArea: .bottom, withInset: 24)
+    bottomView.autoPinEdge(.left, to: .left, of: self, withOffset: 24)
+    bottomView.autoPinEdge(.right, to: .right, of: self, withOffset: -24)
+    bottomView.autoSetDimension(.height, toSize: bottomView.buttonSize)
     
 //    addSubview(topView)
 //    topView.autoPinEdge(toSuperviewSafeArea: .top, withInset: 24)
@@ -89,9 +89,6 @@ class BaseMusicPlayerView: View {
     progressView.autoSetDimension(.height, toSize: progressView.selfHeight)
   }
 }
-
-
-
 
 
 
@@ -144,8 +141,9 @@ internal class CoursePlayerBottomView: UIView {
   private func loadUI() {
     addSubview(downloadButton)
     downloadButton.autoPinEdge(.top, to: .top, of: self)
-    downloadButton.autoPinEdge(.right, to: right, of: self, withOffset: -15)
+    downloadButton.autoPinEdge(.right, to: .right, of: self, withOffset: -15)
     downloadButton.autoSetDimension(.height, toSize: buttonSize)
     downloadButton.autoSetDimension(.width, toSize: buttonSize)
+//    downloadButton.backgroundColor = .red
   }
 }
