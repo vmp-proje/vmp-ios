@@ -58,4 +58,16 @@ class YoutubeManager {
       }
     }
   }
+  
+  
+  func getMusic(videId: String) -> Promise<CategoryContentListData>  {
+    return Promise { seal in
+      YoutubeService.getMostPopularVideos.performRequest(CategoryContentListData.self).done { (popularVideos) in
+        seal.fulfill(popularVideos)
+      }.catch { (error) in
+        print("YoutubeManager.swift getPopularVideos() error: \(error)")
+        seal.reject(error)
+      }
+    }
+  }
 }

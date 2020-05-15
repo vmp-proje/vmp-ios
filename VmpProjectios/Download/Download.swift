@@ -25,18 +25,24 @@ class Download {
 
 
 
-struct CategoryContentListData: Mappable {
+//struct CategoryContentListData: Mappable {
+class CategoryContentListData: BaseModel {
   
   var status : String?
   var attributes: CategoryContentListAttributes?
   
-  init(id: String?, attributes: CategoryContentListAttributes?) {
+  init(attributes: CategoryContentListAttributes?) {
+    super.init()
     self.attributes = attributes
   }
   
-  init?(map: Map) {}
+  required init?(map: Map) {
+    fatalError("init(map:) has not been implemented")
+  }
   
-  mutating func mapping(map: Map) {
+  override func mapping(map: Map) {
+    super.mapping(map: map)
+
     status <- map["status"]
     attributes <- map["attributes"]
   }

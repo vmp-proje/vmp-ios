@@ -164,7 +164,6 @@ class GlobalSearchView: View {
 
 extension GlobalSearchView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    print("count: \(videos?.items?.count ?? 0)")
     return videos?.items?.count ?? 0
   }
   
