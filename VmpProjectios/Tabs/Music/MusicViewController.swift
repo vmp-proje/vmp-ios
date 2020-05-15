@@ -28,7 +28,7 @@ class MusicViewController: ViewController<MusicView>, SearchProtocol,YTSwiftyPla
   
   func playVideo(videoId: String) {
   
-    showAlert(title: "Make a choice :)", message: nil, buttonTitles: ["Video", "Music"], highlightedButtonIndex: nil) { (index) in
+    showAlert(title: "Make a choice :)", message: nil, buttonTitles: ["Video", "Music","Cancel"], highlightedButtonIndex: nil) { (index) in
       if index == 0 {
         self.customView.player = YTSwiftyPlayer(
         frame: CGRect(x: 200, y: 200, width: 640, height: 480),
@@ -40,9 +40,17 @@ class MusicViewController: ViewController<MusicView>, SearchProtocol,YTSwiftyPla
         self.customView.player.autoplay = true
         self.customView.player.loadPlayer()
         self.customView.player.playVideo()
+      } else if index == 1{
+        self.startLoadingAnimation()
+        YoutubeManager.shared.getMusic(videId: videoId).done { (data) in
+          AudioPlayer.shared.prepareTabBarController(contents: [data], startIndex: 0)
+          self.stopLoadingAnimation()
+        }.catch { (error) in
+          self.stopLoadingAnimation()
+          ShowErrorMessage.statusLine(message: "Something went wrong. Please try again")
+        }
       } else {
-        
-        //TODO: - open MUSIC
+        self.dismiss(animated: true, completion: nil)
       }
     }
   }
@@ -52,9 +60,10 @@ class MusicViewController: ViewController<MusicView>, SearchProtocol,YTSwiftyPla
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.customView.delegate = self
     self.customView.startLoading()
     
-    search(text: "Music")
+    search(text: "Sylosis")
   }
   
   private func search(text: String) {

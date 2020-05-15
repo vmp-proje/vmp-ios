@@ -46,7 +46,7 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     AudioPlayer.shared.setupNowPlaying()
   }
   
-  func finishedPlaying() {
+//  func finishedPlaying() {
 //    self.resetMusicPlayerUI()
 //
 //    guard  let currentTrack = audioPlayer.currentTrack else {return}
@@ -57,7 +57,7 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
 //    }
 //
 //    ContentManager.shared.addProgressToContent(completed: true)
-  }
+//  }
   
   private func resetMusicPlayerUI() {
     if self.progressBarTimer != nil {

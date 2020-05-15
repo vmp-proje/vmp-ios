@@ -14,18 +14,27 @@ import ObjectMapper
 
 let youtubeBaseUrl = URL(string: "https://www.googleapis.com/youtube/v3/")!
 
+let audio_base_url = URL(string: "https://223df87c.ngrok.io/api/v1/media/audio")!
 
 
 enum YoutubeService: RestService {
   
   
+  case getAudio(videoId: String)
   case getMostPopularVideos
   case search(search: String)
   
   
   func url() -> URL {
-    let url = youtubeBaseUrl.appendingPathComponent(self.path())
-    return url
+    
+    switch self {
+    case .getAudio:
+      let url = audio_base_url
+      return url
+    default:
+      let url = youtubeBaseUrl.appendingPathComponent(self.path())
+      return url
+    }
   }
   
   func HTTPHeaders() -> [String: String] {
@@ -48,6 +57,8 @@ enum YoutubeService: RestService {
     switch self {
     case .search:
       return .get
+    case .getAudio:
+      return .post
     default:
       return .get
     }
@@ -76,6 +87,8 @@ enum YoutubeService: RestService {
       return "search"
     case .getMostPopularVideos:
       return "videos"
+    default:
+      return ""
     }
   }
   
@@ -90,6 +103,9 @@ enum YoutubeService: RestService {
       return ["part": "snippet" as AnyObject, "q": search as AnyObject, "type": "video" as AnyObject, "key": youtube_access_token as AnyObject]//"maxResults": 5,
     case .getMostPopularVideos:
       return ["part": "snippet" as AnyObject, "chart": "mostPopular" as AnyObject, "regionCode":"TR" as AnyObject, "key": youtube_access_token as AnyObject] //"maxResults": 25 as! AnyObject,
+      
+    case .getAudio(videoId: let videoId):
+      return ["videoUrl": "https://www.youtube.com/watch?v=\(videoId)" as AnyObject]
       
     default:
       return nil

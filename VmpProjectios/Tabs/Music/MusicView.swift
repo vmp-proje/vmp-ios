@@ -15,6 +15,9 @@ class MusicView: View, UICollectionViewDataSource, UICollectionViewDelegate, UIC
   //MARK: - Variables
   var videos: SearchVideos?
   
+  var delegate: SearchProtocol!
+  
+  
   
   //MARK: - Visual Objects
   var player = YTSwiftyPlayer()
@@ -84,7 +87,8 @@ class MusicView: View, UICollectionViewDataSource, UICollectionViewDelegate, UIC
   //MARK: - Collection View Delegate
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
+    guard let videoId = videos?.items?[indexPath.row].id?.videoId  else {return}
+    self.delegate.playVideo(videoId: videoId)
   }
   
   //MARK: - Collection View Flow Layout

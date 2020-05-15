@@ -31,20 +31,20 @@ class CategoryContentListData: BaseModel {
   var status : String?
   var attributes: CategoryContentListAttributes?
   
-  init(attributes: CategoryContentListAttributes?) {
-    super.init()
-    self.attributes = attributes
-  }
+//  init(attributes: CategoryContentListAttributes?) {
+//    super.init()
+//    self.attributes = attributes
+//  }
   
-  required init?(map: Map) {
-    fatalError("init(map:) has not been implemented")
-  }
+//  required init?(map: Map) {
+//    fatalError("init(map:) has not been implemented")
+//  }
   
   override func mapping(map: Map) {
     super.mapping(map: map)
 
     status <- map["status"]
-    attributes <- map["attributes"]
+    attributes <- map["data"]
   }
 }
 
