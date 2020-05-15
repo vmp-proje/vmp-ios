@@ -107,7 +107,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     self.categoryName = categoryName
     self.index = index
     
-    nameLabel.text = content?.attributes?.name ?? ""
+    nameLabel.text = content?.attributes?.title ?? ""
 //    let min = (content?.attributes?.duration ?? 0) / 60
 //    durationLabel.text = "\(min) " + "mins".localized()
     

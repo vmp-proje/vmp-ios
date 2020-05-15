@@ -94,7 +94,7 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
   
   //MARK: - CourseDetailsViewControllerCommunicationDelegate
   private func getIndex(id: String) -> Int? {
-    let index = self.customView.data.firstIndex(where: {$0.id == id})
+    let index = self.customView.data.firstIndex(where: {$0.attributes?.id == id})
     return index
   }
   
@@ -154,7 +154,7 @@ class PlaylistViewController: ViewController<PlaylistView>, DownloadButtonProtoc
     super.init(nibName: nil, bundle: nil)
     
     customView.base_content = content
-    customView.categoryName = self.content.attributes?.name ?? ""
+    customView.categoryName = self.content.attributes?.title ?? ""
     customView.headerData = content.attributes
   }
   

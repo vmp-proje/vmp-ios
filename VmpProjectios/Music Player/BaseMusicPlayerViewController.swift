@@ -12,6 +12,7 @@ import NVActivityIndicatorView
 import AVFoundation
 import MediaPlayer
 import LNPopupController
+import Alamofire
 
 
 //MARK: - Protocol
@@ -25,7 +26,6 @@ protocol MusicPlayerCommunicationProtocol {
   func readyToPlay()
   
   //FIXME: - geri ekle
-//  func musicIndexChanged(content: CategoryContentListData)
   func paused()
   func resume()
   func finishedPlaying()
@@ -55,10 +55,10 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
   
   func readyToPlay() {
     //Set duration
-//    let duration = self.audioPlayer.player.currentItem?.asset.duration.seconds ?? 0.0
-//    customView.progressView.durationLabel.text = "\(duration.secondsToCurrentTime())"
-//    self.updateProgressViewUI()
-//    AudioPlayer.shared.setupNowPlaying()
+    let duration = self.audioPlayer.player.currentItem?.asset.duration.seconds ?? 0.0
+    customView.progressView.durationLabel.text = "\(duration.secondsToCurrentTime())"
+    self.updateProgressViewUI()
+    AudioPlayer.shared.setupNowPlaying()
   }
   
   func finishedPlaying() {
@@ -82,27 +82,23 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     
     self.customView.progressView.currentSecondLabel.text = "00:00"
     self.customView.progressView.progressDisplay.value = 0.0
-//    self.updatePlayButton(isPlaying: false)
   }
   
 //  func musicIndexChanged(content: CategoryContentListData) {
   @objc func musicIndexChanged(notification: Notification) {
     guard let content = notification.userInfo?["content"] as? CategoryContentListData else {return}
     guard let attribute = content.attributes else {return}
-    print("\n\n musicIndexChanged()  😎😎😎😎😎 new song: \(attribute.name)")
+    print("\n\n musicIndexChanged()  😎😎😎😎😎 new song: \(attribute.title)")
     
-    customView.centerView.playButton.contentId = content.id!
+    customView.centerView.playButton.contentId = content.attributes?.id
     
     self.resetMusicPlayerUI()
     self.updatePopupBar(info: attribute)
     self.customView.blurryImageView.backgroundImageView.image = nil
-    self.customView.centerView.titleLabel.text = content.attributes?.name ?? ""
+    self.customView.centerView.titleLabel.text = content.attributes?.title ?? ""
+//    self.customView.progressView.durationLabel.text = attribute.duration?.double.secondsToCurrentTime()
     
-    self.updateProgressViewUI()
-    
-    
-    
-//    self.updatePlayButton(isPlaying: false)
+//    self.updateProgressViewUI()
     
 //     Updates download button with delegate
     //FIXME: - add this later
@@ -123,23 +119,15 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
   
   
   //MARK: - Variables
-//  var courseDetailsVCDelegate: CourseDetailsViewDownloadProtocol?
-//  var dismissMusicPlayerVCDelegateForViewController: CloseMusicPlayerPopupProtocol?
-//  var dismissMusicPlayerVCDelegateForMainTabBar: CloseMusicPlayerPopupProtocol?
-//  var data: [Bookmark] = []
   
   /// Updates label and slider
   var progressBarTimer: Timer!
   
   var downloadState: DownloadState = .startDownload
   var currentMedia: CategoryContentListData? {
-    return nil
-//    return audioPlayer.trackArr[audioPlayer.currentIndex]
+//    return nil
+    return audioPlayer.trackArr[audioPlayer.currentIndex]
   }
-  
-//  var audioPlayer: AudioPlayer {
-//    return AudioPlayer.shared
-//  }
   
   
   //MARK: - Visual Objects
@@ -151,7 +139,7 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     super.viewWillAppear(animated)
     self.setNeedsStatusBarAppearanceUpdate()
     self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    updatePlayButtons()
+//    updatePlayButtons()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -163,14 +151,14 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
     //    if let track = audioPlayer.currentTrack?.attributes {
     //      self.updatePopupBar(info: track)
     //    }
-    updatePlayButtons()
+//    updatePlayButtons()
   }
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-//    AudioPlayer.shared.delegate = self
+    AudioPlayer.shared.delegate = self
     
     NotificationCenter.default.setObserver(self, selector: #selector(musicIndexChanged(notification:)), name: NSNotification.Name.init(AppNotification.shared.musicIndexChangedKey), object: nil)
     
@@ -220,11 +208,11 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
   
   
   @objc func nextButtonTapped() {
-//    audioPlayer.nextTrack()
+    audioPlayer.nextTrack()
   }
   
   @objc func prevButtonTapped() {
-//    audioPlayer.previousTrack()
+    audioPlayer.previousTrack()
   }
   
   
@@ -237,69 +225,72 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
   }
   
   var currentMediaURL: URL? {
-    return nil
-//    return getAPIUrl(link: self.currentMedia?.attributes?.media)
+    return audioPlayer.currentTrackURL.url
+//    return nil
+//    return getAPIUrl(link: self.currentMedia?.attributes?.media
   }
   
-  @objc func downloadButtonTapped() {
+//  @objc func downloadButtonTapped() {
+    func downloadButtonTapped() {
     //Check if user is Premium
 //    if UserManager.shared.currentUser()?.is_premium == false {
 //      showUpgradeView()
 //      return
+//  }
+//
+//    guard let currentMedia = self.currentMedia,
+//      let mediaUrl = self.currentMediaURL
+//      else {return}
+//
+//    let localURL = MusicDownloadManager.shared.getLocalURL(url: mediaUrl, id: currentMedia.attributes!.id!)
+//    if MusicDownloadManager.shared.hasDownloaded(url: localURL) {
+//      self.showAlert(title: "Remove from Downloads?".localized(), message: "You won't be able to play this offline.".localized(), buttonTitles: ["Cancel".localized(), "Remove".localized()], highlightedButtonIndex: 0) { (index) in
+//        if index == 1 { // Remove song
+//          MusicDownloadManager.shared.removeFile(localURL: localURL, updatePlaylistCollectionView: true)
+//        }
+//      }
+//    } else if self.downloadState == .downloading { //Cancel current download.
+//      MusicDownloadManager.shared.cancelDownload(url: mediaUrl)
+//    } else {
+//      MusicDownloadManager.shared.prepare(queue: [currentMedia])
 //    }
-    
-    guard let currentMedia = self.currentMedia,
-      let mediaUrl = self.currentMediaURL
-      else {return}
-    
-    let localURL = MusicDownloadManager.shared.getLocalURL(url: mediaUrl, id: currentMedia.id!)
-    if MusicDownloadManager.shared.hasDownloaded(url: localURL) {
-      self.showAlert(title: "Remove from Downloads?".localized(), message: "You won't be able to play this offline.".localized(), buttonTitles: ["Cancel".localized(), "Remove".localized()], highlightedButtonIndex: 0) { (index) in
-        if index == 1 { // Remove song
-          MusicDownloadManager.shared.removeFile(localURL: localURL, updatePlaylistCollectionView: true)
-        }
-      }
-    } else if self.downloadState == .downloading { //Cancel current download.
-      MusicDownloadManager.shared.cancelDownload(url: mediaUrl)
-    } else {
-      MusicDownloadManager.shared.prepare(queue: [currentMedia])
-    }
   }
   
  
   
   //MARK: - Music Player Functions
   @objc func sliderValueChanged(_ slider: UISlider) {
-//    let duration = self.audioPlayer.player.currentItem?.duration.seconds ?? 0.0
-//    if duration.isNaN || duration.isInfinite {
-//      return
-//    }
-//
-//    let newCurrentTime: Int64 = Int64(duration * Double(slider.value))
-//    audioPlayer.player.seek(to: CMTimeMake(value: newCurrentTime, timescale: 1), toleranceBefore: .zero, toleranceAfter: .zero)
-//    //    MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = MusicPlayer.shared.playerItem?.currentTime().seconds
+    let duration = self.audioPlayer.player.currentItem?.duration.seconds ?? 0.0
+    if duration.isNaN || duration.isInfinite {
+      return
+    }
+
+    let newCurrentTime: Int64 = Int64(duration * Double(slider.value))
+    audioPlayer.player.seek(to: CMTimeMake(value: newCurrentTime, timescale: 1), toleranceBefore: .zero, toleranceAfter: .zero)
+//      MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = MusicPlayer.shared.playerItem?.currentTime().seconds
   }
   
   
   //MARK: - UI Updaters
   /// Updates Popup Bar's information
   func updatePopupBar(info: CategoryContentListAttributes) {
-    self.popupItem.title = info.name ?? ""
+    self.popupItem.title = info.title ?? ""
     
     //Download image
     DispatchQueue.global().async {
-//      if let url = "\(baseLinkUrl.absoluteString)\(info.image ?? "")".url {
-//        Alamofire.request(url).responseData { (response) in
-//          if response.error == nil {
-//            if let data = response.data {
-//              DispatchQueue.main.async {
-//                //self.popupItem.image = UIImage(data: data) //mini music player
-//                self.customView.blurryImageView.backgroundImageView.image = UIImage(data: data)
-//              }
-//            }
-//          }
-//        }
-//      }
+      if let url = info.thumbnail?.url {
+        Alamofire.request(url).responseData { (response) in
+          if response.error == nil {
+            if let data = response.data {
+              DispatchQueue.main.async {
+                self.popupItem.image = UIImage(data: data) //mini music player
+                self.customView.blurryImageView.backgroundImageView.image = UIImage(data: data)
+                self.customView.imageView.image = UIImage(data: data)
+              }
+            }
+          }
+        }
+      }
     }
   }
   
@@ -319,7 +310,7 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
 //  }
   
   ///Checks Automatically
-  @objc func updatePlayButtons() {
+//  @objc func updatePlayButtons() {
 //    if self.audioPlayer.isPlaying() == false {
 //      self.customView.centerView.playButton.setImage(UIImage(named: "player-play")?.withRenderingMode(.alwaysTemplate), for: .normal)
 //      self.popupBarPlayButton.image = UIImage(named: "player-play-small")!.withRenderingMode(.alwaysTemplate)
@@ -330,7 +321,7 @@ class BaseMusicPlayerViewController<V: BaseMusicPlayerView>: LNPopupCustomBarVie
 //
 //    //Update MainTabBar's popupBarPlayButton
 //    AppNotification.shared.updateTabBarPlayButton()
-  }
+//  }
   
   /// Starts Timer
   func updateProgressViewUI() {

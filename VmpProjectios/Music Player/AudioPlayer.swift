@@ -76,7 +76,7 @@ class AudioPlayer: NSObject {
   
   
   var currentTrackURL: String {
-    return self.currentTrack?.attributes?.media ?? ""
+    return self.currentTrack?.attributes?.url ?? ""
 //    let link = self.trackArr[currentIndex].attributes?.media
 //    if getAPIUrl(link: link) != nil {
 //      return getAPIUrl(link: link)!
@@ -261,7 +261,7 @@ class AudioPlayer: NSObject {
   @objc func finishedPlaying() {
     //    print("🎾🎾🎾🎾🎾🎾🎾🎾 finishedPlaying()")
     
-    if currentTrack?.id == trackArr.last?.id {
+    if currentTrack?.attributes?.id == trackArr.last?.attributes?.id {
       self.finishedPlayingPlaylist = true
     } else {
       self.finishedPlayingPlaylist = false
@@ -284,7 +284,7 @@ class AudioPlayer: NSObject {
     self.onCollectionReady.subscribe(with: self) { (isReady) in
       
       // init player queue
-      let url = self.getAPIUrl(link: self.trackArr[self.currentIndex].attributes?.media)!
+      let url = self.getAPIUrl(link: self.trackArr[self.currentIndex].attributes?.url)!
       self.player = AVPlayer(playerItem: self.AVItemPool[url])
       
       
@@ -519,7 +519,7 @@ class AudioPlayer: NSObject {
     
     if AVItemPool[currentTrackURL] == nil { //Download
       //Check if downloaded.
-      let localUrl = MusicDownloadManager.shared.getLocalURL(url: currentTrackUrl, id: currentTrack.id!)
+      let localUrl = MusicDownloadManager.shared.getLocalURL(url: currentTrackUrl, id: currentTrack.attributes!.id!)
       
       if MusicDownloadManager.shared.isDownloaded(url: localUrl) == true { //Downloaded.
         print("🐉🐉🐉🐉🐉🐉🐉🐉🐉🐉 play downloaded file")
@@ -569,7 +569,7 @@ class AudioPlayer: NSObject {
     
     //Artwork
     DispatchQueue.global().async {
-      if let artwork = self.getAPIUrl(link: self.currentTrack?.attributes?.image)?.url {
+      if let artwork = self.getAPIUrl(link: self.currentTrack?.attributes?.thumbnail)?.url {
         if let data = try? Data.init(contentsOf: artwork) {
           if let image = UIImage(data: data) {
             let artworkImage = MPMediaItemArtwork(boundsSize: image.size, requestHandler: { (_ size : CGSize) -> UIImage in
@@ -589,7 +589,7 @@ class AudioPlayer: NSObject {
     }
     
     
-    nowPlayingInfo[MPMediaItemPropertyTitle] = self.currentTrack?.attributes?.name ?? ""
+    nowPlayingInfo[MPMediaItemPropertyTitle] = self.currentTrack?.attributes?.title ?? ""
     nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.player.currentItem?.currentTime().seconds
     nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = self.player.currentItem?.duration.seconds
     nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = self.player.rate

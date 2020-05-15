@@ -16,7 +16,7 @@ class MusicPlayerCenterView: UIView {
   //MARK: - Variables
   ///Returns screenSize.height/2.5
   var selfHeight: CGFloat {
-    return screenSize.height/2.8
+    return screenSize.height/2.7
   }
   
   var playButtonHeight: CGFloat {
@@ -26,8 +26,6 @@ class MusicPlayerCenterView: UIView {
   
   
   //MARK: - Visual Objects
-  let contentTypeLabel = Label(font: AppFont.Regular.font(size: 14), textColor: Color.appWhite, textAlignment: .center)
-//  let titleLabel = TTTAttributedLabel(frame: .zero)
   let titleLabel = Label(font: AppFont.Bold.font(size: 25), textColor: Color.appWhite, textAlignment: .center)
   
   
@@ -60,19 +58,13 @@ class MusicPlayerCenterView: UIView {
   
   //MARK: - UI
   private func loadUI() {
-    addSubview(contentTypeLabel)
+
     addSubview(titleLabel)
     addSubview(playButton)
 //    addSubview(nextButton)
 //    addSubview(prevButton)
     
-    contentTypeLabel.autoPinEdge(.top, to: .top, of: self)
-    contentTypeLabel.autoPinEdge(.left, to: .left, of: self)
-    contentTypeLabel.autoPinEdge(.right, to: .right, of: self)
-    contentTypeLabel.autoSetDimension(.height, toSize: 22)
-    contentTypeLabel.numberOfLines = 1
-    
-    titleLabel.autoPinEdge(.top, to: .bottom, of: contentTypeLabel, withOffset: 8)
+    titleLabel.autoPinEdge(.top, to: .top, of: self, withOffset: 8)
     titleLabel.autoPinEdge(.left, to: .left, of: self, withOffset: 20)
     titleLabel.autoPinEdge(.right, to: .right, of: self, withOffset: -20)
     titleLabel.autoPinEdge(.bottom, to: .top, of: self.playButton, withOffset: -24)

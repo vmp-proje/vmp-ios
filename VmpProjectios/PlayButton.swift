@@ -68,7 +68,7 @@ class PlayButton: Button {
   @objc func updateButtonUI() {
     if !locked {
       DispatchQueue.main.async {
-        if AudioPlayer.shared.currentTrack?.id == self.contentId {
+        if AudioPlayer.shared.currentTrack?.attributes?.id == self.contentId {
           if AudioPlayer.shared.isLoading == true {
             self.isUserInteractionEnabled = false
             self.playStatus = .loading
@@ -96,7 +96,7 @@ class PlayButton: Button {
     DispatchQueue.main.async {
       if !self.locked {
         if let playStatus = notification.userInfo?["playStatus"] as? PlayStatus {
-          if AudioPlayer.shared.currentTrack?.id == self.contentId {
+          if AudioPlayer.shared.currentTrack?.attributes?.id == self.contentId {
             self.playStatus = playStatus
             if playStatus == .playing {
               self.isUserInteractionEnabled = true

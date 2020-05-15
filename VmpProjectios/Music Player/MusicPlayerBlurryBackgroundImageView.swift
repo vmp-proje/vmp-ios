@@ -26,7 +26,7 @@ class MusicPlayerBlurryBackgroundImageView: UIView {
   let blackView: UIView = {
     let view = UIView()
     view.translatesAutoresizingMaskIntoConstraints = false
-    view.backgroundColor = Color.appWhiteBlurryBackground.withAlphaComponent(0.5)
+    view.backgroundColor = Color.appWhiteBlurryBackground.withAlphaComponent(0.35)
     
     return view
   }()
@@ -41,9 +41,9 @@ class MusicPlayerBlurryBackgroundImageView: UIView {
     loadUI()
     
     blurEffectView.colorTint = .gray
-    blurEffectView.colorTintAlpha = 0.18
-    blurEffectView.blurRadius = 15
-    blurEffectView.scale = 13
+    blurEffectView.colorTintAlpha = 0.17
+    blurEffectView.blurRadius = 12
+    blurEffectView.scale = 11
   }
   
   required init?(coder: NSCoder) {

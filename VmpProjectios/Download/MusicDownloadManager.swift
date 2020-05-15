@@ -53,7 +53,7 @@ class MusicDownloadManager: NSObject, URLSessionDownloadDelegate {
   func prepare(queue: [CategoryContentListData]) {
     
     for content in queue {
-      if let url = getAPIUrl(link: content.attributes?.media) {
+      if let url = getAPIUrl(link: content.attributes?.url) {
         activeDownloads[url] = Download(content: content)
       }
     }
@@ -62,14 +62,14 @@ class MusicDownloadManager: NSObject, URLSessionDownloadDelegate {
     
     for content in queue {
       dispatchQueue.async {
-        if let url = self.getAPIUrl(link: content.attributes?.media) {
+        if let url = self.getAPIUrl(link: content.attributes?.url) {
           self.currentURL = url
-          let localUrl = self.getLocalURL(url: url, id: content.id!)
+          let localUrl = self.getLocalURL(url: url, id: content.attributes!.id!)
           if !self.isDownloaded(url: localUrl) {
-            print("\n\n\n 🌈🌈🌈🌈🌈🌈🌈🌈 downloading: \(String(describing: content.attributes?.name!))")
+            print("\n\n\n 🌈🌈🌈🌈🌈🌈🌈🌈 downloading: \(String(describing: content.attributes?.title!))")
             self.download(url: url)
           } else {
-            print("💔💔💔💔💔💔💔💔 this downloaded already: \(String(describing: self.activeDownloads[self.currentURL!]?.content.attributes?.name))")
+            print("💔💔💔💔💔💔💔💔 this downloaded already: \(String(describing: self.activeDownloads[self.currentURL!]?.content.attributes?.title))")
           }
         }
       }
@@ -146,7 +146,7 @@ class MusicDownloadManager: NSObject, URLSessionDownloadDelegate {
   
   ///LocalUrl: Download path URL  - apiUrl: original URL
   func getDownloadState(content: CategoryContentListData,apiUrl: URL) -> DownloadState {
-    let localURL = self.getLocalURL(url: apiUrl, id: content.id!)
+    let localURL = self.getLocalURL(url: apiUrl, id: content.attributes!.id!)
     
     if isDownloaded(url: localURL) {
       return .downloaded
@@ -192,9 +192,9 @@ class MusicDownloadManager: NSObject, URLSessionDownloadDelegate {
     print("🌈🌈🌈🌈🌈 cancelDownloads(data: activeUrl count: \(self.activeDownloads.count)")
     
     for content in data {
-      if let url = self.getAPIUrl(link: content.attributes?.media) {
+      if let url = self.getAPIUrl(link: content.attributes?.url) {
         
-        let localUrl = self.getLocalURL(url: url, id: content.id!)
+        let localUrl = self.getLocalURL(url: url, id: content.attributes!.id!)
         
         if !self.isDownloaded(url: localUrl) { // Not downloaded
           if url == self.currentURL {
@@ -255,7 +255,7 @@ class MusicDownloadManager: NSObject, URLSessionDownloadDelegate {
         return nil
     }
     
-    return documentsDirectoryURL.appendingPathComponent("\(currentDownload.content.id!)_\(currentURL.lastPathComponent)")
+    return documentsDirectoryURL.appendingPathComponent("\(currentDownload.content.attributes?.id!)_\(currentURL.lastPathComponent)")
   }
   
   func removeFile(localURL: URL, updatePlaylistCollectionView: Bool) {

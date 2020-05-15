@@ -50,21 +50,20 @@ class BaseMusicPlayerView: View {
     addSubview(blurryImageView)
     blurryImageView.fillToSuperview()
     
-    
     imageView.translatesAutoresizingMaskIntoConstraints = false
     imageView.backgroundColor = .red
+    imageView.contentMode = .scaleAspectFill
     
     addSubview(imageView)
-    imageView.autoSetDimension(.width, toSize: screenSize.width*0.4)
-    imageView.autoSetDimension(.height, toSize: screenSize.width*0.4)
+    imageView.autoSetDimension(.width, toSize: screenSize.width*0.6)
+    imageView.autoSetDimension(.height, toSize: screenSize.width*0.45)
     imageView.autoPinEdge(toSuperviewSafeArea: .top, withInset: 65)
 //    imageView.anchorCenterYToSuperview(constant: -screenSize.width*0.4)
     imageView.anchorCenterXToSuperview()
     
     
     addSubview(centerView)
-    //centerView.anchorCenterYToSuperview(constant: -centerView.selfHeight * 0.1)
-    centerView.anchorCenterYToSuperview()
+    centerView.anchorCenterYToSuperview(constant: -centerView.selfHeight * 0.15)
     centerView.autoPinEdge(.left, to: .left, of: self, withOffset: 24)
     centerView.autoPinEdge(.right, to: .right, of: self, withOffset: -24)
     centerView.autoSetDimension(.height, toSize: centerView.selfHeight)
