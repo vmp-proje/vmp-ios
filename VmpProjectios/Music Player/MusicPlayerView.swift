@@ -44,6 +44,8 @@ class BaseMusicPlayerView: View {
   
   let imageView = UIImageView(image: nil)
   
+  
+  
   //MARK: - UI
   private func loadUI() {
     
@@ -89,3 +91,61 @@ class BaseMusicPlayerView: View {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+internal class CoursePlayerBottomView: UIView {
+  
+  
+  
+  //MARK: Constants
+  let buttonSize: CGFloat = 52
+  var informationButtonWidth: CGFloat {
+    return (screenSize.width-48)/2
+  }
+  
+  
+  
+  //MARK: - Visual Objects
+  let downloadButton = DownloadButtonView(frame: .zero)
+  
+  
+  
+  //MARK: - Initialization
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    
+    translatesAutoresizingMaskIntoConstraints = false
+    backgroundColor = .clear
+    loadUI()
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
+  
+  //MARK: - UI
+  private func loadUI() {
+    addSubview(downloadButton)
+    downloadButton.autoPinEdge(.top, to: .top, of: self)
+    downloadButton.autoPinEdge(.right, to: right, of: self, withOffset: -15)
+    downloadButton.autoSetDimension(.height, toSize: buttonSize)
+    downloadButton.autoSetDimension(.width, toSize: buttonSize)
+  }
+}

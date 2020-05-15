@@ -72,6 +72,7 @@
 		A5E7478F246DABC60042E484 /* PlayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E7478E246DABC60042E484 /* PlayButton.swift */; };
 		A5E74791246DAF460042E484 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E74790246DAF460042E484 /* AudioPlayer.swift */; };
 		A5E74793246DAF920042E484 /* AppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E74792246DAF920042E484 /* AppNotification.swift */; };
+		A5E74795246E2A6A0042E484 /* DownloadButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E74794246E2A6A0042E484 /* DownloadButtonView.swift */; };
 		E8B4BEC99587836B24DF47D5 /* Pods_VmpProjectios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E3ADCF7A5CAE4400744D00E /* Pods_VmpProjectios.framework */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +147,7 @@
 		A5E7478E246DABC60042E484 /* PlayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayButton.swift; sourceTree = "<group>"; };
 		A5E74790246DAF460042E484 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		A5E74792246DAF920042E484 /* AppNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
+		A5E74794246E2A6A0042E484 /* DownloadButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadButtonView.swift; sourceTree = "<group>"; };
 		C8417F21A4C793956A7F4E8D /* Pods-VmpProjectios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VmpProjectios.release.xcconfig"; path = "Target Support Files/Pods-VmpProjectios/Pods-VmpProjectios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -363,6 +365,7 @@
 				A574A593244293F60067C9BE /* MusicDownloadManager.swift */,
 				A574A5952442943E0067C9BE /* Download.swift */,
 				A574A597244294570067C9BE /* DownloadState.swift */,
+				A5E74794246E2A6A0042E484 /* DownloadButtonView.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				180DD9B5242E5CE10096B70D /* MainTabBarController.swift in Sources */,
 				180DD9BD242E5CE10096B70D /* RegisterViewController.swift in Sources */,
 				180DD9B3242E5CE10096B70D /* AppFont.swift in Sources */,
+				A5E74795246E2A6A0042E484 /* DownloadButtonView.swift in Sources */,
 				A5E7478B246D6BE60042E484 /* UserService.swift in Sources */,
 				A5791B45245DF62A00A0E74F /* RestService.swift in Sources */,
 				A5791B39245DB3B400A0E74F /* TabViewController.swift in Sources */,
